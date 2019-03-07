@@ -3,6 +3,8 @@ import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as Auth from '../store/Actions/auth.actions';
 import { UserCredentials } from '../models/user-credential';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,13 +24,18 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private store: Store<fromRoot.State>,
-  ) { }
+    private router: Router,
+    private authService: AuthService,
+  ) {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
+  }
 
   ngOnInit() {
   }
 
   login() {
-    // this.store.dispatch(new Auth.LoginUser({ user: this.user }));
     this.store.dispatch(new Auth.LoginUser({user: this.user}));
   }
 

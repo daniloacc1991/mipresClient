@@ -28,9 +28,13 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/scss/style.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/sparkline.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -86,9 +90,13 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
               "src/styles.scss",
+              "src/assets/scss/style.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/sparkline.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
