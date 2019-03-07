@@ -1,6 +1,6 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { AmbitoAtencionActions, AmbitoAtencionActionsTypes } from '../actions/ambito-atencion.actions';
-import { AmbitoAtencion } from '../../models/ambito-atencion';
+import { AmbitoAtencion } from '../../../models/ambito-atencion';
 
 export const ambitoAntencionAdater = createEntityAdapter<AmbitoAtencion>({
   selectId: (ambitoAtencion: AmbitoAtencion) => ambitoAtencion.id,
@@ -22,7 +22,7 @@ export function reducer(state: State = InitState, { type, payload }: AmbitoAtenc
     case AmbitoAtencionActionsTypes.SET_CURRENT_AMBITO_ATENCION_ID: {
       return {
         ...state,
-        currentPrescripcionId: payload
+        currentAmbitoAtencionId: payload
       };
     }
 
@@ -35,8 +35,22 @@ export function reducer(state: State = InitState, { type, payload }: AmbitoAtenc
     case AmbitoAtencionActionsTypes.LOAD_SUCCESS: {
       return ambitoAntencionAdater.addOne(payload, {
         ...state,
-        currentPrescripcionId: payload.id
+        currentAmbitoAtencionId: payload.id
       });
+    }
+
+    case AmbitoAtencionActionsTypes.CREATE_SUCCESS: {
+      return ambitoAntencionAdater.addOne(payload, {
+        ...state
+      });
+    }
+
+    case AmbitoAtencionActionsTypes.PUT_SUCCESS: {
+      return ambitoAntencionAdater.updateOne(payload, state);
+    }
+
+    case AmbitoAtencionActionsTypes.DELETE_SUCCESS: {
+      return ambitoAntencionAdater.removeOne(payload, state);
     }
 
     default:

@@ -1,5 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import * as fromRoot from 'src/app/reducers';
 declare var $: any;
 
 @Component({
@@ -9,7 +11,10 @@ declare var $: any;
 })
 export class LayautComponent implements OnInit {
 
-  constructor(public router: Router) {}
+  constructor(
+    private store: Store<fromRoot.State>,
+    public router: Router,
+    ) { }
 
   public isCollapsed = false;
   public innerWidth: any;

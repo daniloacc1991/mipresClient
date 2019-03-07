@@ -8,9 +8,17 @@ import {
   AmbitoAtencionActionsTypes,
   LoadAll,
   LoadAllSuccess,
-  Load
+  Load,
+  Create,
+  CreateSuccess,
+  Failure,
+  Put,
+  PutSuccess,
+  DeleteSuccess,
+  Delete
 } from '../actions/ambito-atencion.actions';
-import { AmbitoAtencion } from '../../models/ambito-atencion';
+import { AmbitoAtencion } from '../../../models/ambito-atencion';
+import { AmbitoAtencionSocketsService } from '../../services/ambito-atencion-sockets.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,24 +26,81 @@ import { AmbitoAtencion } from '../../models/ambito-atencion';
 export class AmbitoAtencionEffects {
 
   @Effect()
-  LoadAll$: Observable<Action> = this.actions$.pipe(
+  loadAll$: Observable<Action> = this.actions$.pipe(
     ofType(AmbitoAtencionActionsTypes.LOAD_ALL),
     startWith(new LoadAll()),
-    switchMap(() => {
-      return this.ambitoAtencionService.findAll();
-    }),
+    switchMap(() => this.ambitoAtencionService.findAll()),
     map((ambitos: AmbitoAtencion[]) => new LoadAllSuccess(ambitos)),
   );
 
-  // @Effect()
-  // Load$: Observable<Action> = this.actions$.pipe(
-  //   ofType(AmbitoAtencionActionsTypes.LOAD),
-  //   map((action: Load) => action.payload),
-  //   switchMap((id) => )
-  // );
+  @Effect()
+  load$: Observable<Action> = this.actions$.pipe(
+    ofType(AmbitoAtencionActionsTypes.LOAD),
+    map((action: Load) => action.payload),
+    switchMap((id) => this.ambitoAtencionService.show(id)),
+    map((ambito: AmbitoAtencion) => new LoadAll(ambito)),
+  );
+
+  @Effect()
+  create$: Observable<Action> = this.actions$.pipe(
+    ofType(AmbitoAtencionActionsTypes.CREATE),
+    map((action: Create) => action.payload),
+    switchMap((ambitoAtencion) => this.ambitoAtencionService.create(ambitoAtencion)),
+    map((createdAmbito: AmbitoAtencion) => new CreateSuccess(createdAmbito)),
+    catchError(err => {
+      alert(err['message']);
+      return of(new Failure({ concern: 'CREATE', error: err }));
+    }),
+  );
+
+  @Effect()
+  update$: Observable<Action> = this.actions$.pipe(
+    ofType(AmbitoAtencionActionsTypes.PUT),
+    map((action: Put) => action.payload),
+    switchMap((ambito: AmbitoAtencion) => this.ambitoAtencionService.update(ambito)),
+    map((updatedAmbito: AmbitoAtencion) => new PutSuccess({
+      id: updatedAmbito.id,
+      changes: updatedAmbito
+    })
+    ),
+    catchError(err => {
+      alert(err['message']);
+      return of(new Failure({ concern: 'PUT', error: err }))
+    })
+  );
+
+  @Effect()
+  destroy$: Observable<Action> = this.actions$.pipe(
+    ofType(AmbitoAtencionActionsTypes.DELETE),
+    map((action: Delete) => action.payload),
+    switchMap(
+      (id: number) => this.ambitoAtencionService.destroy(id).pipe(
+        map(() => new DeleteSuccess(id))
+      )
+    )
+  );
+
+  // Socket Live Events
+  @Effect()
+  liveCreate$: Observable<Action> = this.ambitoAtencionSocket.fromEvent(AmbitoAtencionActionsTypes.LIVE_CREATED).pipe(
+    map((ambito: AmbitoAtencion) => new CreateSuccess(ambito))
+  );
+
+  @Effect()
+  liveUpdate$: Observable<Action> = this.ambitoAtencionSocket.fromEvent(AmbitoAtencionActionsTypes.LIVE_UPDATED).pipe(
+    map((ambito: AmbitoAtencion) => new PutSuccess({
+      id: ambito.id, changes: ambito
+    }))
+  );
+
+  @Effect()
+  liveDestroy$: Observable<Action> = this.ambitoAtencionSocket.fromEvent(AmbitoAtencionActionsTypes.LIVE_DELETED).pipe(
+    map(id => new DeleteSuccess(+id))
+  );
 
   constructor(
     private actions$: Actions,
     private ambitoAtencionService: AmbitoAtencionService,
+    private ambitoAtencionSocket: AmbitoAtencionSocketsService,
   ) { }
 }

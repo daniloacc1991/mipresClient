@@ -2,9 +2,8 @@ import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { SocketIoModule } from 'ngx-socket-io';
 import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -15,6 +14,8 @@ import { SharedModule } from './core/shared.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Authorization } from './core/interceptors/authorizations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { Authorization } from './core/interceptors/authorizations';
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
+    SocketIoModule,
     SharedModule,
     NgbModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),

@@ -1,3 +1,7 @@
-<pre>
-  {{ ambitoAtencion$ | async | json }}
-</pre>
+<app-ambito-atencion-list
+  [ambitos]="ambitoAtencion$ | async"
+  (show)="showAmbito($event)"
+  (remove)="deleteAmbito($event)"
+  (edit)="editAmbito($event)"
+  >
+</app-ambito-atencion-list>

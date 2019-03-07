@@ -22,6 +22,9 @@
       "@app-auth/*": [
         "src/app/auth/*"
       ],
+      "@app-models/*": [
+        "src/app/models/*"
+      ],
     }
   }
 }
