@@ -1,0 +1,6 @@
+<app-prescripcion-list
+  [prescripcions]="prescripcions$ | async"
+  (show)="showPrescripcion($event)"
+  (remove)="deletePrescripcion($event)"
+  (edit)="editPrescripcion($event)">
+</app-prescripcion-list>

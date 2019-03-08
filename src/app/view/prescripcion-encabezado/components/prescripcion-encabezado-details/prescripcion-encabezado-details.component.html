@@ -1,0 +1,6 @@
+<div class="row">
+        <div class="col-md-12">
+                <app-prescripcion-details [prescripcion]="prescripcion$ | async" (edit)="editPrescripcion($event)"
+                        (remove)="deletePrescripcion($event)"></app-prescripcion-details>
+        </div>
+</div>

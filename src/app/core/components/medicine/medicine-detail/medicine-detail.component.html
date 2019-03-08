@@ -1,0 +1,120 @@
+<div *ngIf="medicines">
+  <div class="row row-title">
+    <div class="border-prescricion col-md-12">
+      <h1 class="text-center display-5">MEDICAMENTOS</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Tipo prestación</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Nombre Medicamento /</p>
+        <p class="mb-0">Forma Farmacéutica</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Dosis</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Vía Administración</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Frecuencia Administración</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Indicaciones Especiales</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Duración Tratamiento</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Recomendaciones</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Cantidades Farmacéuticas</p>
+        <p class="mb-0">Nro / Letras / Unidad Farmacéutica</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Acciones</p>
+      </blockquote>
+    </div>
+  </div>
+  <div *ngFor="let medicine of medicines;">
+    <div class="row">
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer *ngIf="tipoPrestacion">{{ medicine.TipoPrest | matchValue:[tipoPrestacion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ medicine.DescMedPrinAct }}</footer>
+          <footer>{{ medicine.formaFarmaceutica.descripcion | uppercase }} </footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0">{{ medicine.Dosis }} {{ medicine.unidadMedidaDosis.descripcion | uppercase }}</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer>{{ medicine.viaAdministracion.descripcion | uppercase }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer *ngIf="frecuenciasAdministracion">{{ medicine.NoFAdmon }}
+            {{ medicine.CodFreAdmon | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer *ngIf="indicacionesEspeciales">
+            {{ medicine.IndEsp | matchValue:[indicacionesEspeciales, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer *ngIf="frecuenciasAdministracion">{{ medicine.CanTrat }}
+            {{ medicine.DurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ medicine.IndRec | uppercase }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer>{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} / {{ medicine.presentacion.descripcion }}
+          </footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+          <blockquote class="blockquote">
+            <p class="mb-0"><a class="btn btn-outline-success" [href]="'/medicines/entrega/' + medicine.id">Entregar</a></p>
+          </blockquote>
+        </div>
+    </div>
+  </div>
+</div>

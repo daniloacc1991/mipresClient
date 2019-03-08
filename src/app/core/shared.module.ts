@@ -12,9 +12,19 @@ import { SpinnerComponent } from './components/shared/spinner.component';
 import { AmbitoAtencionListComponent } from './components/ambito-atencion/ambito-atencion-list/ambito-atencion-list.component';
 import { AmbitoAtencionDetailsComponent } from './components/ambito-atencion/ambito-atencion-details/ambito-atencion-details.component';
 import { AmbitoAtencionFormComponent } from './components/ambito-atencion/ambito-atencion-form/ambito-atencion-form.component';
+import { PrescripcionListComponent } from './components/prescripcions/prescripcion-list/prescripcion-list.component';
+import { PrescripcionDetailsComponent } from './components/prescripcions/prescripcion-details/prescripcion-details.component';
+import { ProcessDetailComponent } from './components/process/process-detail/process-detail.component';
+import { MedicineDetailComponent } from './components/medicine/medicine-detail/medicine-detail.component';
+import { DeviceDetailComponent } from './components/devices/device-detail/device-detail.component';
+import { ProductNutritionalDetailComponent } from './components/product-nutritional/product-nutritional-detail/product-nutritional-detail.component';
+import { MatchValuePipe } from './pipes/match-value.pipe';
+import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
 
 @NgModule({
   declarations: [
+    JoinNameProfPipe,
+    MatchValuePipe,
     HeaderNavigationComponent,
     SidebarComponent,
     BreadcrumbComponent,
@@ -23,6 +33,12 @@ import { AmbitoAtencionFormComponent } from './components/ambito-atencion/ambito
     AmbitoAtencionListComponent,
     AmbitoAtencionDetailsComponent,
     AmbitoAtencionFormComponent,
+    PrescripcionListComponent,
+    PrescripcionDetailsComponent,
+    ProcessDetailComponent,
+    MedicineDetailComponent,
+    DeviceDetailComponent,
+    ProductNutritionalDetailComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -33,6 +49,8 @@ import { AmbitoAtencionFormComponent } from './components/ambito-atencion/ambito
     AmbitoAtencionListComponent,
     AmbitoAtencionDetailsComponent,
     AmbitoAtencionFormComponent,
+    PrescripcionListComponent,
+    PrescripcionDetailsComponent,
   ],
   imports: [
     CommonModule,

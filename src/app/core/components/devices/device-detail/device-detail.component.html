@@ -1,0 +1,72 @@
+<div *ngIf="devices">
+  <div class="row row-title">
+    <div class="border-prescricion col-md-12">
+      <h1 class="text-center display-5">DISPOSITIVOS MÉDICOS</h1>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Tipo prestación</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Dispositivo Médico</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Indicaciones o Recomendaciones</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Cantidad Formulada</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Frecuencia Uso</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Duración Tratamiento</p>
+        <p class="mb-0">(Cantidad - Período)</p>
+      </blockquote>
+    </div>
+  </div>
+  <div *ngFor="let device of devices;" class="row">
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0" *ngIf="tipoPrestacion">{{ device.TipoPrest | matchValue:[tipoPrestacion, 'descripcion'] }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ device.CodDisp }} - {{ device.tipoDispositivoMedico.descripcion | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ device.IndRec | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ device.CanForm }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.CadaFreUso }} {{ device.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.Cant }} {{ device.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+      </blockquote>
+    </div>
+  </div>
+</div>

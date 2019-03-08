@@ -19,15 +19,15 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'Prescripciones',
+    title: 'Usuario',
     icon: 'mdi mdi-dots-horizontal',
     class: 'nav-small-cap',
     extralink: true,
     submenu: []
   },
   {
-    path: '/prescricions',
-    title: 'Listar Prescripciones',
+    path: '/prescripcion-encabezado',
+    title: 'Prescripciones',
     icon: 'mdi mdi-gauge',
     class: '',
     extralink: false,

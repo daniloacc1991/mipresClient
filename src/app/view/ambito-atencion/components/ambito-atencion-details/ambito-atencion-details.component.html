@@ -1,0 +1,5 @@
+<app-ambito-atencion-details-container
+        [ambito]="ambito$ | async"
+        (edit)="editAmbito($event)"
+        (remove)="deleteAmbito($event)"
+></app-ambito-atencion-details-container>

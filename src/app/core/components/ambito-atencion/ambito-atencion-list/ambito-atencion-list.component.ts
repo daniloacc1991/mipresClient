@@ -14,8 +14,6 @@ export class AmbitoAtencionListComponent implements OnInit {
   @Output() show = new EventEmitter<AmbitoAtencion>();
   @Output() remove = new EventEmitter<AmbitoAtencion>();
 
-  contactsTrackByFn = (index: number, ambito: AmbitoAtencion) => ambito.id;
-
   page = 1;
   pageSize = 10;
 

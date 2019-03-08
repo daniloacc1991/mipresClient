@@ -1,0 +1,230 @@
+<div *ngIf="prescripcion" class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4 text-center">
+        <strong>
+          <h1 class="display-5">PLAN DE MANEJO</h1>
+        </strong>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <p class="mb-0">Fecha y Hora de Expedición (AAAA-MM-DD)</p>
+            </blockquote>
+          </div>
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <footer>{{ prescripcion.FPrescripcion | date:'yyyy-MM-dd' }} {{ prescripcion.HPrescripcion }}</footer>
+            </blockquote>
+          </div>
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <p class="mb-0">Nro. Prescripción</p>
+            </blockquote>
+          </div>
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <footer>{{ prescripcion.NoPrescripcion }}</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-title">
+      <div class="border-prescricion col-md-12">
+        <h1 class="text-center display-5">DATOS DEL PRESTADOR</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-4">
+        <blockquote *ngIf="towns" class="blockquote">
+          <p class="mb-0">Departamento: </p>
+          <footer>{{ prescripcion.CodDANEMunIPS }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-4">
+        <blockquote *ngIf="towns" class="blockquote">
+          <p class="mb-0">Municipio: </p>
+          <footer>{{ prescripcion.CodDANEMunIPS }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-4">
+        <blockquote class="blockquote">
+          <p class="mb-0">Código Habilitación: </p>
+          <footer>{{ prescripcion.CodHabIPS }}</footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Documento de Identificación: </p>
+          <footer>{{ prescripcion.NroIDIPS }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Nombre Prestador de Servicios de Salud: </p>
+          <footer>{{ prescripcion.NroIDIPS }}</footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Dirección: </p>
+          <footer>{{ prescripcion.DirSedeIPS }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Teléfono: </p>
+          <footer>{{ prescripcion.TelSedeIPS }}</footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row row-title">
+      <div class="border-prescricion col-md-12">
+        <h1 class="text-center display-5">DATOS DEL PACIENTE</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-4">
+        <blockquote class="blockquote">
+          <p class="mb-0">Documento de Identificación: </p>
+          <footer>{{ prescripcion.TipoIDPaciente + ' ' + prescripcion.NroIDPaciente }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Primer Apellido:</p>
+          <footer>{{ prescripcion.PAPaciente }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Segundo Apellido:</p>
+          <footer>{{ prescripcion.SAPaciente }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Primer Nombre:</p>
+          <footer>{{ prescripcion.PNPaciente }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Segundo Nombre:</p>
+          <footer>{{ prescripcion.SNPaciente }}</footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-3">
+        <blockquote class="blockquote">
+          <p class="mb-0">Número Historia Clínica:</p>
+          <footer>{{ prescripcion.NroIDPaciente }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-3">
+        <blockquote *ngIf="cie10" class="blockquote">
+          <p class="mb-0">Diagnóstico Principal:</p>
+          <footer>{{ prescripcion.CodDxPpal }} {{ prescripcion.CodDxPpal }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-3">
+        <blockquote class="blockquote">
+          <p class="mb-0">Usuario Régimen:</p>
+          <footer></footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-3">
+        <blockquote *ngIf="ambitos" class="blockquote">
+          <p class="mb-0">Ambito atención:</p>
+          <footer>{{ prescripcion.CodAmbAte }}</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Aqui va el contenido del Medicamento -->
+    <app-medicine-detail *ngIf="prescripcion.medicamentos.length !== 0" [medicines]="prescripcion.medicamentos">
+    </app-medicine-detail>
+
+    <!-- Aqui va el contenido del procedimiento -->
+    <app-process-detail *ngIf="prescripcion.procedimientos.length !== 0" [procedures]="prescripcion.procedimientos">
+    </app-process-detail>
+
+    <!-- Aqui va el contenido del Dispositivo Medico -->
+    <app-device-detail *ngIf="prescripcion.dispositivos.length !== 0" [devices]="prescripcion.dispositivos">
+    </app-device-detail>
+
+    <!-- Aqui va el contenido del Producto Nutricional -->
+    <app-product-nutritional-detail *ngIf="prescripcion.productosnutricionales.length !== 0"
+      [products]="prescripcion.productosnutricionales">
+    </app-product-nutritional-detail>
+
+    <div class="row row-title">
+      <div class="border-prescricion col-md-12">
+        <h1 class="text-center display-5">PROFESIONAL TRATANTE</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Documento de Identificación:</p>
+          <footer>{{ prescripcion.TipoIDProf + ' ' + prescripcion.NumIDProf }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-6">
+        <blockquote class="blockquote">
+          <p class="mb-0">Nombre:</p>
+          <footer>
+            {{ prescripcion.PNProfS }}
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <p class="mb-0">Registro Profesional:</p>
+              <footer>{{ prescripcion.RegProfS }}</footer>
+            </blockquote>
+          </div>
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <p class="mb-0">Especialidad:</p>
+              <footer>{{ prescripcion.TipoIDProf + ' ' + prescripcion.NumIDProf }}</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row row-firma">
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote text-center">
+              <p class="mb-0">Firma</p>
+            </blockquote>
+          </div>
+          <div class="border-prescricion col-md-12">
+            <blockquote class="blockquote">
+              <p class="mb-0">CodVer: 5BA4903C-7C5A-43BD-A686-EF2012C06326</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <div *ngIf="prescripcion">
+  <pre>
+    {{ prescripcion | json }}
+  </pre>
+</div> -->

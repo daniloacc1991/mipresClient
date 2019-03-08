@@ -1,0 +1,51 @@
+<table class="table table-hover table-responsive-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">NoPrescripcion</th>
+      <th scope="col">FPrescripcion</th>
+      <th scope="col">HPrescripcion</th>
+      <th scope="col">Paciente</th>
+      <th scope="col">Profesional</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let precipcion of prescripcions | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+      <th scope="row">{{ precipcion.id }}</th>
+      <td>{{ precipcion.NoPrescripcion }}</td>
+      <td>{{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}</td>
+      <td>{{ precipcion.HPrescripcion }}</td>
+      <td>{{ precipcion.PNPaciente }} {{ precipcion.PAPaciente }}</td>
+      <td>{{ precipcion.SNProfS }} {{ precipcion.SAPaciente }}</td>
+      <td>
+        <span class="span-padding">
+          <button (click)="showDetails(precipcion)" class="btn btn-outline-primary mb-1 btn-sm">
+            View
+          </button>
+        </span>
+        <!-- <span class="span-padding">
+          <button (click)="editPrescripcion(precipcion)" class="btn btn-outline-warning mb-1 btn-sm">
+            Editar
+          </button>
+        </span>
+        <span class="span-padding">
+          <button (click)="deletePrescripcion(precipcion)" class="btn btn-outline-danger mb-1 btn-sm">
+            Eliminar
+          </button>
+        </span> -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="prescripcions.length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
+  </ngb-pagination>
+
+  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+    <option [ngValue]="5">5 items Por Página</option>
+    <option [ngValue]="10">10 items Por Página</option>
+    <option [ngValue]="25">25 items Por Página</option>
+    <option [ngValue]="50">50 items Por Página</option>
+  </select>
+</div>

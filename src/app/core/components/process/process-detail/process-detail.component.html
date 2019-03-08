@@ -1,0 +1,83 @@
+<div *ngIf="procedures">
+  <div *ngFor="let procedure of procedures;">
+    <div class="row row-title">
+      <div class="border-prescricion col-md-12">
+        <h1 class="text-center display-5">PROCEDIMIENTOS</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Tipo prestación</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Procedimiento</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Indicaciones o Recomendaciones</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0">Cantidad</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Frecuencia Uso</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Duración Tratamiento(Cantidad - Período)</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0">Cantidad Total</p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="row">
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.TipoPrest | matchValue:[tipoPrestacion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.CodCUPS }} {{ procedure.cups.descripcion }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.IndRec | uppercase }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.CanForm }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer *ngIf="frecuenciasAdministracion">{{ procedure.CadaFreUso }}  {{ procedure.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.Cant }} {{ procedure.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <footer>{{ procedure.CantTotal }}</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>

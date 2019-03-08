@@ -25,6 +25,12 @@
       "@app-models/*": [
         "src/app/models/*"
       ],
+      "@app-ambitoAtencion/*": [
+        "src/app/view/ambito-atencion/*"
+      ],
+      "@app-prescripcionsEnc/*": [
+        "src/app/view/prescripcion-encabezado/*"
+      ]
     }
   }
 }

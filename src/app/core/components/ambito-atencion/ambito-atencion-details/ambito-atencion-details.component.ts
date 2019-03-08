@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Input, Output
 import { AmbitoAtencion } from '@app-models/index';
 
 @Component({
-  selector: 'app-ambito-atencion-details',
+  selector: 'app-ambito-atencion-details-container',
   templateUrl: './ambito-atencion-details.component.html',
   styleUrls: ['./ambito-atencion-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
