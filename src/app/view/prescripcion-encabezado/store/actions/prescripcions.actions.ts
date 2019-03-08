@@ -35,38 +35,28 @@ export class SetCurrentPrescripcionId implements Action {
   constructor(public payload: number) { }
 }
 
-export class LoadAll implements Action {
-  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_ALL;
-  constructor(public payload = null) { }
-}
-
 export class Load implements Action {
   readonly type = PrescripcionEncabezadoActionsTypes.LOAD;
   constructor(public payload: number) { }
 }
 
-export class Create implements Action {
-  readonly type = PrescripcionEncabezadoActionsTypes.CREATE;
+export class LoadSuccess implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_SUCCESS;
   constructor(public payload: Prescripcion) { }
 }
 
-export class Put implements Action {
-  readonly type = PrescripcionEncabezadoActionsTypes.PUT;
-  constructor(public payload: Prescripcion) { }
-}
-
-export class Delete implements Action {
-  readonly type = PrescripcionEncabezadoActionsTypes.DELETE;
-  constructor(public payload: number) { }
+export class LoadAll implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_ALL;
+  constructor(public payload = null) { }
 }
 
 export class LoadAllSuccess implements Action {
   readonly type = PrescripcionEncabezadoActionsTypes.LOAD_ALL_SUCCESS;
-  constructor(public payload: any) { }
+  constructor(public payload: Prescripcion[]) { }
 }
 
-export class LoadSuccess implements Action {
-  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_SUCCESS;
+export class Create implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.CREATE;
   constructor(public payload: Prescripcion) { }
 }
 
@@ -75,9 +65,19 @@ export class CreateSuccess implements Action {
   constructor(public payload: Prescripcion) { }
 }
 
+export class Put implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.PUT;
+  constructor(public payload: Prescripcion) { }
+}
+
 export class PutSuccess implements Action {
   readonly type = PrescripcionEncabezadoActionsTypes.PUT_SUCCESS;
   constructor(public payload: Update<Prescripcion>) { }
+}
+
+export class Delete implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.DELETE;
+  constructor(public payload: number) { }
 }
 
 export class DeleteSuccess implements Action {

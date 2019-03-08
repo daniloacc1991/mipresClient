@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Prescripcion } from '@app-models/index';
+import { ChangeDetectionStrategy, Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
+import { Prescripcion, CIE10 } from '@app-models/index';
+import { Cie10Service } from '../../../../view/cie10/services/cie10.service';
 
 @Component({
   selector: 'app-prescripcion-details',
@@ -7,15 +8,29 @@ import { Prescripcion } from '@app-models/index';
   styleUrls: ['./prescripcion-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PrescripcionDetailsComponent implements OnInit {
+export class PrescripcionDetailsComponent implements OnInit, OnChanges {
 
   @Input() prescripcion: Prescripcion;
   @Output() edit = new EventEmitter<Prescripcion>();
   @Output() remove = new EventEmitter<Prescripcion>();
 
-  constructor( ) {}
+  cie10: CIE10[];
+
+  constructor(
+    private cie10Service: Cie10Service,
+  ) {
+
+  }
 
   ngOnInit() {
+    this.cie10Service.findAll().subscribe(
+      res => {
+        this.cie10 = res;
+      }
+    );
+  }
 
+  ngOnChanges() {
+    console.log(this.prescripcion);
   }
 }

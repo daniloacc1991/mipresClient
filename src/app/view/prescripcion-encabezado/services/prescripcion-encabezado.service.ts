@@ -17,7 +17,7 @@ export class PrescripcionEncabezadoService {
 
   index() {
     return this._http
-      .get<Prescripcion>(this.url$);
+      .get<Prescripcion[]>(this.url$);
   }
 
   show(id) {

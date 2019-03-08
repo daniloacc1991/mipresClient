@@ -30,7 +30,10 @@
       ],
       "@app-prescripcionsEnc/*": [
         "src/app/view/prescripcion-encabezado/*"
-      ]
+      ],
+      "@app-cie10/*": [
+        "src/app/view/cie10/*"
+      ],
     }
   }
 }

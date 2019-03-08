@@ -30,10 +30,8 @@ export class PrescripcionsEffects {
   LoadAll$: Observable<Action> = this.actions$.pipe(
     ofType(PrescripcionEncabezadoActionsTypes.LOAD_ALL),
     startWith(new LoadAll()),
-    switchMap(() => {
-      return this.prescripcionsService.index();
-    }),
-    map((prescripcions: Prescripcion) => new LoadAllSuccess(prescripcions))
+    switchMap(() => this.prescripcionsService.index()),
+    map((prescripcions: Prescripcion[]) => new LoadAllSuccess(prescripcions))
   );
 
   @Effect()

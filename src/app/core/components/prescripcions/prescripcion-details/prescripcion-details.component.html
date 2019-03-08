@@ -41,15 +41,15 @@
     </div>
     <div class="row">
       <div class="border-prescricion col-md-4">
-        <blockquote *ngIf="towns" class="blockquote">
+        <blockquote class="blockquote">
           <p class="mb-0">Departamento: </p>
-          <footer>{{ prescripcion.CodDANEMunIPS }}</footer>
+          <footer>{{ prescripcion.municipio.departamento }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-4">
-        <blockquote *ngIf="towns" class="blockquote">
+        <blockquote class="blockquote">
           <p class="mb-0">Municipio: </p>
-          <footer>{{ prescripcion.CodDANEMunIPS }}</footer>
+          <footer>{{ prescripcion.municipio.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-4">
@@ -132,9 +132,9 @@
         </blockquote>
       </div>
       <div class="border-prescricion col-md-3">
-        <blockquote *ngIf="cie10" class="blockquote">
+        <blockquote class="blockquote">
           <p class="mb-0">Diagnóstico Principal:</p>
-          <footer>{{ prescripcion.CodDxPpal }} {{ prescripcion.CodDxPpal }}</footer>
+          <footer *ngIf="cie10">{{ prescripcion.CodDxPpal }} {{ prescripcion.cie10.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-3">
@@ -144,9 +144,9 @@
         </blockquote>
       </div>
       <div class="border-prescricion col-md-3">
-        <blockquote *ngIf="ambitos" class="blockquote">
+        <blockquote class="blockquote">
           <p class="mb-0">Ambito atención:</p>
-          <footer>{{ prescripcion.CodAmbAte }}</footer>
+          <footer>{{ prescripcion.ambitoAtencion.descripcion }}</footer>
         </blockquote>
       </div>
     </div>
@@ -156,17 +156,17 @@
     </app-medicine-detail>
 
     <!-- Aqui va el contenido del procedimiento -->
-    <app-process-detail *ngIf="prescripcion.procedimientos.length !== 0" [procedures]="prescripcion.procedimientos">
-    </app-process-detail>
+    <!-- <app-process-detail *ngIf="prescripcion.procedimientos.length !== 0" [procedures]="prescripcion.procedimientos">
+    </app-process-detail> -->
 
     <!-- Aqui va el contenido del Dispositivo Medico -->
-    <app-device-detail *ngIf="prescripcion.dispositivos.length !== 0" [devices]="prescripcion.dispositivos">
-    </app-device-detail>
+    <!-- <app-device-detail *ngIf="prescripcion.dispositivos.length !== 0" [devices]="prescripcion.dispositivos">
+    </app-device-detail> -->
 
     <!-- Aqui va el contenido del Producto Nutricional -->
-    <app-product-nutritional-detail *ngIf="prescripcion.productosnutricionales.length !== 0"
+    <!-- <app-product-nutritional-detail *ngIf="prescripcion.productosnutricionales.length !== 0"
       [products]="prescripcion.productosnutricionales">
-    </app-product-nutritional-detail>
+    </app-product-nutritional-detail> -->
 
     <div class="row row-title">
       <div class="border-prescricion col-md-12">
@@ -222,9 +222,9 @@
       </div>
     </div>
   </div>
+</div>
 
-<!-- <div *ngIf="prescripcion">
-  <pre>
-    {{ prescripcion | json }}
-  </pre>
-</div> -->
+
+<pre>
+    {{ prescripcion | json}}
+    </pre>

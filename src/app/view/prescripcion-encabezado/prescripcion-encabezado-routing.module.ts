@@ -30,7 +30,7 @@ const routes: Routes = [
         component: PrescripcionEncabezadoDetailsComponent,
         pathMatch: 'full',
         data: { 
-          title: 'Ver Prescrioción',
+          title: 'Ver Prescripción',
           titlePage: 'Ver Prescripción - Mipres San Luis'
          },
         resolve: { title: TitleResolver }
