@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Medicine } from '@app-models/index';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Medicine, Presentacion } from '@app-models/index';
+import { PresentacionService } from 'src/app/view/presentacion/services/presentacion.service';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { Medicine } from '@app-models/index';
   templateUrl: './medicine-detail.component.html',
   styleUrls: ['./medicine-detail.component.scss']
 })
-export class MedicineDetailComponent implements OnInit {
+export class MedicineDetailComponent implements OnInit, OnChanges {
 
   @Input() medicines: Medicine[];
 
@@ -35,8 +36,24 @@ export class MedicineDetailComponent implements OnInit {
     { id: 10, descripcion: 'Sin indicación Especial' },
   ];
 
-  constructor() { }
+  presentaciones: Presentacion[]
 
-  ngOnInit() { }
+  constructor(
+    private presentacionService: PresentacionService,
+  ) { }
+
+  ngOnInit() {
+    this.presentacionService.findAll().subscribe(
+      res => {
+        this.presentaciones = res;
+      }
+    );
+  }
+
+  ngOnChanges() {
+    if(this.medicines) {
+      this.ngOnInit();
+    }
+  }
 
 }

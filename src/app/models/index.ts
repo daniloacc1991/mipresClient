@@ -11,3 +11,4 @@ export * from './viaAdministracion';
 export * from './device';
 export * from './ambito-atencion';
 export * from './product-nutritional';
+export * from './presentacion';

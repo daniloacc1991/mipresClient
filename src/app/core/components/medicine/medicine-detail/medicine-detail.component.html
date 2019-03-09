@@ -106,7 +106,7 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer>{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} / {{ medicine.UFCantTotal }}
+          <footer *ngIf="presentaciones">{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} / {{ medicine.UFCantTotal | matchValue:[presentaciones, 'descripcion'] }}
           </footer>
         </blockquote>
       </div>
