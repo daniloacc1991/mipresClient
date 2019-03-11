@@ -14,11 +14,6 @@ export class LoggerIn implements Action {
   constructor(public payload: { isLoading: boolean }) { }
 }
 
-export class LogoutAuth implements Action {
-  readonly type = AuthActionType.LOGOUT_AUTH;
-  constructor(public payload: { isLogout: boolean }) { }
-}
-
 export class LoginUser implements Action {
   readonly type = AuthActionType.LOGIN_USER;
   constructor(public payload: { user: UserCredentials }) { }
@@ -32,6 +27,11 @@ export class LoggedUser implements Action {
 export class LoginUserError implements Action {
   readonly type = AuthActionType.LOGIN_USER_ERROR;
   constructor(public payload: { error: string }) { }
+}
+
+export class LogoutAuth implements Action {
+  readonly type = AuthActionType.LOGOUT_AUTH;
+  constructor(public payload: { isLogin: boolean }) { }
 }
 
 export type All = LoggedUser | LoginUser | LogoutAuth | LoggerIn | LoginUserError;

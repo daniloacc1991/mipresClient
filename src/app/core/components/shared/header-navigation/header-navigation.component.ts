@@ -5,6 +5,7 @@ import {
   NgbPanelChangeEvent,
   NgbCarouselConfig
 } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -16,10 +17,18 @@ export class HeaderNavigationComponent implements AfterViewInit {
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+  ) { }
 
   ngAfterViewInit() {
 
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login'])
   }
 
 }

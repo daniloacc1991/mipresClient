@@ -16,29 +16,30 @@ const INIT_STATE: AuthState = {
 
 export function AuthReducer(state: AuthState = INIT_STATE, action: AllAuthActions) {
   switch (action.type) {
+
     case AuthActionType.LOGIN_USER:
-      console.log('reducer entre en login');
       return {
         ...state,
         isLoading: true,
         isLogin: false,
         action,
       };
+
     case AuthActionType.LOGGED_USER:
-      console.log('entre al logged');
       return {
         ...state,
         isLoading: false,
         isLogin: true,
         user: action.payload.user,
       };
+
     case AuthActionType.LOGIN_USER_ERROR:
       return {
         ...state,
         isLoading: false,
         isLogin: false,
-        error: 'Email or password incorrect'
       };
+
     default:
       return state;
   }

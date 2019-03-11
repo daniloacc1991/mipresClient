@@ -3,7 +3,7 @@ import { Action, State } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { exhaustMap, catchError, map, tap, mergeMap, startWith } from 'rxjs/operators';
+import { exhaustMap, catchError, map, tap, mergeMap, startWith, switchMap } from 'rxjs/operators';
 import {
   AuthActionType,
   LoggedUser,
@@ -36,7 +36,7 @@ export class AuthEffects {
     map(action => action.payload),
     exhaustMap(auth => {
       return this.authService.singIn(auth.user).pipe(
-        map(response => new LoggedUser({user: response})),
+        map(response => new LoggedUser({ user: response })),
         catchError(err => of(new LoginUserError(err))
         )
       );
