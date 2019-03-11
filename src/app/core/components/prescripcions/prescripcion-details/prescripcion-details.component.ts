@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
-import { Prescripcion, CIE10 } from '@app-models/index';
-import { Cie10Service } from '../../../../view/cie10/services/cie10.service';
+import { Prescripcion } from '@app-models/index';
 
 @Component({
   selector: 'app-prescripcion-details',
@@ -14,20 +13,11 @@ export class PrescripcionDetailsComponent implements OnInit, OnChanges {
   @Output() edit = new EventEmitter<Prescripcion>();
   @Output() remove = new EventEmitter<Prescripcion>();
 
-  cie10: CIE10[];
-
-  constructor(
-    private cie10Service: Cie10Service,
-  ) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this.cie10Service.findAll().subscribe(
-      res => {
-        this.cie10 = res;
-      }
-    );
   }
 
   ngOnChanges() {
