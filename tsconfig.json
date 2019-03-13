@@ -34,6 +34,9 @@
       "@app-cie10/*": [
         "src/app/view/cie10/*"
       ],
+      "@app-frecuencia/*": [
+        "src/app/view/frecuencia/*"
+      ],
     }
   }
 }

@@ -14,14 +14,17 @@ import {
   LoadAllSuccess,
   LoadSuccess,
   Put,
-  PutSuccess
+  PutSuccess,
+  Import,
+  ImportSuccess
 } from '../actions/prescripcions.actions';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Prescripcion } from '@app-models/index';
+import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
 import { PrescripcionEncabezadoService } from '../../services/prescripcion-encabezado.service';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { PrescripcionEncabezadoSocketsService } from '../../services/prescripcion-encabezado-sockets.service';
+import { delay } from 'q';
 
 @Injectable()
 export class PrescripcionsEffects {
@@ -78,6 +81,18 @@ export class PrescripcionsEffects {
         map(() => new DeleteSuccess(id))
       )
     )
+  );
+
+  @Effect()
+  import$: Observable<Action> = this.actions$.pipe(
+    ofType(PrescripcionEncabezadoActionsTypes.IMPORT),
+    map((action: Import) => action.payload),
+    switchMap((data: ImportarxFecha) => this.prescripcionsService.importarFecha(data)),
+    map((importSuccess: ImportaFechaSuccess) => new ImportSuccess(importSuccess)),
+    catchError(err => {
+      alert(err.message);
+      return of(new Failure({ concern: 'IMPORT', error: err }));
+    })
   );
 
   // Socket Live Events

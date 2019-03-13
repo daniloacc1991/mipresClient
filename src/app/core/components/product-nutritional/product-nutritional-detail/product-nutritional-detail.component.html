@@ -16,7 +16,7 @@
         <p class="mb-0">Nutricional / Forma</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Dosis</p>
       </blockquote>
@@ -52,6 +52,11 @@
         <p class="mb-0">Nro / Letras / Unidad Farmacéutica</p>
       </blockquote>
     </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Acciones</p>
+      </blockquote>
+    </div>
   </div>
   <div *ngFor="let product of products;" class="row">
     <div class="border-prescricion col-md-1">
@@ -64,7 +69,7 @@
         <p class="mb-0">{{ product.tipoProductoNutricional.descripcion | uppercase }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">{{ product.Dosis }} {{ product.unidadMedidaDosis.descripcion | uppercase }}</p>
       </blockquote>
@@ -83,7 +88,8 @@
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p *ngIf="indicacionesEspeciales" class="mb-0">{{ product.IndEsp | matchValue:[indicacionesEspeciales, 'descripcion'] }}</p>
+        <p *ngIf="indicacionesEspeciales" class="mb-0">
+          {{ product.IndEsp | matchValue:[indicacionesEspeciales, 'descripcion'] }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">
@@ -105,6 +111,11 @@
           {{ product.CantTotalF }} / {{ product.CantTotalF }} /
           {{ product.UFCantTotal | matchValue:[presentaciones, 'descripcion'] }}
         </p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/' + medicine.id]">Entregar</a></p>
       </blockquote>
     </div>
   </div>

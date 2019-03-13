@@ -2,6 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// PrimeNg
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast';
+
+// Angular Material
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+
+// Bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderNavigationComponent } from './components/shared/header-navigation/header-navigation.component';
@@ -59,6 +69,12 @@ import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MessagesModule,
+    ToastModule,
   ]
 })
 export class SharedModule { }

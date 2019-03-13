@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+// NGRX
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromPrescripcions from './store/reducers';
@@ -22,8 +24,10 @@ import { PrescripcionEncabezadoDetailsComponent } from './components/prescripcio
     CommonModule,
     SharedModule,
     PrescripcionEncabezadoRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     StoreModule.forFeature('prescripcions', fromPrescripcions.reducers),
-    EffectsModule.forFeature([PrescripcionsEffects])
+    EffectsModule.forFeature([PrescripcionsEffects]),
   ]
 })
 export class PrescripcionEncabezadoModule { }

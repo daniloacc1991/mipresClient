@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Action, State } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Action } from '@ngrx/store';
+// import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { exhaustMap, catchError, map, tap, mergeMap, startWith, switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap, catchError } from 'rxjs/operators';
 import {
-  AuthActionType,
-  LoggedUser,
-  LoggerIn,
-  LoginUser,
-  LogoutAuth,
-  LoginUserError
+  AuthActionsType, LoginUser, LoginUserSuccess, LoginError, LogoutUser, LogoutUserSuccess,
+
 } from '../Actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 
@@ -18,44 +14,38 @@ import { AuthService } from '../../services/auth.service';
   providedIn: 'root'
 })
 export class AuthEffects {
+
   @Effect()
-  LoginUserError$: Observable<Action> = this.actions$.pipe(
-    ofType<LoginUserError>(AuthActionType.LOGIN_USER_ERROR),
-    tap(v => console.log('LoggedAPI error', v.payload)),
-    map(data => {
-      console.log('Error', data);
-      return { type: 'LOGIN_API_ERROR', payload: 'Email o password incorrect' };
+  LoginUser$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionsType.LOGIN_USER),
+    map((action: LoginUser) => action.payload),
+    switchMap((auth) => this.authService.singIn(auth)),
+    map((authSuccess: string) => {
+      console.log(authSuccess)
+      localStorage.setItem('token', authSuccess);
+      return new LoginUserSuccess({ username: '', token: authSuccess })
+    }),
+    catchError(err => {
+      alert(err.message);
+      return of(new LoginError({ concern: 'Auth Login', error: err.message }))
     })
   );
 
   @Effect()
-  LoginUser$: Observable<Action> = this.actions$.pipe(
-    ofType<LoginUser>(AuthActionType.LOGIN_USER),
-    tap(v => console.log('LoginUser Effect', v)),
-    tap(() => new LoggerIn({ isLoading: true })),
-    map(action => action.payload),
-    exhaustMap(auth => {
-      return this.authService.singIn(auth.user).pipe(
-        map(response => new LoggedUser({ user: response })),
-        catchError(err => of(new LoginUserError(err))
-        )
-      );
-    }),
+  LogoutUser$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionsType.LOGOUT_USER),
+    startWith(() => new LogoutUser()),
+    switchMap(() => of({ username: 'GUEST', token: null })),
+    map((logoutSuccess) => new LogoutUserSuccess(logoutSuccess)),
+    catchError(err => {
+      alert(err.message);
+      return of(new LoginError({ concern: 'Logout', error: err.message }))
+    })
   );
 
-  @Effect({ dispatch: false })
-  LoggedUser$: Observable<Action> = this.actions$.pipe(
-    ofType<LoggedUser>(AuthActionType.LOGGED_USER),
-    tap((v: any) => {
-      localStorage.setItem('token', v.payload.user);
-      console.log('LoggedUser Effect', v);
-      this.router.navigate(['/']);
-    }),
-  );
 
   constructor(
     private actions$: Actions,
-    private router: Router,
     private authService: AuthService,
   ) { }
 }

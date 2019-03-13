@@ -1,51 +1,101 @@
-<table class="table table-hover table-responsive-sm">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">NoPrescripcion</th>
-      <th scope="col">FPrescripcion</th>
-      <th scope="col">HPrescripcion</th>
-      <th scope="col">Paciente</th>
-      <th scope="col">Profesional</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let precipcion of prescripcions | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-      <th scope="row">{{ precipcion.id }}</th>
-      <td>{{ precipcion.NoPrescripcion }}</td>
-      <td>{{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}</td>
-      <td>{{ precipcion.HPrescripcion }}</td>
-      <td>{{ precipcion.PNPaciente }} {{ precipcion.PAPaciente }}</td>
-      <td>{{ precipcion.SNProfS }} {{ precipcion.SAPaciente }}</td>
-      <td>
-        <span class="span-padding">
-          <button (click)="showDetails(precipcion)" class="btn btn-outline-primary mb-1 btn-sm">
-            View
-          </button>
-        </span>
-        <!-- <span class="span-padding">
-          <button (click)="editPrescripcion(precipcion)" class="btn btn-outline-warning mb-1 btn-sm">
-            Editar
-          </button>
-        </span>
-        <span class="span-padding">
-          <button (click)="deletePrescripcion(precipcion)" class="btn btn-outline-danger mb-1 btn-sm">
-            Eliminar
-          </button>
-        </span> -->
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class="d-flex justify-content-between p-2">
-  <ngb-pagination [collectionSize]="prescripcions.length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
-  </ngb-pagination>
+<p-toast position="top-right"></p-toast>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <form>
+      <div class="form-group form-inline">
+        Buscar Prescripcion: <input class="form-control ml-2" type="text" [formControl]="filter" />
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-12 col-md-6 text-right">
+    <button class="btn btn-outline-success" (click)="showForm = !showForm">Importar?</button>
+  </div>
+</div>
+<div *ngIf="showForm || isLoading" class="row">
+  <div *ngIf="!isLoading" class="col-xs-12 offset-md-3 col-md-6">
+    <form (submit)="importPrescripcion()" class="form" [formGroup]="form">
+      <mat-form-field>
+        <input matInput name="token" placeholder="Token" formControlName="token">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="nit" placeholder="Nit - Sin DV" formControlName="nit">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="fecha" [matDatepicker]="dp" placeholder="Fecha" formControlName="fecha" disabled>
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <div class="form-group">
+        <button type="submit" [disabled]="!form.valid" class="btn btn-success btn-block">
+          Importar Ahora!
+        </button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="isLoading" class="col-xs-12 offset-md-3 col-md-6 text-center">
+    <mat-progress-spinner class="example-margin" color="primary" mode="indeterminate" value="100%">
+    </mat-progress-spinner>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <table class="table table-hover table-responsive-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">NoPrescripcion</th>
+          <th scope="col">FPrescripcion</th>
+          <th scope="col">HPrescripcion</th>
+          <th scope="col">Paciente</th>
+          <th scope="col">Profesional</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let precipcion of prescripcions$ | async | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+          <th scope="row">{{ precipcion.id }}</th>
+          <td>
+            <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">{{ precipcion.NoPrescripcion }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.FPrescripcion" [term]="filter.value">
+              {{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}</ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.HPrescripcion" [term]="filter.value">{{ precipcion.HPrescripcion }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">{{ precipcion.PNPaciente }}
+              {{ precipcion.PAPaciente }}</ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.SNProfS" [term]="filter.value">{{ precipcion.SNProfS }}
+              {{ precipcion.SAPaciente }}</ngb-highlight>
+          </td>
+          <td>
+            <span class="span-padding">
+              <button (click)="showDetails(precipcion)" class="btn btn-outline-primary mb-1 btn-sm">
+                View
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="prescripcions.length" [(page)]="page" [pageSize]="pageSize"
+        [boundaryLinks]="true">
+      </ngb-pagination>
 
-  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
-    <option [ngValue]="5">5 items Por Página</option>
-    <option [ngValue]="10">10 items Por Página</option>
-    <option [ngValue]="25">25 items Por Página</option>
-    <option [ngValue]="50">50 items Por Página</option>
-  </select>
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+        <option [ngValue]="5">5 items Por Página</option>
+        <option [ngValue]="10">10 items Por Página</option>
+        <option [ngValue]="25">25 items Por Página</option>
+        <option [ngValue]="50">50 items Por Página</option>
+      </select>
+    </div>
+  </div>
 </div>

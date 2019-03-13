@@ -40,9 +40,10 @@ export interface Prescripcion {
   TipoIDDonanteVivo: string;
   NroIDDonanteVivo: string;
   EstPres: number;
-  medicamentos?: Medicine[];
-  procedimientos?: Procedure[];
-  dispositivos?: [];
-  productosnutricionales?: [];
-  serviciosComplementarios?: [];
+  createdAt: string;
+  medicamentos: Medicine[];
+  procedimientos: Procedure[];
+  dispositivos: [];
+  productosnutricionales: [];
+  serviciosComplementarios: [];
 }

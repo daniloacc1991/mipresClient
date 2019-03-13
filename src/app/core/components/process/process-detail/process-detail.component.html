@@ -31,7 +31,7 @@
           <p class="mb-0">Frecuencia Uso</p>
         </blockquote>
       </div>
-      <div class="border-prescricion col-md-2">
+      <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
           <p class="mb-0">Duración Tratamiento(Cantidad - Período)</p>
         </blockquote>
@@ -39,6 +39,11 @@
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
           <p class="mb-0">Cantidad Total</p>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0">Acciones</p>
         </blockquote>
       </div>
     </div>
@@ -65,17 +70,24 @@
       </div>
       <div class="border-prescricion col-md-2">
         <blockquote class="blockquote">
-          <footer *ngIf="frecuenciasAdministracion">{{ procedure.CadaFreUso }}  {{ procedure.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer *ngIf="frecuenciasAdministracion">{{ procedure.CadaFreUso }}
+            {{ procedure.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
         </blockquote>
       </div>
-      <div class="border-prescricion col-md-2">
+      <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer>{{ procedure.Cant }} {{ procedure.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer>{{ procedure.Cant }}
+            {{ procedure.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
           <footer>{{ procedure.CantTotal }}</footer>
+        </blockquote>
+      </div>
+      <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/' + procedure.id]">Entregar</a></p>
         </blockquote>
       </div>
     </div>

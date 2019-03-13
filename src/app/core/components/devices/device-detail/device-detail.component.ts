@@ -1,14 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 import { Device } from '@app-models/index';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-device-detail',
   templateUrl: './device-detail.component.html',
-  styleUrls: ['./device-detail.component.scss']
+  styleUrls: ['./device-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DeviceDetailComponent implements OnInit {
+export class DeviceDetailComponent implements OnInit, OnChanges {
 
   @Input() devices: Device[];
+  frecuenciaUso$: Observable<string>;
 
   tipoPrestacion = [{ id: 1, descripcion: 'Única' }, { id: 2, descripcion: 'Sucesiva' }];
   frecuenciasAdministracion = [
@@ -25,6 +28,9 @@ export class DeviceDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(){
   }
 
 }

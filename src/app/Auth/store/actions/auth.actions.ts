@@ -1,37 +1,45 @@
 import { Action } from '@ngrx/store';
 import { UserCredentials } from '../../models/user-credential';
 
-export enum AuthActionType {
-  LOGGED_USER = '[Auth] LOGGED_USER',
+export enum AuthActionsType {
   LOGIN_USER = '[Auth] LOGIN_USER',
-  LOGIN_USER_ERROR = '[Auth] LOGIN_USER_ERROR',
-  LOGGED_IN = '[Auth] LOGGED_IN',
-  LOGOUT_AUTH = '[Auth] LOGOUT_AUTH',
-}
+  LOGIN_USER_SUCCESS = '[Auth] LOGIN_USER_SUCCESS',
 
-export class LoggerIn implements Action {
-  readonly type = AuthActionType.LOGGED_IN;
-  constructor(public payload: { isLoading: boolean }) { }
+  LOGOUT_USER = '[Auth] LOGOUT_USER',
+  LOGOUT_USER_SUCCESS = '[Auth] LOGOUT_USER_SUCCESS',
+
+  LOGIN_ERROR = '[Auth] LOGIN_ERROR',
 }
 
 export class LoginUser implements Action {
-  readonly type = AuthActionType.LOGIN_USER;
-  constructor(public payload: { user: UserCredentials }) { }
+  readonly type = AuthActionsType.LOGIN_USER;
+  constructor(public payload: UserCredentials) { }
 }
 
-export class LoggedUser implements Action {
-  readonly type = AuthActionType.LOGGED_USER;
-  constructor(public payload: { user: any }) { }
+export class LoginUserSuccess implements Action {
+  readonly type = AuthActionsType.LOGIN_USER_SUCCESS;
+  constructor(public payload: any) { }
 }
 
-export class LoginUserError implements Action {
-  readonly type = AuthActionType.LOGIN_USER_ERROR;
-  constructor(public payload: { error: string }) { }
+export class LogoutUser implements Action {
+  readonly type = AuthActionsType.LOGOUT_USER;
+  constructor(public payload = null) { }
 }
 
-export class LogoutAuth implements Action {
-  readonly type = AuthActionType.LOGOUT_AUTH;
-  constructor(public payload: { isLogin: boolean }) { }
+export class LogoutUserSuccess implements Action {
+  readonly type = AuthActionsType.LOGOUT_USER_SUCCESS;
+  constructor(public payload: any) { }
 }
 
-export type All = LoggedUser | LoginUser | LogoutAuth | LoggerIn | LoginUserError;
+export class LoginError implements Action {
+  readonly type = AuthActionsType.LOGIN_ERROR;
+  constructor(public payload: { concern: string, error: any }) { }
+}
+
+
+export type All =
+  LoginUser |
+  LoginUserSuccess |
+  LogoutUser |
+  LogoutUserSuccess |
+  LoginError;

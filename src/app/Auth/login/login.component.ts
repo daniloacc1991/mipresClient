@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-import * as Auth from '../store/Actions/auth.actions';
+import * as fromAuth from '../store/selectors/auth.selectors';
+import { 
+  LoginUser
+} from '../store/actions/auth.actions';
 import { UserCredentials } from '../models/user-credential';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -21,9 +24,10 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
   
-  error$ = this.store.select(fromRoot.getAuthError);
-  isLoading$ = this.store.select(fromRoot.getAuthLoading);
-  auth$ = this.store.select(fromRoot.getAuthState);
+  error$ = this.store.select(fromAuth.getAuthError);
+  isLoading$ = this.store.select(fromAuth.getAuthLoading);
+  isLoging$ = this.store.select(fromAuth.getAuthLoging);
+  auth$ = this.store.select(fromAuth.getAuthState);
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -44,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.store.dispatch(new Auth.LoginUser({ user: this.user }));
+    this.store.dispatch(new LoginUser(this.user));
   }
 
 }

@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity/src/models';
-import { Prescripcion } from '@app-models/index';
+import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
 
 export enum PrescripcionEncabezadoActionsTypes {
 
@@ -18,6 +18,9 @@ export enum PrescripcionEncabezadoActionsTypes {
 
   DELETE = '[PrescripcionEncabezado] DELETE',
   DELETE_SUCCESS = '[PrescripcionEncabezado] DELETE SUCCESS',
+
+  IMPORT = '[PrescripcionEncabezado] IMPORT',
+  IMPORT_SUCCESS = '[PrescripcionEncabezado] IMPORT SUCCESS',
 
   FAILURE = '[PrescripcionEncabezado] FAILURE',
 
@@ -85,9 +88,19 @@ export class DeleteSuccess implements Action {
   constructor(public payload: number) { }
 }
 
+export class Import implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.IMPORT;
+  constructor(public payload: ImportarxFecha) { }
+}
+
+export class ImportSuccess implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.IMPORT_SUCCESS
+  constructor(public payload: ImportaFechaSuccess) { }
+}
+
 export class Failure implements Action {
   readonly type = PrescripcionEncabezadoActionsTypes.FAILURE;
-  constructor(public payload: { concern: 'CREATE' | 'PUT', error: any }) { }
+  constructor(public payload: { concern: 'CREATE' | 'PUT' | 'IMPORT', error: any }) { }
 }
 
 export type All =
@@ -103,4 +116,6 @@ export type All =
   | CreateSuccess
   | DeleteSuccess
   | LoadAllSuccess
+  | Import
+  | ImportSuccess
   | Failure;

@@ -106,15 +106,16 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer *ngIf="presentaciones">{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} / {{ medicine.UFCantTotal | matchValue:[presentaciones, 'descripcion'] }}
+          <footer *ngIf="presentaciones">{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} /
+            {{ medicine.UFCantTotal | matchValue:[presentaciones, 'descripcion'] }}
           </footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
-          <blockquote class="blockquote">
-            <p class="mb-0"><a class="btn btn-outline-success" [href]="'/medicines/entrega/' + medicine.id">Entregar</a></p>
-          </blockquote>
-        </div>
+        <blockquote class="blockquote">
+          <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/' + medicine.id]">Entregar</a></p>
+        </blockquote>
+      </div>
     </div>
   </div>
 </div>

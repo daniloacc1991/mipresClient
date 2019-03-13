@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Prescripcion } from '@app-models/index';
 import * as fromRoot from 'src/app/reducers';
-import * as fromPrescripcions from '../../store/reducers';
+import * as fromPrescripcions from '../../store/selectors/prescipcions.selectors';
 import {
   SetCurrentPrescripcionId,
   PrescripcionEncabezadoActionsTypes,

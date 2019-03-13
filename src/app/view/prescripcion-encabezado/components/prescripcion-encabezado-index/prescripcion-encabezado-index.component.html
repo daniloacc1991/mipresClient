@@ -1,6 +1,4 @@
-<app-prescripcion-list
-  [prescripcions]="prescripcions$ | async"
-  (show)="showPrescripcion($event)"
-  (remove)="deletePrescripcion($event)"
-  (edit)="editPrescripcion($event)">
+<app-prescripcion-list [prescripcions]="prescripcions$ | async" [isLoading]="isImportLoading$ | async" [msjImport]="msjImport$ | async"
+  (show)="showPrescripcion($event)" (remove)="deletePrescripcion($event)"
+  (edit)="editPrescripcion($event)" (import)="importPrescripcion($event)">
 </app-prescripcion-list>

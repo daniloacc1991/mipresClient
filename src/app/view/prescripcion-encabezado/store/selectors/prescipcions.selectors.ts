@@ -1,20 +1,8 @@
-import * as fromPrescripcions from './reducers/prescripcions.reducers';
-import * as fromRoot from 'src/app/reducers/index';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { State } from '../reducers';
+import * as fromPrescripcions from '../reducers/prescripcions.reducers';
 
-export interface PrescripcionsState {
-  prescripcions: fromPrescripcions.State;
-}
-
-export interface State extends fromRoot.State {
-  prescripcions: PrescripcionsState;
-}
-
-export const reducers = {
-  prescripcions: fromPrescripcions.reducer
-};
-
-export const getPrescripcionsRootState = createFeatureSelector<PrescripcionsState>('prescripcions');
+export const getPrescripcionsRootState = createFeatureSelector<State>('prescripcions');
 
 export const getPrescripcionsState = createSelector(
   getPrescripcionsRootState,
@@ -24,6 +12,16 @@ export const getPrescripcionsState = createSelector(
 export const getSelectedPrescripcionId = createSelector(
   getPrescripcionsState,
   fromPrescripcions.getCurrentPrescripcionId
+);
+
+export const getImportLoading = createSelector(
+  getPrescripcionsState,
+  fromPrescripcions.getimportLoading
+);
+
+export const getImportSuccessRes = createSelector(
+  getPrescripcionsState,
+  fromPrescripcions.getImportSuccessRes
 );
 
 export const {

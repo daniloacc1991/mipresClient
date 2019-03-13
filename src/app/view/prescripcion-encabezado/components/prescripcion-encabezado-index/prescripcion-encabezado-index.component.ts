@@ -1,14 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
   SetCurrentPrescripcionId,
-  Delete
+  Delete,
+  Import
 } from '@app-prescripcionsEnc/store/actions/prescripcions.actions';
 import * as fromRoot from 'src/app/reducers';
-import * as fromPrescripcions from '../../store/reducers';
-import { Prescripcion } from '@app-models/index';
+import * as fromPrescripcions from '../../store/selectors/prescipcions.selectors';
+import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
 
 
 @Component({
@@ -20,17 +21,21 @@ import { Prescripcion } from '@app-models/index';
 export class PrescripcionEncabezadoIndexComponent implements OnInit {
 
   prescripcions$: Observable<Prescripcion[]>;
+  msjImport$: Observable<ImportaFechaSuccess> = this.store.select(fromPrescripcions.getImportSuccessRes);
+  isImportLoading$: Observable<boolean> = this.store.select(fromPrescripcions.getImportLoading);
 
   constructor(
     public store: Store<fromRoot.State>,
     private router: Router,
   ) {
-    this.prescripcions$ = this.store.pipe(
-      select(fromPrescripcions.getAllPrescripcions)
-    );
+    this.prescripcions$ = this.store.select(fromPrescripcions.getAllPrescripcions);
   }
 
   ngOnInit() {
+  }
+
+  importPrescripcion(data: ImportarxFecha) {
+    this.store.dispatch(new Import(data));
   }
 
   showPrescripcion(prescripcion: Prescripcion) {
@@ -49,5 +54,4 @@ export class PrescripcionEncabezadoIndexComponent implements OnInit {
       this.store.dispatch(new Delete(prescripcion.id));
     }
   }
-
 }

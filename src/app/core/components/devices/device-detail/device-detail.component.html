@@ -30,10 +30,15 @@
         <p class="mb-0">Frecuencia Uso</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Duración Tratamiento</p>
         <p class="mb-0">(Cantidad - Período)</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Acciones</p>
       </blockquote>
     </div>
   </div>
@@ -60,12 +65,19 @@
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.CadaFreUso }} {{ device.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.CadaFreUso }}
+          {{ device.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.Cant }} {{ device.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.Cant }}
+          {{ device.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/' + device.id]">Entregar</a></p>
       </blockquote>
     </div>
   </div>

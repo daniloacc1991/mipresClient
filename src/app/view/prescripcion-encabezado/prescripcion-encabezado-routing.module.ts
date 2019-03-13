@@ -34,7 +34,7 @@ const routes: Routes = [
           titlePage: 'Ver Prescripción - Mipres San Luis'
          },
         resolve: { title: TitleResolver }
-      },
+      }
     ],
   },
 ];

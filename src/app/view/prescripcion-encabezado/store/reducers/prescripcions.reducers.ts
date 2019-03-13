@@ -1,4 +1,4 @@
-import { Prescripcion } from '@app-models/index';
+import { Prescripcion, ImportaFechaSuccess } from '@app-models/index';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { PrescripcionEncabezadoActionsTypes, All as AllPrescripcionsActions } from '../actions/prescripcions.actions';
 
@@ -10,11 +10,15 @@ export const prescripcionsAdapter = createEntityAdapter<Prescripcion>({
 export interface State extends EntityState<Prescripcion> {
   currentPrescripcionId?: number;
   totalPrescripcions?: number;
+  isImportLoading: boolean;
+  importSuccessRes: ImportaFechaSuccess;
 }
 
 export const INIT_STATE: State = prescripcionsAdapter.getInitialState({
   currentPrescripcionId: undefined,
-  totalPrescripcions: null
+  totalPrescripcions: null,
+  isImportLoading: false,
+  importSuccessRes: null,
 });
 
 export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescripcionsActions) {
@@ -22,31 +26,53 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
     case PrescripcionEncabezadoActionsTypes.SET_CURRENT_PRESCRIPCION_ID: {
       return {
         ...state,
-        currentPrescripcionId: payload
+        currentPrescripcionId: payload,
+        isImportLoading: false,
       };
     }
 
     case PrescripcionEncabezadoActionsTypes.LOAD_ALL_SUCCESS: {
       return prescripcionsAdapter.addAll(payload, {
-        ...state
+        ...state,
+        isImportLoading: false,
       });
     }
 
     case PrescripcionEncabezadoActionsTypes.LOAD_SUCCESS: {
       return prescripcionsAdapter.addOne(payload, {
         ...state,
-        currentPrescripcionId: payload.id
+        currentPrescripcionId: payload.id,
+        isImportLoading: false,
       });
     }
 
     case PrescripcionEncabezadoActionsTypes.CREATE_SUCCESS: {
       return prescripcionsAdapter.addOne(payload, {
-        ...state
+        ...state,
+        isImportLoading: false,
       });
     }
 
     case PrescripcionEncabezadoActionsTypes.PUT_SUCCESS: {
-      return prescripcionsAdapter.updateOne(payload, state);
+      return prescripcionsAdapter.updateOne(payload, {
+        ...state,
+        isImportLoading: false,
+      });
+    }
+
+    case PrescripcionEncabezadoActionsTypes.IMPORT: {
+      return {
+        ...state,
+        isImportLoading: true,
+      }
+    }
+
+    case PrescripcionEncabezadoActionsTypes.IMPORT_SUCCESS: {
+      return {
+        ...state,
+        isImportLoading: false,
+        importSuccessRes: payload
+      }
     }
 
     default: return state;
@@ -54,3 +80,5 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
 }
 
 export const getCurrentPrescripcionId = (state: State) => state.currentPrescripcionId;
+export const getimportLoading = (state: State) => state.isImportLoading;
+export const getImportSuccessRes = (state: State) => state.importSuccessRes;

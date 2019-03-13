@@ -10,20 +10,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import * as fromAuth from './store/reducers/auth.reducer';
+import * as fromAuth from './store/reducers';
 import { AuthEffects } from './store/effects/auth.effect';
-import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
-    AuthComponent,
     LoginComponent,
-    LogoutComponent,
   ],
   exports: [
     LoginComponent,
@@ -39,9 +35,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     MatProgressSpinnerModule,
     MatInputModule,
     MatButtonModule,
-    StoreModule.forFeature('auth', fromAuth.AuthReducer),
+    StoreModule.forFeature('auth', fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects]),
   ],
-  entryComponents: [AuthComponent],
 })
 export class AuthModule { }
