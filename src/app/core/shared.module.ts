@@ -30,6 +30,8 @@ import { DeviceDetailComponent } from './components/devices/device-detail/device
 import { ProductNutritionalDetailComponent } from './components/product-nutritional/product-nutritional-detail/product-nutritional-detail.component';
 import { MatchValuePipe } from './pipes/match-value.pipe';
 import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
+import { EntregaListComponent } from './components/entrega/entrega-list/entrega-list.component';
+import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-form.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
     MedicineDetailComponent,
     DeviceDetailComponent,
     ProductNutritionalDetailComponent,
+    EntregaListComponent,
+    EntregaFormComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -61,6 +65,8 @@ import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
     AmbitoAtencionFormComponent,
     PrescripcionListComponent,
     PrescripcionDetailsComponent,
+    EntregaListComponent,
+    EntregaFormComponent,
   ],
   imports: [
     CommonModule,

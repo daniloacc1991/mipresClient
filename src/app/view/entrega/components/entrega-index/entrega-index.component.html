@@ -1,0 +1,7 @@
+<app-entrega-list
+  [entregas]="entregas$ | async"
+  (show)="showEntrega($event)"
+  (remove)="deleteEntrega($event)"
+  (edit)="editEntrega($event)"
+  >
+</app-entrega-list>

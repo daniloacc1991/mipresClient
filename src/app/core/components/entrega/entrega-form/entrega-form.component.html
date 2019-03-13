@@ -1,0 +1,79 @@
+<div class="col-md-12">
+  <form (submit)="submit()" class="form" [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputNoPrescripcion">NoPrescripcion</label>
+        <input formControlName="NoPrescripcion" type="text" class="form-control" id="inputNoPrescripcion"
+          placeholder="NoPrescripcion">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputTipoTec">Tipo Tecnologia</label>
+        <input formControlName="TipoTec" type="text" class="form-control" id="inputTipoTec"
+          placeholder="Tipo Tecnologia">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputConTec">Consecutivo Tecnología</label>
+        <input formControlName="ConTec" type="text" class="form-control" id="inputConTec"
+          placeholder="Consecutivo Tecnología">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputTipoIDPaciente">Tipo Documento Paciente</label>
+        <input formControlName="TipoIDPaciente" type="text" class="form-control" id="inputTipoIDPaciente"
+          placeholder="Tipo Documento Paciente">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputNoIDPaciente">Número Documento Paciente</label>
+        <input formControlName="NoIDPaciente" type="text" class="form-control" id="inputNoIDPaciente"
+          placeholder="Número Documento Paciente">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="inputNoEntrega">Número Entrega</label>
+        <input formControlName="NoEntrega" type="text" class="form-control" id="inputNoEntrega"
+          placeholder="Número Entrega">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputCodSerTecEntregado">Codigo de la Técnología Entregada</label>
+        <input formControlName="CodSerTecEntregado" type="text" class="form-control" id="inputCodSerTecEntregado"
+          placeholder="Codigo de la Técnología Entregada">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputCantTotEntregada">Cantidad Total Entregada</label>
+        <input formControlName="CantTotEntregada" type="text" class="form-control" id="inputCantTotEntregada"
+          placeholder="Cantidad Total Entregada">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputEntTotal">Entrega Total ?</label>
+        <select formControlName="EntTotal" id="inputEntTotal" class="form-control">
+          <option value="1">SI</option>
+          <option value="0">NO</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputCausaNoEntrega">Causa No Entrega</label>
+          <input formControlName="CausaNoEntrega" type="text" class="form-control" id="inputCausaNoEntrega"
+            placeholder="Causa No Entrega">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNoLote">No Lote</label>
+          <input formControlName="NoLote" type="text" class="form-control" id="inputNoLote"
+            placeholder="No Lote">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="FecEntrega">FecEntrega</label>
+          <input formControlName="FecEntrega" type="text" class="form-control" id="FecEntrega"
+            placeholder="FecEntrega">
+        </div>
+      </div>
+
+    <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block">Entregar</button>
+  </form>
+</div>

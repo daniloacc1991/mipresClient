@@ -14,3 +14,5 @@ export * from './product-nutritional';
 export * from './presentacion';
 export * from './importarFecha';
 export * from './importFechaSuccess';
+export * from './entrega';
+export * from './prescripcionDetalle';

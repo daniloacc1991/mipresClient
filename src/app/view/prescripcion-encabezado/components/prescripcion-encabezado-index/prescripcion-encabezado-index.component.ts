@@ -21,14 +21,16 @@ import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/i
 export class PrescripcionEncabezadoIndexComponent implements OnInit {
 
   prescripcions$: Observable<Prescripcion[]>;
-  msjImport$: Observable<ImportaFechaSuccess> = this.store.select(fromPrescripcions.getImportSuccessRes);
-  isImportLoading$: Observable<boolean> = this.store.select(fromPrescripcions.getImportLoading);
+  msjImport$: Observable<ImportaFechaSuccess>;
+  isImportLoading$: Observable<boolean>;
 
   constructor(
     public store: Store<fromRoot.State>,
     private router: Router,
   ) {
     this.prescripcions$ = this.store.select(fromPrescripcions.getAllPrescripcions);
+    this.msjImport$  = this.store.select(fromPrescripcions.getImportSuccessRes);
+    this.isImportLoading$  = this.store.select(fromPrescripcions.getImportLoading);
   }
 
   ngOnInit() {

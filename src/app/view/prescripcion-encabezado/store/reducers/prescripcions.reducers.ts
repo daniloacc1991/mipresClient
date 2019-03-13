@@ -1,5 +1,5 @@
-import { Prescripcion, ImportaFechaSuccess } from '@app-models/index';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { Prescripcion, ImportaFechaSuccess } from '@app-models/index';
 import { PrescripcionEncabezadoActionsTypes, All as AllPrescripcionsActions } from '../actions/prescripcions.actions';
 
 export const prescripcionsAdapter = createEntityAdapter<Prescripcion>({

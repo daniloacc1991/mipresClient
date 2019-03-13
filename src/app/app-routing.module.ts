@@ -23,6 +23,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: 'src/app/view/prescripcion-encabezado/prescripcion-encabezado.module#PrescripcionEncabezadoModule'
       },
+      {
+        path: 'entrega',
+        canActivate: [AuthGuard],
+        loadChildren: 'src/app/view/entrega/entrega.module#EntregaModule'
+      },
     ],
   },
   {

@@ -113,6 +113,11 @@ export class PrescripcionsEffects {
   liveDestroy$: Observable<Action> = this.prescripcionsSocket.fromEvent(PrescripcionEncabezadoActionsTypes.LIVE_DELETED).pipe(
     map(id => new DeleteSuccess(+id))
   );
+  
+  @Effect()
+  liveImport$: Observable<Action> = this.prescripcionsSocket.fromEvent(PrescripcionEncabezadoActionsTypes.LIVE_IMPORTED).pipe(
+    map((importSuccess: ImportaFechaSuccess) => new ImportSuccess(importSuccess))
+  );
 
   constructor(
     private actions$: Actions,

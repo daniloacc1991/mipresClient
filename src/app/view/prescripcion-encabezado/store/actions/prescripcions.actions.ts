@@ -14,7 +14,7 @@ export enum PrescripcionEncabezadoActionsTypes {
   CREATE_SUCCESS = '[PrescripcionEncabezado] CREATE SUCCESS',
 
   PUT = '[PrescripcionEncabezado] PUT',
-  PUT_SUCCESS = '[PrescripcionEncabezado] PUR SUCCESS',
+  PUT_SUCCESS = '[PrescripcionEncabezado] PUT SUCCESS',
 
   DELETE = '[PrescripcionEncabezado] DELETE',
   DELETE_SUCCESS = '[PrescripcionEncabezado] DELETE SUCCESS',
@@ -30,6 +30,7 @@ export enum PrescripcionEncabezadoActionsTypes {
   LIVE_CREATED = '[PrescripcionEncabezado] LIVE CREATED',
   LIVE_UPDATED = '[PrescripcionEncabezado] LIVE UPDATED',
   LIVE_DELETED = '[PrescripcionEncabezado] LIVE DELETED',
+  LIVE_IMPORTED = '[PrescripcionEncabezado] LIVE IMPORTED',
 
 }
 

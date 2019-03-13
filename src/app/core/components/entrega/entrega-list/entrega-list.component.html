@@ -1,0 +1,63 @@
+<div class="row entrega-row">
+  <div class="col-xs-12 col-md-12">
+    <table *ngIf="entregas; else loading" class="table table-hover table-responsive-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">TipoTec</th>
+          <th scope="col">NoPrescripcion</th>
+          <th scope="col">ConTec</th>
+          <th scope="col">NoIDPaciente</th>
+          <th scope="col">CodSerTecEntregado</th>
+          <th scope="col">CantTotEntregada</th>
+          <th scope="col">FecEntrega</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entrega of entregas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+          <th scope="row">{{ entrega.id }}</th>
+          <td>{{ entrega.TipoTec }}</td>
+          <td>{{ entrega.NoPrescripcion }}</td>
+          <td>{{ entrega.ConTec }}</td>
+          <td>{{ entrega.NoIDPaciente }}</td>
+          <td>{{ entrega.CodSerTecEntregado }}</td>
+          <td>{{ entrega.CantTotEntregada }}</td>
+          <td>{{ entrega.FecEntrega | date:'yyyy-MM-dd' }}</td>
+          <td>
+            <span class="span-padding">
+              <button (click)="showEntrega(entrega)" class="btn btn-outline-primary mb-1 btn-sm">
+                View
+              </button>
+            </span>
+            <span class="span-padding">
+              <button (click)="editEntrega(entrega)" class="btn btn-outline-warning mb-1 btn-sm">
+                Editar
+              </button>
+            </span>
+            <span class="span-padding">
+              <button (click)="deleteEntrega(entrega)" class="btn btn-outline-danger mb-1 btn-sm">
+                Eliminar
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="entregas.length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+        <option [ngValue]="5">5 items Por Página</option>
+        <option [ngValue]="10">10 items Por Página</option>
+        <option [ngValue]="25">25 items Por Página</option>
+        <option [ngValue]="50">50 items Por Página</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <span>loading contacts...</span>
+</ng-template>

@@ -8,9 +8,9 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromPrescripcions from './store/reducers';
 import { PrescripcionsEffects } from './store/effetcs/prescripcions.effects';
 
+import { SharedModule } from 'src/app/core/shared.module';
 import { PrescripcionEncabezadoRoutingModule } from './prescripcion-encabezado-routing.module';
 import { PrescripcionEncabezadoComponent } from './prescripcion-encabezado.component';
-import { SharedModule } from 'src/app/core/shared.module';
 import { PrescripcionEncabezadoIndexComponent } from './components/prescripcion-encabezado-index/prescripcion-encabezado-index.component';
 import { PrescripcionEncabezadoDetailsComponent } from './components/prescripcion-encabezado-details/prescripcion-encabezado-details.component';
 
