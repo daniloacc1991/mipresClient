@@ -44,6 +44,7 @@ export interface Medicine {
   IndRec: string;
   EstJM: number;
   prescripcionId: number;
+  indEntregado: boolean;
   PrincipiosActivos: MedicamentoPrincipcio[];
   IndicacionesUNIRS: MedicamentoIndicacion[];
   viaAdministracion: ViaAdministracion;

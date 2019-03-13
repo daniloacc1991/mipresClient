@@ -12,6 +12,7 @@ import {
   PrescripcionEncabezadoActionsTypes,
   Delete,
   DeleteSuccess,
+  PutSuccess,
   Load
 } from '@app-prescripcionsEnc/store/actions/prescripcions.actions';
 
@@ -23,8 +24,10 @@ import {
 })
 export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy {
 
-  prescripcion$: Observable<Prescripcion>;
+  prescripcion$: Observable<Prescripcion> = this.store.select(fromPrescripcions.getcurrentPrescripcion);
   redirectSub: Subscription;
+  relaodSub: Subscription;
+  prescripcionId: number;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -32,18 +35,15 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
     private router: Router,
     private actionsSubject: ActionsSubject
   ) {
-    this.store.dispatch(new SetCurrentPrescripcionId(this.activatedRoute.snapshot.params['prescripcionId']));
+    this.prescripcionId = this.activatedRoute.snapshot.params['prescripcionId'];
+    this.store.dispatch(new SetCurrentPrescripcionId(this.prescripcionId));
   }
 
   ngOnInit() {
-    this.prescripcion$ = this.store.pipe(
-      select(fromPrescripcions.getcurrentPrescripcion)
-    );
-
     this.redirectSub = this.actionsSubject.pipe(
       ofType(PrescripcionEncabezadoActionsTypes.DELETE_SUCCESS),
       filter((action: DeleteSuccess) => {
-        return action.payload === +this.activatedRoute.snapshot.params['prescripcionId']
+        return action.payload === +this.prescripcionId
       })
     )
       .subscribe(_ => this.router.navigate['/prescripcion-encabezado']);
@@ -52,6 +52,21 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
       filter(action => action.type === PrescripcionEncabezadoActionsTypes.DELETE_SUCCESS),
     )
       .subscribe(_ => this.router.navigate(['/prescripcion-encabezado']));
+
+    this.relaodSub = this.actionsSubject.pipe(
+      ofType(PrescripcionEncabezadoActionsTypes.PUT_SUCCESS),
+      filter((action: PutSuccess) => {
+        return action.payload.id === +this.prescripcionId
+      })
+    )
+      .subscribe(_ => this.router.navigate(['/prescripcion-encabezado']));
+
+    this.redirectSub = this.actionsSubject.pipe(
+      filter(action => action.type === PrescripcionEncabezadoActionsTypes.PUT_SUCCESS),
+    )
+      .subscribe(_ => this.router.navigate(['/prescripcion-encabezado']));
+
+
 
     this.activatedRoute.params.subscribe(params => {
       this.store.dispatch(new Load(+params['prescripcionId']));
@@ -74,6 +89,7 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
   }
 
   ngOnDestroy() {
+    this.relaodSub.unsubscribe();
     this.redirectSub.unsubscribe();
   }
 

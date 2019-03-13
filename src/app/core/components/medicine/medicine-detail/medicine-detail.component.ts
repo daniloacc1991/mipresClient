@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Medicine, Presentacion } from '@app-models/index';
 import { PresentacionService } from 'src/app/view/presentacion/services/presentacion.service';
 
@@ -6,7 +6,8 @@ import { PresentacionService } from 'src/app/view/presentacion/services/presenta
 @Component({
   selector: 'app-medicine-detail',
   templateUrl: './medicine-detail.component.html',
-  styleUrls: ['./medicine-detail.component.scss']
+  styleUrls: ['./medicine-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MedicineDetailComponent implements OnInit, OnChanges {
 

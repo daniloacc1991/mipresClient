@@ -27,4 +27,5 @@ export interface Procedure {
   IndRec: string;
   EstJM: number;
   prescripcionId: number;
+  indEntregado: boolean;
 }

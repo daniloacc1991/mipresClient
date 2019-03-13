@@ -1,5 +1,7 @@
 import { Medicine } from './medicine';
 import { Procedure } from './procedure';
+import { Device } from './device';
+import { ProductNutritional } from './product-nutritional';
 
 export interface Prescripcion {
   id: number;
@@ -43,7 +45,7 @@ export interface Prescripcion {
   createdAt: string;
   medicamentos: Medicine[];
   procedimientos: Procedure[];
-  dispositivos: [];
-  productosnutricionales: [];
+  dispositivos: Device[];
+  productosnutricionales: ProductNutritional[];
   serviciosComplementarios: [];
 }

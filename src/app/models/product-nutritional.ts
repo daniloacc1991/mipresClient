@@ -43,4 +43,5 @@ export interface ProductNutritional {
   NoPrescAso: string;
   EstJM: number;
   prescripcionId: number;
+  indEntregado: boolean;
 }

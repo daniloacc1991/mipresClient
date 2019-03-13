@@ -114,8 +114,11 @@
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">
-      <blockquote class="blockquote">
-        <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/new/' + medicine.id]">Entregar</a></p>
+      <blockquote *ngIf="!product.indEntregado" class="blockquote">
+        <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/new/' + product.id]">Entregar</a></p>
+      </blockquote>
+      <blockquote *ngIf="product.indEntregado" class="blockquote">
+        <p class="mb-0"><button class="btn btn-info" disabled>Entregado</button></p>
       </blockquote>
     </div>
   </div>

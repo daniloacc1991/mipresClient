@@ -36,9 +36,7 @@ export class AmbitoAtencionDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.ambito$ = this.store.pipe(
-      select(fromAmbito.getCurrentAmbitoAtencion)
-    );
+    this.ambito$ = this.store.select(fromAmbito.getCurrentAmbitoAtencion);
 
     this.redirectSub = this.actionsSubject.pipe(
       ofType(AmbitoAtencionActionsTypes.DELETE_SUCCESS),
@@ -54,6 +52,7 @@ export class AmbitoAtencionDetailsComponent implements OnInit, OnDestroy {
       .subscribe(_ => this.router.navigate(['/ambito-atencion']));
 
     this.activatedRoute.params.subscribe(params => {
+      console.log('Actividad en el activatedRoute Desde Ambito Details')
       this.store.dispatch(new Load(+params['ambitoId']));
     });
   }
