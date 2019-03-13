@@ -11,7 +11,7 @@ export interface Entrega {
   CantTotEntregada: string;
   EntTotal: number;
   CausaNoEntrega: number;
-  FecEntreg: string;
+  FecEntrega: string;
   NoLote: string;
   prescripcionDetalleId: number;
 }
