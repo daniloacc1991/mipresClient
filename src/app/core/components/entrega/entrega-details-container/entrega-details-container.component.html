@@ -1,0 +1,24 @@
+<div class="ambito-details-container" *ngIf="entrega">
+  <div class="card">
+    <div class="card-header">
+      Entrega N° {{ entrega.id }}
+    </div>
+    <div class="card-body">
+      <h4>NoPrescripcion: <span class="badge badge-primary">{{ entrega.NoPrescripcion }}</span></h4>
+      <h4>TipoTec: <span class="badge badge-primary">{{ entrega.TipoTec }}</span></h4>
+      <h4>ConTec: <span class="badge badge-primary">{{ entrega.ConTec }}</span></h4>
+      <h4>TipoIDPaciente: <span class="badge badge-primary">{{ entrega.TipoIDPaciente }}</span></h4>
+      <h4>NoIDPaciente: <span class="badge badge-primary">{{ entrega.NoIDPaciente }}</span></h4>
+      <h4>NoEntrega: <span class="badge badge-primary">{{ entrega.NoEntrega }}</span></h4>
+      <h4>CodSerTecEntregado: <span class="badge badge-primary">{{ entrega.CodSerTecEntregado }}</span></h4>
+      <h4>CantTotEntregada: <span class="badge badge-primary">{{ entrega.CantTotEntregada }}</span></h4>
+      <h4>FecEntrega: <span class="badge badge-primary">{{ entrega.FecEntrega | date:'yyyy-MM-dd' }}</span></h4>
+    </div>
+    <div class="card-footer text-muted">
+      <span class="float-md-right ">
+        <button (click)="edit.emit(entrega)" class="btn btn-sm btn-outline-warning"> EDIT</button>
+      </span>
+
+    </div>
+  </div>
+</div>

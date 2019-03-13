@@ -32,7 +32,7 @@ export const {
   selectEntities: getEntregaEntities
 } = fromEntrega.entregaAdater.getSelectors(getEntregaState);
 
-export const getCurrentAmbitoAtencion = createSelector(
+export const getCurrentEntrega = createSelector(
   getEntregaEntities,
   getSelectedEntregaId,
   (entities, id) => id && entities[id],

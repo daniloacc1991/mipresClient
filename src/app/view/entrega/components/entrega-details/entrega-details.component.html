@@ -1,3 +1,5 @@
-<p>
-  entrega-details works!
-</p>
+<app-entrega-details-container
+        [entrega]="entrega$ | async"
+        (edit)="editEntrega($event)"
+        (remove)="deleteEntrega($event)"
+></app-entrega-details-container>

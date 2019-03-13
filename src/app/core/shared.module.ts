@@ -32,6 +32,7 @@ import { MatchValuePipe } from './pipes/match-value.pipe';
 import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
 import { EntregaListComponent } from './components/entrega/entrega-list/entrega-list.component';
 import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-form.component';
+import { EntregaDetailsContainerComponent } from './components/entrega/entrega-details-container/entrega-details-container.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-
     ProductNutritionalDetailComponent,
     EntregaListComponent,
     EntregaFormComponent,
+    EntregaDetailsContainerComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -67,6 +69,7 @@ import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-
     PrescripcionDetailsComponent,
     EntregaListComponent,
     EntregaFormComponent,
+    EntregaDetailsContainerComponent
   ],
   imports: [
     CommonModule,
