@@ -19,6 +19,7 @@ export class TitleResolver implements Resolve<string> {
 
   resolve(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<string> {
+    this._title.setTitle(route.data['title']);
     this.store.dispatch(new titleActions.SetCurrentTitle(route.data['title']));
     return of(route.data['title']);
   }

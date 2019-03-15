@@ -3,28 +3,28 @@
     <div class="logo"></div>
   </button>
   <div fxLayout="row" fxLayoutAlign="center" class="card-container">
-    <div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%" fxFlex.xl="50%" >
+    <div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%" fxFlex.xl="50%">
       <mat-card>
         <mat-card-title>Inicio de Sesión</mat-card-title>
         <mat-card-content>
-          <div *ngIf="error | async" color="error">{{ error | async }}</div>
-          <form *ngIf="!(loading | async)" (ngSubmit)="login()" [formGroup]="form" novalidate>
+          <form *ngIf="!(isLoading$ | async)" (ngSubmit)="login()" [formGroup]="form" novalidate>
             <div fxLayout="column" fxLayoutAlign="start stretch">
               <mat-form-field>
-                <input matInput required placeholder="Usuario" autocorrect="off" autocapitalize="off" spellcheck="off" formControlName="usuario">
+                <input matInput required placeholder="Usuario" autocorrect="off" autocapitalize="off" spellcheck="off"
+                  formControlName="usuario">
               </mat-form-field>
               <mat-form-field>
-                <input matInput required type="password" placeholder="Password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="off" formControlName="password">
+                <input matInput required type="password" placeholder="Password" autocomplete="off" autocorrect="off"
+                  autocapitalize="off" spellcheck="off" formControlName="password">
               </mat-form-field>
               <button mat-raised-button color="accent" [disabled]="form.invalid" type="submit">Iniciar Sesion</button>
-              <br>
-              {{ isLoading$ | async }}
-              <br>
-              {{ auth$ | async | json }}
             </div>
           </form>
           <div fxLayout="row" fxLayoutAlign="center">
             <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+            <div *ngIf="error$ | async" class="alert alert-danger" role="alert">
+              {{ error$ | async }}
+            </div>
           </div>
         </mat-card-content>
       </mat-card>

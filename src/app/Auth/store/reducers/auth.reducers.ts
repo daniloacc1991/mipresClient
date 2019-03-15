@@ -1,15 +1,21 @@
 import { AuthActionsType, All as AllAuthActions } from '../Actions/auth.actions';
 
 export interface AuthState {
-  username: string,
-  token: string,
-  isLoading: false,
-  isLogin: false,
-  error: string,
+  username: string;
+  email: string;
+  scope: string;
+  usuario: string;
+  token: string;
+  isLoading: false;
+  isLogin: false;
+  error: string;
 }
 
 const INIT_STATE: AuthState = {
   username: 'GUEST',
+  email: '',
+  scope: '',
+  usuario: '',
   token: null,
   isLoading: false,
   isLogin: false,
@@ -31,8 +37,11 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
         ...state,
         isLoading: false,
         isLogin: true,
-        username: payload.username,
-        token: payload.token
+        username: payload.nombre,
+        token: payload.token,
+        email: payload.email,
+        scope: payload.scope,
+        usuario: payload.usuario,
       }
 
     case AuthActionsType.LOGOUT_USER_SUCCESS:
@@ -45,14 +54,24 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
         error: null,
       }
 
+    case AuthActionsType.LOGIN_ERROR:
+      return {
+        ...state,
+        username: 'GUEST',
+        token: null,
+        isLoading: false,
+        isLogin: false,
+        error: payload.error,
+      }
+
     default:
       return state;
   }
 }
 
 export const getAuthState = (state: AuthState) => state;
-export const getAuthAction = (accion: any) => accion.payload;
 export const getAuthError = (state: AuthState) => state.error;
 export const getAuthLoading = (state: AuthState) => state.isLoading;
 export const getAuthLoging = (state: AuthState) => state.isLogin;
 export const getAuthtoken = (state: AuthState) => state.token;
+export const getAuthUsername = (state: AuthState) => state.username;

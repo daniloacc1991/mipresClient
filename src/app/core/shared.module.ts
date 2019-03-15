@@ -12,7 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 // Bootstrap
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderNavigationComponent } from './components/shared/header-navigation/header-navigation.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
@@ -78,6 +78,7 @@ import { EntregaDetailsContainerComponent } from './components/entrega/entrega-d
     FormsModule,
     ReactiveFormsModule,
     NgbPaginationModule,
+    NgbCollapseModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,

@@ -11,16 +11,16 @@ declare var $: any;
 })
 export class LayautComponent implements OnInit {
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    public router: Router,
-    ) { }
-
   public isCollapsed = false;
   public innerWidth: any;
   public defaultSidebar: any;
   public showMobileMenu = false;
   public expandLogo = false;
+  
+  constructor(
+    private store: Store<fromRoot.State>,
+    public router: Router,
+    ) { }
 
   options = {
     sidebartype: 'full',

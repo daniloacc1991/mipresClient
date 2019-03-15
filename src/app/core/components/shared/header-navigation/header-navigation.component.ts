@@ -1,11 +1,14 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import {
   NgbModal,
   ModalDismissReasons,
   NgbPanelChangeEvent,
   NgbCarouselConfig
 } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import * as fromRoot from '../../../../reducers'
+import { Observable } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -15,11 +18,13 @@ declare var $: any;
 })
 export class HeaderNavigationComponent implements AfterViewInit {
 
+  nameuser$: Observable<string> = this.store.select(fromRoot.getAuthUsername);
   public showSearch = false;
 
   constructor(
     private modalService: NgbModal,
     private router: Router,
+    private store: Store<fromRoot.State>,
   ) { }
 
   ngAfterViewInit() {

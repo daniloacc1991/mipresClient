@@ -20,18 +20,14 @@ import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/i
 })
 export class PrescripcionEncabezadoIndexComponent implements OnInit {
 
-  prescripcions$: Observable<Prescripcion[]>;
-  msjImport$: Observable<ImportaFechaSuccess>;
-  isImportLoading$: Observable<boolean>;
+  prescripcions$: Observable<Prescripcion[]> = this.store.select(fromPrescripcions.getAllPrescripcions);;
+  msjImport$: Observable<ImportaFechaSuccess> = this.store.select(fromPrescripcions.getImportSuccessRes);;
+  isImportLoading$: Observable<boolean> = this.store.select(fromPrescripcions.getImportLoading);
 
   constructor(
     public store: Store<fromRoot.State>,
     private router: Router,
-  ) {
-    this.prescripcions$ = this.store.select(fromPrescripcions.getAllPrescripcions);
-    this.msjImport$  = this.store.select(fromPrescripcions.getImportSuccessRes);
-    this.isImportLoading$  = this.store.select(fromPrescripcions.getImportLoading);
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -45,12 +41,12 @@ export class PrescripcionEncabezadoIndexComponent implements OnInit {
     this.router.navigate(['/prescripcion-encabezado', prescripcion.id]);
   }
 
-  editContact(prescripcion: Prescripcion) {
+  editPrescripcion(prescripcion: Prescripcion) {
     this.store.dispatch(new SetCurrentPrescripcionId(prescripcion.id));
     this.router.navigate(['/prescripcion-encabezado', prescripcion.id, 'edit']);
   }
 
-  deleteContact(prescripcion: Prescripcion) {
+  deletePrescripcion(prescripcion: Prescripcion) {
     const r = confirm('Are you sure?');
     if (r) {
       this.store.dispatch(new Delete(prescripcion.id));

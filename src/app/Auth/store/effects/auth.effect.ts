@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-// import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { map, startWith, switchMap, catchError } from 'rxjs/operators';
+import * as jwtDecode from 'jwt-decode';
 import {
-  AuthActionsType, LoginUser, LoginUserSuccess, LoginError, LogoutUser, LogoutUserSuccess,
-
+  AuthActionsType,
+  LoginUser,
+  LoginUserSuccess,
+  LoginError,
+  LogoutUser,
+  LogoutUserSuccess,
 } from '../Actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
+import { UserResponse } from '../../models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +26,10 @@ export class AuthEffects {
     map((action: LoginUser) => action.payload),
     switchMap((auth) => this.authService.singIn(auth)),
     map((authSuccess: string) => {
-      console.log(authSuccess)
-      localStorage.setItem('token', authSuccess);
-      return new LoginUserSuccess({ username: '', token: authSuccess })
+      const tokenDecode:UserResponse = jwtDecode(authSuccess);
+      tokenDecode.token = authSuccess;
+      console.log(tokenDecode);
+      return new LoginUserSuccess(tokenDecode)
     }),
     catchError(err => {
       alert(err.message);

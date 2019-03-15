@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UserCredentials } from '../../models/user-credential';
+import { UserCredentials, UserResponse } from '../../models';
 
 export enum AuthActionsType {
   LOGIN_USER = '[Auth] LOGIN_USER',
@@ -18,7 +18,7 @@ export class LoginUser implements Action {
 
 export class LoginUserSuccess implements Action {
   readonly type = AuthActionsType.LOGIN_USER_SUCCESS;
-  constructor(public payload: any) { }
+  constructor(public payload: UserResponse) { }
 }
 
 export class LogoutUser implements Action {

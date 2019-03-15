@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { UserCredentials } from '../models/user-credential';
+import { environment } from '../../../environments/environment';
 import { delay } from 'rxjs/operators';
+import { UserCredentials } from '../models/user-credential';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +13,14 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {
+  }
 
   singIn(credentials: UserCredentials) {
+    console.log('Llego la transaccion', credentials)
     return this.http.post(`${this.url}/singIn`, credentials).pipe(
       delay(2000),
     );
   }
   // ...
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    if (token) {
-      return true;
-    }
-    return false;
-  }
 }

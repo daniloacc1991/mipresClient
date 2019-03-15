@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:3000',
-  socketUrl: 'http://localhost:3000',
+  apiUrl: 'http://mipresapi.com:3000',
+  socketUrl: 'http://mipresapi.com:3000',
 };
