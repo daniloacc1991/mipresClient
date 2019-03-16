@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { map, startWith, switchMap, catchError } from 'rxjs/operators';
+import { map, startWith, switchMap, catchError, tap } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
 import {
   AuthActionsType,
@@ -11,7 +11,7 @@ import {
   LoginError,
   LogoutUser,
   LogoutUserSuccess,
-} from '../Actions/auth.actions';
+} from '../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 import { UserResponse } from '../../models';
 
@@ -23,17 +23,15 @@ export class AuthEffects {
   @Effect()
   LoginUser$: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionsType.LOGIN_USER),
+    tap(v => console.log('Paso por el tap')),
     map((action: LoginUser) => action.payload),
     switchMap((auth) => this.authService.singIn(auth)),
     map((authSuccess: string) => {
-      const tokenDecode:UserResponse = jwtDecode(authSuccess);
+      const tokenDecode: UserResponse = jwtDecode(authSuccess);
       tokenDecode.token = authSuccess;
-      console.log(tokenDecode);
       return new LoginUserSuccess(tokenDecode)
     }),
-    catchError(err => {
-      return of(new LoginError({ concern: 'Auth Login', error: err.message }))
-    })
+    catchError(err => of(new LoginError({ concern: 'Auth Login', error: err.message })))
   );
 
   @Effect()
@@ -45,6 +43,14 @@ export class AuthEffects {
     catchError(err => {
       return of(new LoginError({ concern: 'Logout', error: err.message }))
     })
+  );
+
+  @Effect()
+  LoginError$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionsType.LOGIN_ERROR),
+    map(payload => {
+      return { type: 'LOGIN_API_ERROR'};
+    }),
   );
 
 

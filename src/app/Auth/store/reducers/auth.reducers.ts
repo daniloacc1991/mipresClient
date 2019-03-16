@@ -1,4 +1,4 @@
-import { AuthActionsType, All as AllAuthActions } from '../Actions/auth.actions';
+import { AuthActionsType, All as AllAuthActions } from '../actions/auth.actions';
 
 export interface AuthState {
   username: string;
@@ -25,13 +25,18 @@ const INIT_STATE: AuthState = {
 export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAuthActions) {
   switch (type) {
 
-    case AuthActionsType.LOGIN_USER:
-      return {
-        ...state,
-        isLoading: true,
-        isLogin: false,
-        error: null
-      }
+    // case AuthActionsType.LOGIN_USER:
+    //   return {
+    //     ...state,
+    //     username: 'GUEST',
+    //     token: null,
+    //     isLoading: true,
+    //     isLogin: false,
+    //     error: null,
+    //     email: null,
+    //     scope: null,
+    //     usuario: null,
+    //   }
 
     case AuthActionsType.LOGIN_USER_SUCCESS:
       return {
@@ -54,6 +59,9 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
         isLoading: false,
         isLogin: false,
         error: null,
+        email: null,
+        scope: null,
+        usuario: null,
       }
 
     case AuthActionsType.LOGIN_ERROR:

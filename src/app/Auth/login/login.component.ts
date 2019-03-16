@@ -8,7 +8,6 @@ import {
   AuthActionsType,
   LoginUser
 } from '../store/actions/auth.actions';
-import { AuthService } from '../services/auth.service';
 import * as fromRoot from '../../reducers';
 
 
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginSuccessSub: Subscription;
 
-  public form: FormGroup;
+  form: FormGroup;
 
   error$ = this.store.select(fromRoot.getAuthError);
   isLoading$ = this.store.select(fromRoot.getAuthLoading);
@@ -31,9 +30,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     private store: Store<fromRoot.State>,
     private redirectLogin: ActionsSubject,
     private router: Router,
-    private authService: AuthService,
     private formBuilder: FormBuilder,
-  ) { }
+  ) {
+    this.isLoging$.subscribe(
+      res => {
+        if (res) {
+          this.router.navigate(['/']);
+        }
+      }
+    );
+  }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -45,14 +51,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       filter( action => action.type === AuthActionsType.LOGIN_USER_SUCCESS)
     )
       .subscribe(_ => this.router.navigate(['/']));
-
-    this.isLoging$.subscribe(
-      res => {
-        if (res) {
-          this.router.navigate(['/']);
-        }
-      }
-    );
   }
 
   login() {
