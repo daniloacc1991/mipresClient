@@ -26,9 +26,9 @@ export class AuthEffects {
     tap(v => console.log('Paso por el tap')),
     map((action: LoginUser) => action.payload),
     switchMap((auth) => this.authService.singIn(auth)),
-    map((authSuccess: string) => {
-      const tokenDecode: UserResponse = jwtDecode(authSuccess);
-      tokenDecode.token = authSuccess;
+    map((authSuccess: { token: string }) => {
+      const tokenDecode: UserResponse = jwtDecode(authSuccess.token);
+      tokenDecode.token = authSuccess.token;
       return new LoginUserSuccess(tokenDecode)
     }),
     catchError(err => of(new LoginError({ concern: 'Auth Login', error: err.message })))
@@ -49,7 +49,7 @@ export class AuthEffects {
   LoginError$: Observable<Action> = this.actions$.pipe(
     ofType(AuthActionsType.LOGIN_ERROR),
     map(payload => {
-      return { type: 'LOGIN_API_ERROR'};
+      return { type: 'LOGIN_API_ERROR' };
     }),
   );
 
