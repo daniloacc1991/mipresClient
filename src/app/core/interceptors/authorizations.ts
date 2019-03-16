@@ -14,7 +14,6 @@ export interface AuthState {
 export class Authorization implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authState: AuthState = JSON.parse(localStorage.getItem('auth'));
-    console.log('DESDE INTERCEPTOR', authState);
     if (authState.token !== null) {
       const duplicate = req.clone(
         {
