@@ -32,7 +32,6 @@ export class AuthEffects {
       return new LoginUserSuccess(tokenDecode)
     }),
     catchError(err => {
-      alert(err.message);
       return of(new LoginError({ concern: 'Auth Login', error: err.message }))
     })
   );
@@ -44,7 +43,6 @@ export class AuthEffects {
     switchMap(() => of({ username: 'GUEST', token: null })),
     map((logoutSuccess) => new LogoutUserSuccess(logoutSuccess)),
     catchError(err => {
-      alert(err.message);
       return of(new LoginError({ concern: 'Logout', error: err.message }))
     })
   );

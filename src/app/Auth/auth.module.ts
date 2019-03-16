@@ -12,10 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import * as fromAuth from './store/reducers/auth.reducers';
-import { AuthEffects } from './store/effects/auth.effect';
+// import { EffectsModule } from '@ngrx/effects';
+// import { StoreModule } from '@ngrx/store';
+// import * as fromAuth from './store/reducers/auth.reducers';
+// import { AuthEffects } from './store/effects/auth.effect';
 
 @NgModule({
   declarations: [
@@ -35,8 +35,8 @@ import { AuthEffects } from './store/effects/auth.effect';
     MatProgressSpinnerModule,
     MatInputModule,
     MatButtonModule,
-    StoreModule.forFeature('auth', fromAuth.reducers),
-    EffectsModule.forFeature([AuthEffects]),
+    // StoreModule.forFeature('auth', fromAuth.reducers),
+    // EffectsModule.forFeature([AuthEffects]),
   ],
 })
 export class AuthModule { }
