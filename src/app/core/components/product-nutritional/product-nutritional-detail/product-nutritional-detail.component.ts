@@ -11,16 +11,6 @@ export class ProductNutritionalDetailComponent implements OnInit {
   @Input() products: ProductNutritional[];
 
   tipoPrestacion = [{ id: 1, descripcion: 'Única' }, { id: 2, descripcion: 'Sucesiva' }];
-  frecuenciasAdministracion = [
-    { id: 1, descripcion: 'Minuto(s)' },
-    { id: 2, descripcion: 'Hora(s)' },
-    { id: 3, descripcion: 'Día(s)' },
-    { id: 4, descripcion: 'Semana(s)' },
-    { id: 5, descripcion: 'Mes(es)' },
-    { id: 6, descripcion: 'Año' },
-    { id: 7, descripcion: 'Según respuesta al tratamiento' },
-    { id: 8, descripcion: 'Única' }
-  ];
   viaAdministracion = [
     { id: 1, descripcion: 'ORAL' },
     { id: 2, descripcion: 'SONDA' }
@@ -38,18 +28,6 @@ export class ProductNutritionalDetailComponent implements OnInit {
     { id: 10, descripcion: 'Tetraprisma' },
     { id: 11, descripcion: 'Ultrapack' },
     { id: 12, descripcion: 'Frasco' },
-  ];
-  indicacionesEspeciales = [
-    { id: 1, descripcion: 'Administración en dosis única' },
-    { id: 2, descripcion: 'Administración inmediata' },
-    { id: 3, descripcion: 'Administrar en Bolo' },
-    { id: 4, descripcion: 'Administrar en Goteo' },
-    { id: 5, descripcion: 'Infusión contínua' },
-    { id: 6, descripcion: 'Infusión intermitente' },
-    { id: 7, descripcion: 'Infusión intermitente simultánea con perfusión de otra solución' },
-    { id: 8, descripcion: 'Microgoteo' },
-    { id: 9, descripcion: 'Perfusión' },
-    { id: 10, descripcion: 'Sin indicación Especial' },
   ];
 
   constructor() { }

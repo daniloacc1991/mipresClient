@@ -70,14 +70,12 @@
       </div>
       <div class="border-prescricion col-md-2">
         <blockquote class="blockquote">
-          <footer *ngIf="frecuenciasAdministracion">{{ procedure.CadaFreUso }}
-            {{ procedure.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer>{{ procedure.CadaFreUso }} {{ procedure.codigoFreUso.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer>{{ procedure.Cant }}
-            {{ procedure.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer>{{ procedure.Cant }} {{ procedure.codigoPerDurTrat.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">

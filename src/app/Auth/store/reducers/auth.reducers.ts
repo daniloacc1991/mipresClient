@@ -25,18 +25,10 @@ const INIT_STATE: AuthState = {
 export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAuthActions) {
   switch (type) {
 
-    // case AuthActionsType.LOGIN_USER:
-    //   return {
-    //     ...state,
-    //     username: 'GUEST',
-    //     token: null,
-    //     isLoading: true,
-    //     isLogin: false,
-    //     error: null,
-    //     email: null,
-    //     scope: null,
-    //     usuario: null,
-    //   }
+    case AuthActionsType.LOGIN_USER:
+      return {
+        isLoading: true,
+      }
 
     case AuthActionsType.LOGIN_USER_SUCCESS:
       return {

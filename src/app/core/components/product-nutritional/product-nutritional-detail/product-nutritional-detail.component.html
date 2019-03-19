@@ -82,21 +82,17 @@
     </div>
     <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ product.NoFAdmon }}
-          {{ product.CodFreAdmon | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+        <p class="mb-0">{{ product.NoFAdmon }} {{ product.codigoFreAdmon.descripcion }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p *ngIf="indicacionesEspeciales" class="mb-0">
-          {{ product.IndEsp | matchValue:[indicacionesEspeciales, 'descripcion'] }}</p>
+        <p class="mb-0">{{ product.indicacionEspecial.descripcion }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">
-          {{ product.CanTrat }}
-          {{ product.DurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}
+        <p class="mb-0">{{ product.CanTrat }} {{ product.duracionTrat.descripcion }}
         </p>
       </blockquote>
     </div>

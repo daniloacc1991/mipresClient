@@ -83,20 +83,17 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer *ngIf="frecuenciasAdministracion">{{ medicine.NoFAdmon }}
-            {{ medicine.CodFreAdmon | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer>{{ medicine.NoFAdmon }} {{ medicine.codigoFreAdmon.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer *ngIf="indicacionesEspeciales">
-            {{ medicine.IndEsp | matchValue:[indicacionesEspeciales, 'descripcion'] }}</footer>
+          <footer>{{ medicine.indicacionEspecial.descripcion | uppercase  }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer *ngIf="frecuenciasAdministracion">{{ medicine.CanTrat }}
-            {{ medicine.DurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</footer>
+          <footer>{{ medicine.CanTrat }} {{ medicine.duracionTrat.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-2">
@@ -106,9 +103,7 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer *ngIf="presentaciones">{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} /
-            {{ medicine.UFCantTotal | matchValue:[presentaciones, 'descripcion'] }}
-          </footer>
+          <footer>{{ medicine.CantTotalF }} / {{ medicine.CantTotalF }} / {{ medicine.codigoUFCantTotal.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
