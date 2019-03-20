@@ -33,6 +33,7 @@ import { JoinNameProfPipe } from './pipes/join-name-prof.pipe';
 import { EntregaListComponent } from './components/entrega/entrega-list/entrega-list.component';
 import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-form.component';
 import { EntregaDetailsContainerComponent } from './components/entrega/entrega-details-container/entrega-details-container.component';
+import { ServicioComplementarioDetalleComponent } from './components/servicio-complementario/servicio-complementario-detalle/servicio-complementario-detalle.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { EntregaDetailsContainerComponent } from './components/entrega/entrega-d
     EntregaListComponent,
     EntregaFormComponent,
     EntregaDetailsContainerComponent,
+    ServicioComplementarioDetalleComponent,
   ],
   exports: [
     HeaderNavigationComponent,

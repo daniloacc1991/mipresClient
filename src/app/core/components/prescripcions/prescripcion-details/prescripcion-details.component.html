@@ -168,6 +168,10 @@
       [products]="prescripcion.productosnutricionales">
     </app-product-nutritional-detail>
 
+    <app-servicio-complementario-detalle *ngIf="prescripcion.serviciosComplementarios.length !== 0"
+      [services]="prescripcion.serviciosComplementarios">
+    </app-servicio-complementario-detalle>
+
     <div class="row row-title">
       <div class="border-prescricion col-md-12">
         <h1 class="text-center display-5">PROFESIONAL TRATANTE</h1>

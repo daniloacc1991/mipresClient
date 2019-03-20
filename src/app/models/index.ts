@@ -16,3 +16,4 @@ export * from './importarFecha';
 export * from './importFechaSuccess';
 export * from './entrega';
 export * from './prescripcionDetalle';
+export * from './servicio-complementario';

@@ -35,11 +35,12 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
     private router: Router,
     private actionsSubject: ActionsSubject
   ) {
-    this.prescripcionId = this.activatedRoute.snapshot.params['prescripcionId'];
-    this.store.dispatch(new SetCurrentPrescripcionId(this.prescripcionId));
   }
 
   ngOnInit() {
+    this.prescripcionId = this.activatedRoute.snapshot.params['prescripcionId'];
+    this.store.dispatch(new SetCurrentPrescripcionId(this.prescripcionId));
+    
     this.redirectSub = this.actionsSubject.pipe(
       ofType(PrescripcionEncabezadoActionsTypes.DELETE_SUCCESS),
       filter((action: DeleteSuccess) => {

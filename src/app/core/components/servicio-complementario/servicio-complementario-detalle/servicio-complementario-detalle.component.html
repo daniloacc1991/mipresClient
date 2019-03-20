@@ -1,0 +1,86 @@
+<div *ngIf="services">
+  <div class="row row-title">
+    <div class="border-prescricion col-md-12">
+      <h1 class="text-center display-5">SERVICIOS COMPLEMENTARIOS</h1>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Tipo prestación</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Servicio Complementario</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Indicaciones o Recomendaciones</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Cantidad</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Frecuencia Uso</p>
+        <p class="mb-0">(Cantidad - Período)</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">Cantidad Total</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">Acciones</p>
+      </blockquote>
+    </div>
+  </div>
+  <div *ngFor="let service of services;" class="row">
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0" *ngIf="tipoPrestacion">{{ service.TipoPrest | matchValue:[tipoPrestacion, 'descripcion'] }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ service.tipoServicioComplementario.descripcion | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ service.IndRec | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ service.CanForm }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ service.CadaFreUso }} {{ service.codigoFreUso.descripcion | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-1">
+      <blockquote class="blockquote">
+        <p class="mb-0">{{ service.Cant }} {{ service.codigoPerDurTrat.descripcion | uppercase }}</p>
+      </blockquote>
+    </div>
+    <div class="border-prescricion col-md-2">
+      <blockquote *ngIf="!service.indEntregado" class="blockquote">
+        <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/new/' + service.id]">Entregar</a>
+        </p>
+      </blockquote>
+      <blockquote *ngIf="service.indEntregado" class="blockquote">
+        <p class="mb-0"><button class="btn btn-outline-success" disabled>Entregado</button></p>
+      </blockquote>
+    </div>
+  </div>
+</div>

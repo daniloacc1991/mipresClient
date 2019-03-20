@@ -2,6 +2,7 @@ import { Medicine } from './medicine';
 import { Procedure } from './procedure';
 import { Device } from './device';
 import { ProductNutritional } from './product-nutritional';
+import { ServicioComplementario } from './servicio-complementario';
 
 export interface Prescripcion {
   id: number;
@@ -47,5 +48,5 @@ export interface Prescripcion {
   procedimientos: Procedure[];
   dispositivos: Device[];
   productosnutricionales: ProductNutritional[];
-  serviciosComplementarios: [];
+  serviciosComplementarios: ServicioComplementario[];
 }
