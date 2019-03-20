@@ -50,7 +50,7 @@
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p class="mb-0">{{ device.CodDisp }} - {{ device.tipoDispositivoMedico.descripcion | uppercase }}</p>
+        <p class="mb-0">{{ device.tipoDispositivoMedico.descripcion | uppercase }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-2">
@@ -65,14 +65,12 @@
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.CadaFreUso }}
-          {{ device.CodFreUso | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+        <p class="mb-0">{{ device.CadaFreUso }} {{ device.codigoFreUso.descripcion | uppercase }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
-        <p *ngIf="frecuenciasAdministracion" class="mb-0">{{ device.Cant }}
-          {{ device.CodPerDurTrat | matchValue:[frecuenciasAdministracion, 'descripcion'] }}</p>
+        <p class="mb-0">{{ device.Cant }} {{ device.codigoPerDurTrat.descripcion | uppercase }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">
