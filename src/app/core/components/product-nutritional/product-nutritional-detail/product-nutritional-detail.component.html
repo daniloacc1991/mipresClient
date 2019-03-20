@@ -31,7 +31,7 @@
         <p class="mb-0">Frecuencia Administración</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Indicaciones Especiales</p>
       </blockquote>
@@ -46,7 +46,7 @@
         <p class="mb-0">Recomendaciones</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-1">
+    <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
         <p class="mb-0">Cantidades Farmacéuticas</p>
         <p class="mb-0">Nro / Letras / Unidad Farmacéutica</p>
@@ -84,7 +84,7 @@
         <p class="mb-0">{{ product.NoFAdmon }} {{ product.codigoFreAdmon.descripcion }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">{{ product.indicacionEspecial.descripcion }}</p>
       </blockquote>
@@ -100,9 +100,9 @@
         <p class="mb-0">{{ product.IndRec | uppercase }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-1">
+    <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p class="mb-0">{{ product.CantTotalF }} / {{ product.CantTotalF }} / {{ product.codigoFormaNut.descripcion }}</p>
+        <p class="mb-0">{{ product.CantTotalF }} / {{ product.CantTotalF | numberToText | uppercase }} / {{ product.codigoFormaNut.descripcion }}</p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">

@@ -34,6 +34,7 @@ import { EntregaListComponent } from './components/entrega/entrega-list/entrega-
 import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-form.component';
 import { EntregaDetailsContainerComponent } from './components/entrega/entrega-details-container/entrega-details-container.component';
 import { ServicioComplementarioDetalleComponent } from './components/servicio-complementario/servicio-complementario-detalle/servicio-complementario-detalle.component';
+import { NumberToTextPipe } from './pipes/number-to-text.pipe';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ServicioComplementarioDetalleComponent } from './components/servicio-co
     EntregaFormComponent,
     EntregaDetailsContainerComponent,
     ServicioComplementarioDetalleComponent,
+    NumberToTextPipe,
   ],
   exports: [
     HeaderNavigationComponent,
