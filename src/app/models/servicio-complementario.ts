@@ -8,10 +8,10 @@ export interface ServicioComplementario {
   CausaS4: number;
   DescCausaS4: string;
   CausaS5: number;
-  CodSerComp: string;
+  CodSerComp: number;
   DescSerComp: string;
-  CanForm: string;
-  CadaFreUso: string;
+  CanForm: number;
+  CadaFreUso: number;
   CodFreUso: number;
   Cant: string;
   CantTotal: string;
@@ -20,4 +20,5 @@ export interface ServicioComplementario {
   IndRec: string;
   EstJM: number;
   prescripcionId: number;
+  indEntregado: boolean;
 }

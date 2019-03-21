@@ -17,11 +17,11 @@ export interface Procedure {
   CausaS6: number;
   CausaS7: number;
   CodCUPS: string;
-  CanForm: string;
-  CadaFreUso: string;
+  CanForm: number;
+  CadaFreUso: number;
   CodFreUso: number;
-  Cant: string;
-  CantTotal: string;
+  Cant: number;
+  CantTotal: number;
   CodPerDurTrat: number;
   JustNoPBS: string;
   IndRec: string;

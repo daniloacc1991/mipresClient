@@ -10,7 +10,7 @@ export interface Medicine {
   CausaS1: number;
   CausaS2: number;
   CausaS3: number;
-  MedPBSUtilizado: number;
+  MedPBSUtilizado: string;
   RznCausaS31: number;
   DescRzn31: string;
   RznCausaS32: number;
@@ -32,14 +32,14 @@ export interface Medicine {
   CodFF: string;
   CodVA: string;
   JustNoPBS: string;
-  Dosis: string;
+  Dosis: number;
   DosisUM: string;
-  NoFAdmon: string;
+  NoFAdmon: number;
   CodFreAdmon: number;
   IndEsp: number;
-  CanTrat: string;
+  CanTrat: number;
   DurTrat: number;
-  CantTotalF: string;
+  CantTotalF: number;
   UFCantTotal: string;
   IndRec: string;
   EstJM: number;

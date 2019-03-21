@@ -1,6 +1,10 @@
 export interface MedicamentoPrincipcio {
   id: number;
   ConOrden: number;
-  CodIndicacion: string;
+  CodPriAct: string;
+  ConcCant: number;
+  UMedConc: string;
+  CantCont: number;
+  UMedCantCont: number;
   medicamentoId: number;
 }

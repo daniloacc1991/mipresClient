@@ -4,12 +4,12 @@ export interface Device {
   TipoPrest: number;
   CausaS1: number;
   CodDisp: string;
-  CanForm: string;
-  CadaFreUso: string;
+  CanForm: number;
+  CadaFreUso: number;
   CodFreUso: number;
-  Cant: string;
+  Cant: number;
   CodPerDurTrat: number;
-  CantTotal: string;
+  CantTotal: number;
   JustNoPBS: string;
   IndRec: string;
   EstJM: number;

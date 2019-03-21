@@ -66,7 +66,9 @@
     </div>
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
-        <p class="mb-0">{{ product.tipoProductoNutricional.descripcion | uppercase }}</p>
+        <p class="mb-0">
+          {{ product.tipoProductoNutricional.descripcion + ' - ' + product.productoNutricional.nombreComercial + ' / ' + product.productoNutricional.grupoNivel1 + ' / ' + product.productoNutricional.presentacionComercia + ' ' + product.productoNutricional.unidades + ' / ' + product.productoNutricional.forma | uppercase }}
+        </p>
       </blockquote>
     </div>
     <div class="border-prescricion col-md-1">

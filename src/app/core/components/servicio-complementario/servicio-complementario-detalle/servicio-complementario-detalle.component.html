@@ -20,7 +20,7 @@
         <p class="mb-0">Indicaciones o Recomendaciones</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Cantidad</p>
       </blockquote>
@@ -28,15 +28,20 @@
     <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
         <p class="mb-0">Frecuencia Uso</p>
-        <p class="mb-0">(Cantidad - Período)</p>
       </blockquote>
     </div>
+    <div class="border-prescricion col-md-2">
+        <blockquote class="blockquote">
+          <p class="mb-0">Duración Tratamiento</p>
+          <p class="mb-0">(Cantidad - Período)</p>
+        </blockquote>
+      </div>
     <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Cantidad Total</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">Acciones</p>
       </blockquote>
@@ -58,7 +63,7 @@
         <p class="mb-0">{{ service.IndRec | uppercase }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
       <blockquote class="blockquote">
         <p class="mb-0">{{ service.CanForm }}</p>
       </blockquote>
@@ -68,12 +73,17 @@
         <p class="mb-0">{{ service.CadaFreUso }} {{ service.codigoFreUso.descripcion | uppercase }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-1">
+    <div class="border-prescricion col-md-2">
       <blockquote class="blockquote">
         <p class="mb-0">{{ service.Cant }} {{ service.codigoPerDurTrat.descripcion | uppercase }}</p>
       </blockquote>
     </div>
-    <div class="border-prescricion col-md-2">
+    <div class="border-prescricion col-md-1">
+        <blockquote class="blockquote">
+          <p class="mb-0">{{ service.CantTotal }}</p>
+        </blockquote>
+      </div>
+    <div class="border-prescricion col-md-1">
       <blockquote *ngIf="!service.indEntregado" class="blockquote">
         <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/new/' + service.id]">Entregar</a>
         </p>
@@ -83,4 +93,5 @@
       </blockquote>
     </div>
   </div>
+
 </div>
