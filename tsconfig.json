@@ -37,6 +37,9 @@
       "@app-frecuencia/*": [
         "src/app/view/frecuencia/*"
       ],
+      "@app-estado-junta/*": [
+        "src/app/view/estado-junta/*"
+      ],
     }
   }
 }
