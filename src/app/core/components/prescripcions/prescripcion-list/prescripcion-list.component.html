@@ -56,24 +56,29 @@
           *ngFor="let precipcion of prescripcions$ | async | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
           <th scope="row">{{ precipcion.id }}</th>
           <td>
-            <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">{{ precipcion.NoPrescripcion }}
+            <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">
+              {{ precipcion.NoPrescripcion }}
             </ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="precipcion.FPrescripcion" [term]="filter.value">
-              {{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}</ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.HPrescripcion" [term]="filter.value">{{ precipcion.HPrescripcion }}
+            <ngb-highlight [result]="precipcion.FPrescripcion | date:'yyyy-MM-dd'" [term]="filter.value">
+              {{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}
             </ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">{{ precipcion.PNPaciente }}
-              {{ precipcion.PAPaciente }}</ngb-highlight>
+            <ngb-highlight [result]="precipcion.HPrescripcion" [term]="filter.value">
+              {{ precipcion.HPrescripcion }}
+            </ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="precipcion.SNProfS" [term]="filter.value">{{ precipcion.SNProfS }}
-              {{ precipcion.SAPaciente }}</ngb-highlight>
+            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">
+              {{ precipcion.PNPaciente + ' ' + precipcion.PAPaciente }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.SNProfS" [term]="filter.value">
+              {{ precipcion.SNProfS + ' ' + precipcion.SAPaciente }}
+            </ngb-highlight>
           </td>
           <td>
             <span class="span-padding">

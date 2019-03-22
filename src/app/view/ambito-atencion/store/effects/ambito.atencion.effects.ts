@@ -9,13 +9,14 @@ import {
   LoadAll,
   LoadAllSuccess,
   Load,
+  LoadSuccess,
   Create,
   CreateSuccess,
-  Failure,
   Put,
   PutSuccess,
   DeleteSuccess,
-  Delete
+  Delete,
+  Failure,
 } from '../actions/ambito-atencion.actions';
 import { AmbitoAtencion } from '@app-models/index';
 import { AmbitoAtencionSocketsService } from '../../services/ambito-atencion-sockets.service';
@@ -38,7 +39,7 @@ export class AmbitoAtencionEffects {
     ofType(AmbitoAtencionActionsTypes.LOAD),
     map((action: Load) => action.payload),
     switchMap((id) => this.ambitoAtencionService.show(id)),
-    map((ambito: AmbitoAtencion) => new LoadAll(ambito)),
+    map((ambito: AmbitoAtencion) => new LoadSuccess(ambito)),
   );
 
   @Effect()

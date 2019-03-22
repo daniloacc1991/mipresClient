@@ -14,6 +14,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'estado-junta',
+        canActivate: [AuthGuard],
+        loadChildren: 'src/app/view/estado-junta/estado-junta.module#EstadoJuntaModule'
+      },
+      {
         path: 'ambito-atencion',
         canActivate: [AuthGuard],
         loadChildren: 'src/app/view/ambito-atencion/ambito-atencion.module#AmbitoAtencionModule'

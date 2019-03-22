@@ -20,7 +20,5 @@ export class PrescripcionDetailsComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges() {
-    console.log(this.prescripcion);
-  }
+  ngOnChanges() { }
 }

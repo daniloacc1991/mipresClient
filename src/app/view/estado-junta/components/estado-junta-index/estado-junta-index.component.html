@@ -1,0 +1,7 @@
+<app-estado-junta-list
+  [estadosJunta]="estadosJuntas$ | async"
+  (show)="showEstadoJunta($event)"
+  (remove)="deleteEstadoJunta($event)"
+  (edit)="editEstadoJunta($event)"
+>
+</app-estado-junta-list>

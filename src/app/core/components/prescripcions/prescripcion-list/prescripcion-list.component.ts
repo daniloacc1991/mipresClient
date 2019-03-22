@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, ChangeDetectionStrategy, Input, Output, PipeTransform, OnChanges } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
 import { Observable } from 'rxjs';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 
@@ -28,6 +29,7 @@ export const MY_FORMATS = {
   styleUrls: ['./prescripcion-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
+    DatePipe,
     MessageService,
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
@@ -54,6 +56,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
+    private datePipe: DatePipe,
   ) {
     this.filterPrescripcions();
     this.form = this.formBuilder.group({
@@ -81,7 +84,6 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.filterPrescripcions();
     if (this.msjImport) {
-      console.log('Detecto cambios en los msj', this.msjImport)
       if (this.msjImport.success) {
         this.msjImport.success.map(r => {
           this.messageService.add(
@@ -115,7 +117,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   filterPrescripcions() {
     this.prescripcions$ = this.filter.valueChanges.pipe(
       startWith(''),
-      map(text => this.search(text))
+      map(text => this.search(text, this.datePipe))
     )
   }
 
@@ -129,19 +131,20 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
       }
       return 0;
     });
-    return this.prescripcions.filter(country => {
+    return this.prescripcions.filter(prescripcion => {
       const term = text.toLowerCase();
-      return country.NoPrescripcion.includes(term)
-        || country.FPrescripcion.includes(term)
-        || country.HPrescripcion.includes(term)
-        || country.PNProfS.includes(term)
-        || country.SNProfS.includes(term)
-        || country.PAProfS.includes(term)
-        || country.SAProfS.includes(term)
-        || country.PNPaciente.includes(term)
-        || country.SNPaciente.includes(term)
-        || country.PAPaciente.includes(term)
-        || country.SAPaciente.includes(term);
+      const dateMoment = moment(prescripcion.FPrescripcion).format('YYYY-MM-DD');
+      return prescripcion.NoPrescripcion.includes(term)
+        || dateMoment.includes(term)
+        || prescripcion.HPrescripcion.includes(term)
+        || prescripcion.PNProfS.includes(term)
+        || prescripcion.SNProfS.includes(term)
+        || prescripcion.PAProfS.includes(term)
+        || prescripcion.SAProfS.includes(term)
+        || prescripcion.PNPaciente.includes(term)
+        || prescripcion.SNPaciente.includes(term)
+        || prescripcion.PAPaciente.includes(term)
+        || prescripcion.SAPaciente.includes(term);
     });
   }
 }

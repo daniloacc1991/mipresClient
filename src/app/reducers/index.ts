@@ -33,6 +33,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 export function localStorageSyncReducer(reducer: ActionReducer<State>): ActionReducer<State> {
   const config: LocalStorageConfig = {
+    // keys: ['auth','entrega', 'prescripcions', 'ambitoAtencion', 'estadosJunta'],
     keys: ['auth'],
     rehydrate: true,
   }

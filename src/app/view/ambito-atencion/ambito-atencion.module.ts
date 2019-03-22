@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromAmbitos from './store/reducers';
@@ -14,10 +13,15 @@ import { AmbitoAtencionEditComponent } from './components/ambito-atencion-edit/a
 import { AmbitoAtencionNewComponent } from './components/ambito-atencion-new/ambito-atencion-new.component';
 
 @NgModule({
-  declarations: [AmbitoAtencionComponent, AmbitoAtencionIndexComponent, AmbitoAtencionDetailsComponent, AmbitoAtencionEditComponent, AmbitoAtencionNewComponent],
+  declarations: [
+    AmbitoAtencionComponent,
+    AmbitoAtencionIndexComponent,
+    AmbitoAtencionDetailsComponent,
+     AmbitoAtencionEditComponent,
+     AmbitoAtencionNewComponent,
+    ],
   imports: [
     CommonModule,
-    HttpClientModule,
     AmbitoAtencionRoutingModule,
     SharedModule,
     StoreModule.forFeature('ambitoAtencion', fromAmbitos.reducers),

@@ -10,8 +10,16 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/estado-junta',
+    title: 'Estados Juntas',
+    icon: 'mdi mdi-gauge',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/ambito-atencion',
-    title: 'Listar Ambitos',
+    title: 'Ambitos Atención',
     icon: 'mdi mdi-gauge',
     class: '',
     extralink: false,

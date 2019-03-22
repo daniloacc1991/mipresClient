@@ -23,7 +23,6 @@ export enum AmbitoAtencionActionsTypes {
   SET_CURRENT_AMBITO_ATENCION_ID = '[AmbitoAtencion] SET_CURRENT_AMBITO_ATENCION_ID',
 
   // SERVER SIDE SOCKET ACTIONS
-
   LIVE_CREATED = '[AmbitoAtencion] LIVE CREATED',
   LIVE_UPDATED = '[AmbitoAtencion] LIVE UPDATED',
   LIVE_DELETED = '[AmbitoAtencion] LIVE DELETED',

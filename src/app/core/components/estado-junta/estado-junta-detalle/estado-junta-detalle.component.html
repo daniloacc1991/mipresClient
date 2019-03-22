@@ -1,0 +1,18 @@
+<div class="estadoJunta-details-container" *ngIf="estadoJunta">
+  <div class="card">
+    <div class="card-header">
+      estadoJunta
+    </div>
+    <div class="card-body">
+      <p>ID: <span class="badge badge-primary">{{estadoJunta.id}}</span></p>
+      <p>Descripcion: <span class="badge badge-primary">{{estadoJunta.descripcion}}</span></p>
+    </div>
+    <div class="card-footer text-muted">
+      <span class="float-md-right ">
+        <button (click)="edit.emit(estadoJunta)" class="btn btn-sm btn-outline-warning"> EDIT</button>
+        <!-- <button (click)="remove.emit(estadoJunta)" class="btn btn-sm btn-outline-danger"> DELETE</button> -->
+      </span>
+
+    </div>
+  </div>
+</div>

@@ -35,11 +35,15 @@ import { EntregaFormComponent } from './components/entrega/entrega-form/entrega-
 import { EntregaDetailsContainerComponent } from './components/entrega/entrega-details-container/entrega-details-container.component';
 import { ServicioComplementarioDetalleComponent } from './components/servicio-complementario/servicio-complementario-detalle/servicio-complementario-detalle.component';
 import { NumberToTextPipe } from './pipes/number-to-text.pipe';
+import { EstadoJuntaDetalleComponent } from './components/estado-junta/estado-junta-detalle/estado-junta-detalle.component';
+import { EstadoJuntaFormComponent } from './components/estado-junta/estado-junta-form/estado-junta-form.component';
+import { EstadoJuntaListComponent } from './components/estado-junta/estado-junta-list/estado-junta-list.component';
 
 @NgModule({
   declarations: [
     JoinNameProfPipe,
     MatchValuePipe,
+    NumberToTextPipe,
     HeaderNavigationComponent,
     SidebarComponent,
     BreadcrumbComponent,
@@ -58,7 +62,9 @@ import { NumberToTextPipe } from './pipes/number-to-text.pipe';
     EntregaFormComponent,
     EntregaDetailsContainerComponent,
     ServicioComplementarioDetalleComponent,
-    NumberToTextPipe,
+    EstadoJuntaDetalleComponent,
+    EstadoJuntaFormComponent,
+    EstadoJuntaListComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -73,7 +79,10 @@ import { NumberToTextPipe } from './pipes/number-to-text.pipe';
     PrescripcionDetailsComponent,
     EntregaListComponent,
     EntregaFormComponent,
-    EntregaDetailsContainerComponent
+    EntregaDetailsContainerComponent,
+    EstadoJuntaDetalleComponent,
+    EstadoJuntaFormComponent,
+    EstadoJuntaListComponent,
   ],
   imports: [
     CommonModule,
