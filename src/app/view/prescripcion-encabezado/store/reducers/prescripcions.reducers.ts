@@ -28,6 +28,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
         ...state,
         currentPrescripcionId: payload,
         isImportLoading: false,
+        importSuccessRes: [],
       };
     }
 
@@ -35,6 +36,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
       return prescripcionsAdapter.addAll(payload, {
         ...state,
         isImportLoading: false,
+        importSuccessRes: [],
       });
     }
 
@@ -43,6 +45,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
         ...state,
         currentPrescripcionId: payload.id,
         isImportLoading: false,
+        importSuccessRes: [],
       });
     }
 
@@ -50,6 +53,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
       return prescripcionsAdapter.addOne(payload, {
         ...state,
         isImportLoading: false,
+        importSuccessRes: [],
       });
     }
 
@@ -57,6 +61,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
       return prescripcionsAdapter.updateOne(payload, {
         ...state,
         isImportLoading: false,
+        importSuccessRes: [],
       });
     }
 
