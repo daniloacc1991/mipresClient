@@ -24,7 +24,6 @@ import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/i
 import { PrescripcionEncabezadoService } from '../../services/prescripcion-encabezado.service';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { PrescripcionEncabezadoSocketsService } from '../../services/prescripcion-encabezado-sockets.service';
-import { delay } from 'q';
 
 @Injectable()
 export class PrescripcionsEffects {

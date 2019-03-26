@@ -33,7 +33,7 @@ export class LogoutUserSuccess implements Action {
 
 export class LoginError implements Action {
   readonly type = AuthActionsType.LOGIN_ERROR;
-  constructor(public payload: { concern: string, error: any }) { }
+  constructor(public payload: { concern: 'LOGIN' | 'LOGOUT', error: any }) { }
 }
 
 

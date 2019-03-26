@@ -46,16 +46,9 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 
 /// Selectors Title
 export const getTitleState = createFeatureSelector<fromTitle.TitleState>('title');
-
 export const getCurrentTitle = createSelector(getTitleState, fromTitle.getCurrentTitle);
 
-//Selector Auth
 export const getAuthState = createFeatureSelector<fromAuth.AuthState>('auth');
-
-export const getAuth = createSelector(
-  getAuthState,
-  fromAuth.getAuthState
-);
 
 export const getAuthLoading = createSelector(
   getAuthState,

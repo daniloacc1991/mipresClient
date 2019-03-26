@@ -40,6 +40,9 @@
       "@app-estado-junta/*": [
         "src/app/view/estado-junta/*"
       ],
+      "@app-user/*": [
+        "src/app/view/user/*"
+      ],
     }
   }
 }

@@ -10,7 +10,6 @@ import {
 } from '../store/actions/auth.actions';
 import * as fromRoot from '../../reducers';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

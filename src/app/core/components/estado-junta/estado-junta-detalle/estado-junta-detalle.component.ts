@@ -9,7 +9,7 @@ import { EstadoJunta } from '@app-models/index';
 })
 export class EstadoJuntaDetalleComponent implements OnInit {
 
-  @Input() ambito: EstadoJunta;
+  @Input() estadoJunta: EstadoJunta;
   @Output() edit = new EventEmitter<EstadoJunta>();
   @Output() remove = new EventEmitter<EstadoJunta>();
 

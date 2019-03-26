@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import * as fromRoot from 'src/app/reducers';
 import * as fromEstadoJunta from '../../store/selectors/estado-junta.selectors'
 import { EstadoJunta } from '@app-models/index';
@@ -14,7 +13,8 @@ import {
 @Component({
   selector: 'app-estado-junta-index',
   templateUrl: './estado-junta-index.component.html',
-  styleUrls: ['./estado-junta-index.component.scss']
+  styleUrls: ['./estado-junta-index.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EstadoJuntaIndexComponent implements OnInit {
 

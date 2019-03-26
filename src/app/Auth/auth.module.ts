@@ -9,13 +9,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 
+// NGRX
+// import { StoreModule } from '@ngrx/store';
+// import { EffectsModule } from '@ngrx/effects';
+// import * as fromAuth from './store/reducers';
+// import { AuthEffects } from './store/effects/auth.effect';
+// const NGRX_IMPORTS = [
+//   StoreModule.forFeature('auth', fromAuth.reducers),
+//   EffectsModule.forFeature([AuthEffects]),
+// ]
+
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
-
-// import { StoreModule } from '@ngrx/store';
-// import * as fromAuth from './store/reducers/auth.reducers';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/effects/auth.effect';
 
 @NgModule({
   declarations: [
@@ -35,8 +40,6 @@ import { AuthEffects } from './store/effects/auth.effect';
     MatProgressSpinnerModule,
     MatInputModule,
     MatButtonModule,
-    // StoreModule.forFeature('auth', fromAuth.reducers),
-    EffectsModule.forFeature([AuthEffects]),
   ],
 })
 export class AuthModule { }

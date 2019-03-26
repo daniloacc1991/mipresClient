@@ -39,7 +39,6 @@ export class EstadoJuntaFormComponent implements OnInit {
     if (this.form.valid) {
       this.save.emit(this.form.value);
     }
-
   }
 
 }

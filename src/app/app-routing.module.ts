@@ -14,24 +14,29 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'user',
+        canActivate: [AuthGuard],
+        loadChildren: 'src/app/view/user/user.module#UserModule',
+      },
+      {
         path: 'estado-junta',
         canActivate: [AuthGuard],
-        loadChildren: 'src/app/view/estado-junta/estado-junta.module#EstadoJuntaModule'
+        loadChildren: 'src/app/view/estado-junta/estado-junta.module#EstadoJuntaModule',
       },
       {
         path: 'ambito-atencion',
         canActivate: [AuthGuard],
-        loadChildren: 'src/app/view/ambito-atencion/ambito-atencion.module#AmbitoAtencionModule'
+        loadChildren: 'src/app/view/ambito-atencion/ambito-atencion.module#AmbitoAtencionModule',
       },
       {
         path: 'prescripcion-encabezado',
         canActivate: [AuthGuard],
-        loadChildren: 'src/app/view/prescripcion-encabezado/prescripcion-encabezado.module#PrescripcionEncabezadoModule'
+        loadChildren: 'src/app/view/prescripcion-encabezado/prescripcion-encabezado.module#PrescripcionEncabezadoModule',
       },
       {
         path: 'entrega',
         canActivate: [AuthGuard],
-        loadChildren: 'src/app/view/entrega/entrega.module#EntregaModule'
+        loadChildren: 'src/app/view/entrega/entrega.module#EntregaModule',
       },
     ],
   },

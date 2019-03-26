@@ -17,10 +17,9 @@ export class AuthService {
   }
 
   singIn(credentials: UserCredentials) {
-    console.log('Llego la transaccion', credentials)
     return this.http.post(`${this.url}/singIn`, credentials).pipe(
       delay(2000),
     );
   }
-  // ...
+
 }

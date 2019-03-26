@@ -1,3 +1,5 @@
-<p>
-  estado-junta-details works!
-</p>
+<app-estado-junta-detalle
+  [estadoJunta]="estadoJunta$ | async"
+  (edit)="editEstadoJunta($event)"
+  (remove)="deleteEstadoJunta($event)">
+</app-estado-junta-detalle>
