@@ -1,0 +1,53 @@
+<div class="row user-row">
+  <div class="col-xs-12 offset-md-2 col-md-8">
+    <table class="table table-hover table-responsive-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Rol</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.usuario }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.rol }}</td>
+          <td>
+            <span class="span-padding">
+              <button (click)="showDetails(user)" class="btn btn-outline-primary mb-1 btn-sm">
+                Ver
+              </button>
+            </span>
+            <span class="span-padding">
+              <button (click)="editUser(user)" class="btn btn-outline-warning mb-1 btn-sm">
+                Editar
+              </button>
+            </span>
+            <!-- <span class="span-padding">
+              <button (click)="deleteUser(user)" class="btn btn-outline-danger mb-1 btn-sm">
+                Eliminar
+              </button>
+            </span> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="users.length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+        <option [ngValue]="5">5 items Por Página</option>
+        <option [ngValue]="10">10 items Por Página</option>
+        <option [ngValue]="25">25 items Por Página</option>
+        <option [ngValue]="50">50 items Por Página</option>
+      </select>
+    </div>
+  </div>
+</div>

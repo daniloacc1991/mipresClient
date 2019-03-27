@@ -40,8 +40,8 @@ export class EstadoJuntaNewComponent implements OnInit {
     this.redirectSub.unsubscribe();
   }
 
-  submitted(ambito: EstadoJunta) {
-    this.store.dispatch(new Create(ambito));
+  submitted(estadoJunta: EstadoJunta) {
+    this.store.dispatch(new Create(estadoJunta));
   }
 
 }

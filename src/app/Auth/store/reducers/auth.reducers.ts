@@ -54,6 +54,7 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
     case AuthActionsType.LOGIN_ERROR: {
       return {
         ...state,
+        isLoading: false,
         error: payload.error,
       }
     }

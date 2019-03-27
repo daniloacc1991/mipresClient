@@ -38,6 +38,9 @@ import { NumberToTextPipe } from './pipes/number-to-text.pipe';
 import { EstadoJuntaDetalleComponent } from './components/estado-junta/estado-junta-detalle/estado-junta-detalle.component';
 import { EstadoJuntaFormComponent } from './components/estado-junta/estado-junta-form/estado-junta-form.component';
 import { EstadoJuntaListComponent } from './components/estado-junta/estado-junta-list/estado-junta-list.component';
+import { UserFormComponent } from './components/user/user-form/user-form.component';
+import { UserDetailContainerComponent } from './components/user/user-detail-container/user-detail-container.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,9 @@ import { EstadoJuntaListComponent } from './components/estado-junta/estado-junta
     EstadoJuntaDetalleComponent,
     EstadoJuntaFormComponent,
     EstadoJuntaListComponent,
+    UserFormComponent,
+    UserDetailContainerComponent,
+    UserListComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -83,6 +89,9 @@ import { EstadoJuntaListComponent } from './components/estado-junta/estado-junta
     EstadoJuntaDetalleComponent,
     EstadoJuntaFormComponent,
     EstadoJuntaListComponent,
+    UserFormComponent,
+    UserDetailContainerComponent,
+    UserListComponent,
   ],
   imports: [
     CommonModule,

@@ -18,3 +18,4 @@ export * from './entrega';
 export * from './prescripcionDetalle';
 export * from './servicio-complementario';
 export * from './estado-junta';
+export * from './user';

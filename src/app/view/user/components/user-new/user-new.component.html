@@ -1,3 +1,12 @@
-<p>
-  user-new works!
-</p>
+<div class="row">
+  <div class="col-xs-12 offset-md-2 col-md-8">
+    <div class="card">
+      <div class="card-header">
+        Nuevo Estado Junta
+      </div>
+      <div class="card-body">
+        <app-user-form (save)="submitted($event)"></app-user-form>
+      </div>
+    </div>
+  </div>
+</div>

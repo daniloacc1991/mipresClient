@@ -33,7 +33,7 @@ const routes: Routes = [
         pathMatch: 'full',
         data: { 
           title: 'User/Nuevo',
-          titlePage: 'Crear Estado Junta - Mipres San Luis'
+          titlePage: 'Crear Usuario - Mipres San Luis'
          },
         resolve: { title: TitleResolver }
       },

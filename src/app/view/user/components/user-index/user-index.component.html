@@ -1,3 +1,10 @@
-<p>
-  user-index works!
-</p>
+<app-user-list
+  [users]="users$ | async"
+  (show)="showUser($event)"
+  (remove)="deleteUser($event)"
+  (edit)="editUser($event)"
+>
+</app-user-list>
+<pre>
+  {{ users$ | async | json}}
+</pre>
