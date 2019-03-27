@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from '@app-models/index';
 import {
@@ -26,7 +26,9 @@ export class UserIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.users$ = this.store.select(fromUser.getAllUsers);
+    this.users$ = this.store.pipe(
+      select(fromUser.getAllUsers),
+    );
   }
 
   editUser(user: User) {

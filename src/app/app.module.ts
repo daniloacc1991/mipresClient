@@ -15,7 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './reducers';
-import { AuthEffects } from './Auth/store/effects/auth.effect';
+// import { AuthEffects } from './Auth/store/effects/auth.effect';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './core/shared.module';
@@ -40,7 +40,7 @@ import { AppComponent } from './app.component';
     NgbModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     MessagesModule,
     MessageModule,

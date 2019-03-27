@@ -14,7 +14,6 @@ export class UserFormComponent implements OnInit {
     id: undefined,
     name: '',
     email: '',
-    password: '',
     rol: '',
     usuario: '',
   };
@@ -31,12 +30,6 @@ export class UserFormComponent implements OnInit {
         this.user.email, [
           Validators.required,
           Validators.email,
-        ]
-      ],
-      'password': [
-        this.user.password, [
-          Validators.required,
-          Validators.minLength(8),
         ]
       ],
       'rol': [this.user.rol, Validators.required],

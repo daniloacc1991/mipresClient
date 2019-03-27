@@ -11,13 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 // NGRX
 // import { StoreModule } from '@ngrx/store';
-// import { EffectsModule } from '@ngrx/effects';
-// import * as fromAuth from './store/reducers';
-// import { AuthEffects } from './store/effects/auth.effect';
-// const NGRX_IMPORTS = [
-//   StoreModule.forFeature('auth', fromAuth.reducers),
-//   EffectsModule.forFeature([AuthEffects]),
-// ]
+// import * as fromAuth from '../reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effect';
+const NGRX_IMPORTS = [
+  // StoreModule.forFeature('auth', fromAuth.reducers),
+  EffectsModule.forFeature([AuthEffects]),
+]
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    ...NGRX_IMPORTS,
     MatCardModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,

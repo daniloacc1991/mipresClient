@@ -42,7 +42,7 @@ export class EstadoJuntaEditComponent implements OnInit {
       ofType(EstadoJuntaActionsTypes.PUT_SUCCESS),
       filter((action: PutSuccess) => action.payload.id === +this.activatedRoute.snapshot.params['estadoJuntaId'])
     )
-      .subscribe((action: PutSuccess) => this.router.navigate(['/estadoJunta-atencion', action.payload.id]));
+      .subscribe((action: PutSuccess) => this.router.navigate(['/estado-junta', action.payload.id]));
 
     this.activatedRoute.params.subscribe(params => {
       this.store.dispatch(new Load(+params['estadoJuntaId']));

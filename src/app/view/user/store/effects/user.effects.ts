@@ -82,10 +82,13 @@ export class UserEffects {
 
   @Effect()
   liveUpdate$: Observable<Action> = this.userSocketService.fromEvent(UserActionsTypes.LIVE_UPDATED).pipe(
-    map((user: User) => new PutSuccess({
-      id: user.id,
-      changes: user
-    }))
+    map((user: User) => {
+      console.log('Event', 'Paso por el effect LiveEvent')
+      return new PutSuccess({
+        id: user.id,
+        changes: user
+      })
+    })
   );
 
   @Effect()

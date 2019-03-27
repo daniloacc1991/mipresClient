@@ -64,7 +64,7 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
   }
 }
 
-// export const getAuthState = (state: AuthState) => state;
+export const getAuthState = (state: AuthState) => state;
 export const getAuthError = (state: AuthState) => state.error;
 export const getAuthLoading = (state: AuthState) => state.isLoading;
 export const getAuthLoging = (state: AuthState) => state.isLogin;

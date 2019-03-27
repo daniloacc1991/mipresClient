@@ -32,12 +32,10 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   };
 }
 export function localStorageSyncReducer(reducer: ActionReducer<State>): ActionReducer<State> {
-  const keys = ['auth']
   const config: LocalStorageConfig = {
     // keys: ['auth','entrega', 'prescripcions', 'ambitoAtencion', 'estadosJunta'],
-    keys,
+    keys: ['auth'],
     rehydrate: true,
-    restoreDates: true,
   }
   return localStorageSync(config)(reducer);
 }
@@ -51,6 +49,11 @@ export const getTitleState = createFeatureSelector<fromTitle.TitleState>('title'
 export const getCurrentTitle = createSelector(getTitleState, fromTitle.getCurrentTitle);
 
 export const getAuthState = createFeatureSelector<fromAuth.AuthState>('auth');
+
+export const getAuth = createSelector(
+  getAuthState,
+  fromAuth.getAuthState,
+);
 
 export const getAuthLoading = createSelector(
   getAuthState,

@@ -18,6 +18,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserIndexComponent } from './components/user-index/user-index.component';
 import { UserNewComponent } from './components/user-new/user-new.component';
 import { SharedModule } from 'src/app/core/shared.module';
+import { UserSocketService } from './services/user-socket.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from 'src/app/core/shared.module';
     ...NGRX_IMPORTS,
     SharedModule
   ],
-  entryComponents: [ UserComponent ]
+  entryComponents: [ UserComponent ],
+  providers: [UserSocketService],
 })
 export class UserModule { }

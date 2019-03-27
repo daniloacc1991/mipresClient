@@ -1,3 +1,7 @@
+<a class="btn btn-outline-primary" [routerLink]="['/user','new']" routerLinkActive="active">
+  <i class="fa fa-plus-square" aria-hidden="true"></i> New
+</a>
+
 <app-user-list
   [users]="users$ | async"
   (show)="showUser($event)"
@@ -5,6 +9,3 @@
   (edit)="editUser($event)"
 >
 </app-user-list>
-<pre>
-  {{ users$ | async | json}}
-</pre>

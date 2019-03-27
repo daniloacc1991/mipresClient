@@ -43,15 +43,11 @@ export function reducer(state: StateUser = INIT_STATE, { type, payload }: AllUse
     }
 
     case UserActionsTypes.PUT_SUCCESS: {
-      return userAdapter.updateOne(payload, {
-        ...state,
-      });
+      return userAdapter.updateOne(payload, state);
     }
 
     case UserActionsTypes.DELETE_SUCCESS: {
-      return userAdapter.removeOne(payload, {
-        ...state,
-      });
+      return userAdapter.removeOne(payload, state);
     }
 
     default:

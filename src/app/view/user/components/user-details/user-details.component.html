@@ -1,3 +1,5 @@
-<p>
-  user-details works!
-</p>
+<app-user-detail-container
+  [user]="user$ | async"
+  (edit)="editUser($event)"
+  (remove)="deleteUser($event)">
+</app-user-detail-container>
