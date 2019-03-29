@@ -17,8 +17,8 @@ import {
   DeleteSuccess,
   Failure
 } from '../actions/user.actions';
-import { UserService } from '@app-user/services/user.service';
-import { UserSocketService } from '@app-user/services/user-socket.service';
+import { UserService } from '../../services/user.service';
+import { UserSocketService } from '../../services/user-socket.service';
 import { User } from '@app-models/index';
 
 @Injectable()

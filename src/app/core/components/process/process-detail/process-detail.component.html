@@ -75,7 +75,7 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote class="blockquote">
-          <footer>{{ procedure.Cant }} {{ procedure.codigoPerDurTrat.descripcion }}</footer>
+          <footer *ngIf="procedure.codigoPerDurTrat">{{ procedure.Cant }} {{ procedure.codigoPerDurTrat.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-1">
@@ -85,12 +85,15 @@
       </div>
       <div class="border-prescricion col-md-1">
         <blockquote *ngIf="!procedure.indEntregado" class="blockquote">
-          <p class="mb-0"><a class="btn btn-outline-success" [routerLink]="['/entrega/new/' + procedure.id]">Entregar</a></p>
+          <p class="mb-0"><a class="btn btn-outline-success"
+              [routerLink]="['/entrega/new/' + procedure.id]">Entregar</a></p>
         </blockquote>
         <blockquote *ngIf="procedure.indEntregado" class="blockquote">
           <p class="mb-0"><button class="btn btn-info" disabled>Entregado</button></p>
         </blockquote>
       </div>
+
     </div>
+
   </div>
 </div>

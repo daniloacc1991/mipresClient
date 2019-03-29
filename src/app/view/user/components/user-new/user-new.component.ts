@@ -28,7 +28,7 @@ export class UserNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.redirectSub = this.actionsSubject.asObservable().pipe(
+    this.redirectSub = this.actionsSubject.pipe(
       ofType(UserActionsTypes.CREATE_SUCCESS)
     ).subscribe(
       (action: CreateSuccess) => this.router.navigate(['/user', action.payload.id])

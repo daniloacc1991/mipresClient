@@ -7,7 +7,7 @@ import {
   EstadoJuntaActionsTypes,
   CreateSuccess,
   Create
-} from '@app-estado-junta/store/actions/estado-junta.actions';
+} from '../../store/actions/estado-junta.actions';
 import * as fromRoot from 'src/app/reducers';
 import { EstadoJunta } from '@app-models/index';
 

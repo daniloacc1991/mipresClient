@@ -84,7 +84,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.filterPrescripcions();
     if (this.msjImport) {
-      if (this.msjImport.success) {
+      if (this.msjImport.success.length > 0) {
         this.msjImport.success.map(r => {
           this.messageService.add(
             {
@@ -95,7 +95,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
             }
           );
         })
-      } else {
+      } else if (this.msjImport.fails.length > 0) {
         this.msjImport.fails.map(r => {
           this.messageService.add(
             {
