@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@app-auth/*": [
-        "src/app/auth/*"
+        "src/app/Auth/*"
       ],
       "@app-models/*": [
         "src/app/models/*"

@@ -33,8 +33,8 @@ export class HeaderNavigationComponent implements AfterViewInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.store.dispatch(new LogoutUser());
+    console.log('Evento Logout')
+    this.router.navigate(['/auth', 'logout'])
   }
 
 }

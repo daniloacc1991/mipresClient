@@ -59,6 +59,12 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
       }
     }
 
+    case AuthActionsType.CHANGE_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+      }
+    }
+
     default:
       return state;
   }

@@ -43,8 +43,8 @@
             <a class="dropdown-item" href="javascript:void(0)">
                 <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
             <div class="dropdown-divider"></div> -->
-            <a class="dropdown-item" href="javascript:void(0)">
-                <i class="ti-settings m-r-5 m-l-5"></i>Configuración de Cuenta</a>
+            <a class="dropdown-item" [routerLink]="['/auth','change-password']" routerLinkActive="active">
+                <i class="ti-settings m-r-5 m-l-5"></i>Cambiar Contraseña</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()">
                 <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout

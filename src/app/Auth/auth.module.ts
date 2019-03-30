@@ -20,11 +20,15 @@ const NGRX_IMPORTS = [
 ]
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
+    LogoutComponent,
+    ChangePasswordComponent,
   ],
   exports: [
     LoginComponent,

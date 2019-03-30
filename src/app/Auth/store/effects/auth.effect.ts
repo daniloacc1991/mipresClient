@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { map, startWith, switchMap, catchError, tap } from 'rxjs/operators';
+import { map, startWith, switchMap, catchError } from 'rxjs/operators';
 import * as jwtDecode from 'jwt-decode';
 import {
   AuthActionsType,
@@ -11,9 +11,12 @@ import {
   LoginError,
   LogoutUser,
   LogoutUserSuccess,
+  ChangePassword,
+  ChangePasswordSuccess,
 } from '../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 import { UserResponse } from '../../models';
+import { UserService } from '@app-user/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +44,15 @@ export class AuthEffects {
     switchMap(() => of({ username: 'GUEST', token: null })),
     map((logoutSuccess) => new LogoutUserSuccess(logoutSuccess)),
     catchError(err => of(new LoginError({ concern: 'LOGOUT', error: err.error }))),
+  );
+
+  @Effect()
+  ChangePassword$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionsType.CHANGE_PASSWORD),
+    map((action: ChangePassword) => action.payload),
+    switchMap((newPassword) => this.authService.changedPassword(newPassword)),
+    map((message) => new ChangePasswordSuccess()),
+    catchError(err => of(new LoginError({ concern: 'PASSWORD', error: err.error }))),
   );
 
   @Effect()

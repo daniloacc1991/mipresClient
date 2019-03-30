@@ -8,6 +8,9 @@ export enum AuthActionsType {
   LOGOUT_USER = '[Auth] LOGOUT_USER',
   LOGOUT_USER_SUCCESS = '[Auth] LOGOUT_USER_SUCCESS',
 
+  CHANGE_PASSWORD = '[Auth] CHANGE_PASSWORD',
+  CHANGE_PASSWORD_SUCCESS = '[Auth] CHANGE_PASSWORD_SUCCESS',
+
   LOGIN_ERROR = '[Auth] LOGIN_ERROR',
 }
 
@@ -33,13 +36,24 @@ export class LogoutUserSuccess implements Action {
 
 export class LoginError implements Action {
   readonly type = AuthActionsType.LOGIN_ERROR;
-  constructor(public payload: { concern: 'LOGIN' | 'LOGOUT', error: any }) { }
+  constructor(public payload: { concern: 'LOGIN' | 'LOGOUT' | 'PASSWORD', error: any }) { }
 }
 
+export class ChangePassword implements Action {
+  readonly type = AuthActionsType.CHANGE_PASSWORD;
+  constructor(public payload: string) { }
+}
+
+export class ChangePasswordSuccess implements Action {
+  readonly type = AuthActionsType.CHANGE_PASSWORD_SUCCESS;
+  constructor(public payload = null) { }
+}
 
 export type All =
   LoginUser |
   LoginUserSuccess |
   LogoutUser |
   LogoutUserSuccess |
+  ChangePassword |
+  ChangePasswordSuccess |
   LoginError;

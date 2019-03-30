@@ -7,8 +7,8 @@ import { filter } from 'rxjs/operators';
 import {
   AuthActionsType,
   LoginUser
-} from '../store/actions/auth.actions';
-import * as fromRoot from '../../reducers';
+} from '../../store/actions/auth.actions';
+import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-login',

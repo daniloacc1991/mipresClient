@@ -22,4 +22,8 @@ export class AuthService {
     );
   }
 
+  changedPassword(password: string) {
+    return this.http.patch(`${this.url}/change-password`, { password })
+  }
+
 }
