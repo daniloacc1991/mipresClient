@@ -47,21 +47,23 @@ export class UserEffects {
   create$: Observable<Action> = this.actions$.pipe(
     ofType(UserActionsTypes.CREATE),
     map((action: Create) => action.payload),
-    switchMap((user) => this.userService.create(user)),
-    map((userCreated: User) => new CreateSuccess(userCreated)),
-    catchError(err => of(new Failure({ concern: 'CREATE', error: err.error.error })))
+    switchMap((user) => this.userService.create(user).pipe(
+      map((userCreated: User) => new CreateSuccess(userCreated)),
+      catchError(err => of(new Failure({ concern: 'CREATE', error: err.error.error })))
+    )),
   );
 
   @Effect()
   update$: Observable<Action> = this.actions$.pipe(
     ofType(UserActionsTypes.PUT),
     map((action: Put) => action.payload),
-    switchMap((user) => this.userService.update(user)),
-    map((userUpdated: User) => new PutSuccess({
-      id: userUpdated.id,
-      changes: userUpdated,
-    })),
-    catchError(err => of(new Failure({ concern: 'PUT', error: err.error.error })))
+    switchMap((user) => this.userService.update(user).pipe(
+      map((userUpdated: User) => new PutSuccess({
+        id: userUpdated.id,
+        changes: userUpdated,
+      })),
+      catchError(err => of(new Failure({ concern: 'PUT', error: err.error.error })))
+    )),
   );
 
   @Effect()

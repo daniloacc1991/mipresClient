@@ -16,7 +16,6 @@ import {
 } from '../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 import { UserResponse } from '../../models';
-import { UserService } from '@app-user/services/user.service';
 
 @Injectable({
   providedIn: 'root'
