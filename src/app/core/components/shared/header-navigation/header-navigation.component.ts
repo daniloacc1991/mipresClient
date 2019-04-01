@@ -9,7 +9,6 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import * as fromRoot from '../../../../reducers';
 import { Observable } from 'rxjs';
-import { LogoutUser } from 'src/app/Auth/store/actions/auth.actions';
 declare var $: any;
 
 @Component({

@@ -9,9 +9,9 @@ import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
   {
     path: 'logout',
-    pathMatch: 'full',
+    // pathMatch: 'full',
     component: LogoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data: {
       title: 'Cerrar Sesion',
       titlePage: 'Cerrar Sesion - Mipres San Luis'
@@ -20,9 +20,9 @@ const routes: Routes = [
   },
   {
     path: 'change-password',
-    pathMatch: 'full',
+    // pathMatch: 'full',
     component: ChangePasswordComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     data: {
       title: 'Cambiar Contraseña',
       titlePage: 'Cambiar Contraseña - Mipres San Luis'
@@ -39,11 +39,11 @@ const routes: Routes = [
     },
     resolve: { title: TitleResolver }
   },
-  // {
-  //   path: '**',
-  //   pathMatch: 'full',
-  //   redirectTo: '/'
-  // }
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/'
+  }
 ];
 
 @NgModule({

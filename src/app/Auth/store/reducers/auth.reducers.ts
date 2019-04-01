@@ -27,6 +27,7 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
 
     case AuthActionsType.LOGIN_USER: {
       return {
+        ...state,
         isLoading: true,
       }
     }
@@ -47,7 +48,15 @@ export function reducers(state: AuthState = INIT_STATE, { type, payload }: AllAu
 
     case AuthActionsType.LOGOUT_USER_SUCCESS: {
       return {
-        ...INIT_STATE,
+        ...state,
+        username: 'GUEST',
+        email: '',
+        scope: '',
+        usuario: '',
+        token: null,
+        isLoading: false,
+        isLogin: false,
+        error: null,
       }
     }
 
