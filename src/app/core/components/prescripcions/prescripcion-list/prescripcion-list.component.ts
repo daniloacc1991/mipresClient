@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter, ChangeDetectionStrategy, Input, Output, PipeTransform, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, ChangeDetectionStrategy, Input, Output, PipeTransform, OnChanges, HostListener, OnDestroy } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
-import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { startWith, map, debounceTime } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 
 // DataPicker Angular Material
@@ -22,7 +22,6 @@ export const MY_FORMATS = {
   },
 };
 
-
 @Component({
   selector: 'app-prescripcion-list',
   templateUrl: './prescripcion-list.component.html',
@@ -35,15 +34,22 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ]
 })
-export class PrescripcionListComponent implements OnInit, OnChanges {
+export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() prescripcions: Prescripcion[];
   @Input() isLoading: boolean;
   @Input() msjImport: ImportaFechaSuccess;
+  @Input() totalPrescripcions: number;
   @Output() edit = new EventEmitter<Prescripcion>();
   @Output() show = new EventEmitter<Prescripcion>();
   @Output() remove = new EventEmitter<Prescripcion>();
   @Output() import = new EventEmitter<ImportarxFecha>();
+  @Output() changePage = new EventEmitter<number>();
+  @Output() changePageSize = new EventEmitter<number>();
+  @Output() changeSearch = new EventEmitter<string>();
+
+  private keydownSubject = new Subject();
+
 
   prescripcions$: Observable<Prescripcion[]>;
   showForm: boolean = false;
@@ -70,6 +76,22 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.keydownSubject.pipe(
+      debounceTime(500)
+    ).subscribe(e => this.changeSearch.emit(this.filter.value));
+  }
+
+  @HostListener('keydown', ['$event.target'])
+  changeFilter(event: any){
+    this.keydownSubject.next(event);
+  }
+
+  onPager(event: number) {
+    this.changePage.emit(event);
+  }
+
+  changePagesize(event: any){
+    this.changePageSize.emit(this.pageSize);
   }
 
   importPrescripcion() {
@@ -122,15 +144,6 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
   }
 
   search(text: string, pipe?: PipeTransform): Prescripcion[] {
-    this.prescripcions.sort((a, b) => {
-      if (a.createdAt > b.createdAt) {
-        return -1;
-      }
-      if (a.createdAt < b.createdAt) {
-        return 1;
-      }
-      return 0;
-    });
     return this.prescripcions.filter(prescripcion => {
       const term = text.toLowerCase();
       const dateMoment = moment(prescripcion.FPrescripcion).format('YYYY-MM-DD');
@@ -146,5 +159,9 @@ export class PrescripcionListComponent implements OnInit, OnChanges {
         || prescripcion.PAPaciente.includes(term)
         || prescripcion.SAPaciente.includes(term);
     });
+  }
+
+  ngOnDestroy(){
+
   }
 }

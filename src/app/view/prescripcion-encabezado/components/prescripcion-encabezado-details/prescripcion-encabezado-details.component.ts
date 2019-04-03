@@ -3,7 +3,7 @@ import { Store, ActionsSubject, select } from '@ngrx/store';
 import { ofType } from '@ngrx/effects';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, delay } from 'rxjs/operators';
 import { Prescripcion } from '@app-models/index';
 import * as fromRoot from 'src/app/reducers';
 import * as fromPrescripcions from '../../store/selectors/prescipcions.selectors';
@@ -24,7 +24,7 @@ import {
 })
 export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy {
 
-  prescripcion$: Observable<Prescripcion> = this.store.select(fromPrescripcions.getcurrentPrescripcion);
+  prescripcion$: Observable<Prescripcion> = this.store.pipe(select(fromPrescripcions.getcurrentPrescripcion));
   redirectSub: Subscription;
   relaodSub: Subscription;
   prescripcionId: number;
@@ -35,12 +35,14 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
     private router: Router,
     private actionsSubject: ActionsSubject
   ) {
+    console.log('Paso por el contructor');
+    this.prescripcionId = this.activatedRoute.snapshot.params['prescripcionId'];
+    this.store.dispatch(new SetCurrentPrescripcionId(this.prescripcionId));
+    this.store.dispatch(new Load(this.prescripcionId));
   }
 
   ngOnInit() {
-    this.prescripcionId = this.activatedRoute.snapshot.params['prescripcionId'];
-    this.store.dispatch(new SetCurrentPrescripcionId(this.prescripcionId));
-    
+    console.log('Paso por ngOnInit');
     this.redirectSub = this.actionsSubject.pipe(
       ofType(PrescripcionEncabezadoActionsTypes.DELETE_SUCCESS),
       filter((action: DeleteSuccess) => {
@@ -66,8 +68,6 @@ export class PrescripcionEncabezadoDetailsComponent implements OnInit, OnDestroy
       filter(action => action.type === PrescripcionEncabezadoActionsTypes.PUT_SUCCESS),
     )
       .subscribe(_ => this.router.navigate(['/prescripcion-encabezado']));
-
-
 
     this.activatedRoute.params.subscribe(params => {
       this.store.dispatch(new Load(+params['prescripcionId']));

@@ -14,7 +14,6 @@ export class PrescripcionDetailsComponent implements OnInit, OnChanges {
   @Output() remove = new EventEmitter<Prescripcion>();
 
   constructor() {
-
   }
 
   ngOnInit() {

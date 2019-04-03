@@ -10,30 +10,31 @@ import {
   DeleteSuccess,
   Failure,
   Load,
-  LoadAll,
-  LoadAllSuccess,
   LoadSuccess,
   Put,
   PutSuccess,
   Import,
-  ImportSuccess
+  ImportSuccess,
+  LoadPerPage,
+  LoadPerPageSuccess,
 } from '../actions/prescripcions.actions';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
 import { PrescripcionEncabezadoService } from '../../services/prescripcion-encabezado.service';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { PrescripcionEncabezadoSocketsService } from '../../services/prescripcion-encabezado-sockets.service';
+import { PrescripcionWrapperTerm } from '../../interfaces';
 
 @Injectable()
 export class PrescripcionsEffects {
 
   @Effect()
-  LoadAll$: Observable<Action> = this.actions$.pipe(
-    ofType(PrescripcionEncabezadoActionsTypes.LOAD_ALL),
-    startWith(new LoadAll()),
-    switchMap(() => this.prescripcionsService.index()),
-    map((prescripcions: Prescripcion[]) => new LoadAllSuccess(prescripcions))
+  LoadPerPage$: Observable<Action> = this.actions$.pipe(
+    ofType(PrescripcionEncabezadoActionsTypes.LOAD_PER_PAGE),
+    map((action: LoadPerPage) => action.payload),
+    switchMap((wrapper) => this.prescripcionsService.index(wrapper.perPage, wrapper.page, wrapper.term)),
+    map((prescripcionWrapper: PrescripcionWrapperTerm) => new LoadPerPageSuccess(prescripcionWrapper))
   );
 
   @Effect()
@@ -112,7 +113,7 @@ export class PrescripcionsEffects {
   liveDestroy$: Observable<Action> = this.prescripcionsSocket.fromEvent(PrescripcionEncabezadoActionsTypes.LIVE_DELETED).pipe(
     map(id => new DeleteSuccess(+id))
   );
-  
+
   @Effect()
   liveImport$: Observable<Action> = this.prescripcionsSocket.fromEvent(PrescripcionEncabezadoActionsTypes.LIVE_IMPORTED).pipe(
     map((importSuccess: ImportaFechaSuccess) => new ImportSuccess(importSuccess))

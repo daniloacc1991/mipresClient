@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Update } from '@ngrx/entity/src/models';
 import { Prescripcion, ImportarxFecha, ImportaFechaSuccess } from '@app-models/index';
+import { PrescripcionWrapperPerPage, PrescripcionWrapperTerm } from '../../interfaces';
 
 export enum PrescripcionEncabezadoActionsTypes {
 
@@ -9,6 +10,12 @@ export enum PrescripcionEncabezadoActionsTypes {
 
   LOAD = '[PrescripcionEncabezado] LOAD',
   LOAD_SUCCESS = '[PrescripcionEncabezado] LOAD SUCCESS',
+
+  LOAD_PER_PAGE = '[PrescripcionEncabezado] LOAD PER PAGE',
+  LOAD_PER_PAGE_SUCCESS = '[PrescripcionEncabezado] LOAD PER PAGE SUCCESS',
+
+  LOAD_PER_PAGE_TERM = '[PrescripcionEncabezado] LOAD PER PAGE TERM',
+  LOAD_PER_PAGE_TERM_SUCCESS = '[PrescripcionEncabezado] LOAD PER PAGE TERM SUCCESS',
 
   CREATE = '[PrescripcionEncabezado] CREATE',
   CREATE_SUCCESS = '[PrescripcionEncabezado] CREATE SUCCESS',
@@ -99,6 +106,16 @@ export class ImportSuccess implements Action {
   constructor(public payload: ImportaFechaSuccess) { }
 }
 
+export class LoadPerPage implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_PER_PAGE;
+  constructor(public payload: { perPage: number, page: number, term: string}) { }
+}
+
+export class LoadPerPageSuccess implements Action {
+  readonly type = PrescripcionEncabezadoActionsTypes.LOAD_PER_PAGE_SUCCESS;
+  constructor(public payload: PrescripcionWrapperTerm) { }
+}
+
 export class Failure implements Action {
   readonly type = PrescripcionEncabezadoActionsTypes.FAILURE;
   constructor(public payload: { concern: 'CREATE' | 'PUT' | 'IMPORT', error: any }) { }
@@ -119,4 +136,6 @@ export type All =
   | LoadAllSuccess
   | Import
   | ImportSuccess
+  | LoadPerPage
+  | LoadPerPageSuccess
   | Failure;

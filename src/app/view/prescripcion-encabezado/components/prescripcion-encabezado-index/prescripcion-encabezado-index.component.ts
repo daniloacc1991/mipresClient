@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import {
   SetCurrentPrescripcionId,
   Delete,
-  Import
+  Import,
+  LoadPerPage,
 } from '@app-prescripcionsEnc/store/actions/prescripcions.actions';
 import * as fromRoot from 'src/app/reducers';
 import * as fromPrescripcions from '../../store/selectors/prescipcions.selectors';
@@ -23,6 +24,10 @@ export class PrescripcionEncabezadoIndexComponent implements OnInit {
   prescripcions$: Observable<Prescripcion[]> = this.store.select(fromPrescripcions.getAllPrescripcions);;
   msjImport$: Observable<ImportaFechaSuccess> = this.store.select(fromPrescripcions.getImportSuccessRes);;
   isImportLoading$: Observable<boolean> = this.store.select(fromPrescripcions.getImportLoading);
+  totalPrescripcion$: Observable<number> = this.store.select(fromPrescripcions.getTotalPrescripcions);
+  perPage: number = 10;
+  page: number = 1;
+  text: string = '&';
 
   constructor(
     public store: Store<fromRoot.State>,
@@ -30,6 +35,26 @@ export class PrescripcionEncabezadoIndexComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new LoadPerPage({ perPage: this.perPage, page: this.page, term: this.text }));
+  }
+
+  changedPage(page: number) {
+    this.page = page;
+    this.store.dispatch(new LoadPerPage({ perPage: this.perPage, page: this.page, term: this.text }));
+  }
+
+  changedPageSize(pageSize: number) {
+    this.perPage = pageSize;
+    this.store.dispatch(new LoadPerPage({ perPage: this.perPage, page: this.page, term: this.text }));
+  }
+
+  changedSearch(text: string) {
+    if (text === null || text === '') {
+      this.text = '&';
+    } else {
+      this.text = text;
+    }
+    this.store.dispatch(new LoadPerPage({ perPage: this.perPage, page: this.page, term: this.text }));
   }
 
   importPrescripcion(data: ImportarxFecha) {

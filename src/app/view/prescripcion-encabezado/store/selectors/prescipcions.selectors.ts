@@ -24,6 +24,11 @@ export const getImportSuccessRes = createSelector(
   fromPrescripcions.getImportSuccessRes
 );
 
+export const getTotalPrescripcions = createSelector(
+  getPrescripcionsState,
+  fromPrescripcions.gerTotalPrescripcions,
+);
+
 export const {
   selectAll: getAllPrescripcions,
   selectEntities: getPrescripcionEntities

@@ -16,7 +16,7 @@ export interface State extends EntityState<Prescripcion> {
 
 export const INIT_STATE: State = prescripcionsAdapter.getInitialState({
   currentPrescripcionId: undefined,
-  totalPrescripcions: null,
+  totalPrescripcions: undefined,
   isImportLoading: false,
   importSuccessRes: { success: [], fails: [] },
 });
@@ -81,6 +81,17 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
       }
     }
 
+    case PrescripcionEncabezadoActionsTypes.LOAD_PER_PAGE_SUCCESS: {
+      prescripcionsAdapter.removeAll(state);
+      return prescripcionsAdapter.addAll(payload.rows, {
+        ...state,
+        currentPrescripcionId: undefined,
+        totalPrescripcions: payload.count,
+        isImportLoading: false,
+        importSuccessRes: { success: [], fails: [] },
+      });
+    }
+    
     default: return state;
   }
 }
@@ -88,3 +99,4 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllPrescri
 export const getCurrentPrescripcionId = (state: State) => state.currentPrescripcionId;
 export const getimportLoading = (state: State) => state.isImportLoading;
 export const getImportSuccessRes = (state: State) => state.importSuccessRes;
+export const gerTotalPrescripcions = (state: State) => state.totalPrescripcions;

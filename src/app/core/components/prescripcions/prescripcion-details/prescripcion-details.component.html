@@ -43,13 +43,13 @@
       <div class="border-prescricion col-md-4">
         <blockquote class="blockquote">
           <p class="mb-0">Departamento: </p>
-          <footer>{{ prescripcion.municipio.departamento }}</footer>
+          <footer *ngIf="prescripcion.municipio">{{ prescripcion.municipio.departamento }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-4">
         <blockquote class="blockquote">
           <p class="mb-0">Municipio: </p>
-          <footer>{{ prescripcion.municipio.descripcion }}</footer>
+          <footer *ngIf="prescripcion.municipio">{{ prescripcion.municipio.descripcion }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-4">
@@ -134,7 +134,7 @@
       <div class="border-prescricion col-md-3">
         <blockquote class="blockquote">
           <p class="mb-0">Diagnóstico Principal:</p>
-          <footer>{{ prescripcion.CodDxPpal }} {{ prescripcion.cie10.descripcion | uppercase }}</footer>
+          <footer *ngIf="prescripcion.cie10">{{ prescripcion.CodDxPpal }} {{ prescripcion.cie10.descripcion | uppercase }}</footer>
         </blockquote>
       </div>
       <div class="border-prescricion col-md-3">
@@ -146,31 +146,41 @@
       <div class="border-prescricion col-md-3">
         <blockquote class="blockquote">
           <p class="mb-0">Ambito atención:</p>
-          <footer>{{ prescripcion.ambitoAtencion.descripcion }}</footer>
+          <footer *ngIf="prescripcion.ambitoAtencion">{{ prescripcion.ambitoAtencion.descripcion }}</footer>
         </blockquote>
       </div>
     </div>
 
     <!-- Aqui va el contenido del Medicamento -->
-    <app-medicine-detail *ngIf="prescripcion.medicamentos.length !== 0" [medicines]="prescripcion.medicamentos">
-    </app-medicine-detail>
+    <div *ngIf="prescripcion.medicamentos">
+      <app-medicine-detail *ngIf="prescripcion.medicamentos.length !== 0" [medicines]="prescripcion.medicamentos">
+      </app-medicine-detail>
+    </div>
 
     <!-- Aqui va el contenido del procedimiento -->
-    <app-process-detail *ngIf="prescripcion.procedimientos.length !== 0" [procedures]="prescripcion.procedimientos">
-    </app-process-detail>
+    <div *ngIf="prescripcion.procedimientos">
+      <app-process-detail *ngIf="prescripcion.procedimientos.length !== 0" [procedures]="prescripcion.procedimientos">
+      </app-process-detail>  
+    </div>
 
     <!-- Aqui va el contenido del Dispositivo Medico -->
-    <app-device-detail *ngIf="prescripcion.dispositivos.length !== 0" [devices]="prescripcion.dispositivos">
-    </app-device-detail>
+    <div *ngIf="prescripcion.dispositivos">
+      <app-device-detail *ngIf="prescripcion.dispositivos.length !== 0" [devices]="prescripcion.dispositivos">
+      </app-device-detail>
+    </div>
 
     <!-- Aqui va el contenido del Producto Nutricional -->
-    <app-product-nutritional-detail *ngIf="prescripcion.productosnutricionales.length !== 0"
+    <div *ngIf="prescripcion.productosnutricionales">
+      <app-product-nutritional-detail *ngIf="prescripcion.productosnutricionales.length !== 0"
       [products]="prescripcion.productosnutricionales">
     </app-product-nutritional-detail>
+    </div>
 
-    <app-servicio-complementario-detalle *ngIf="prescripcion.serviciosComplementarios.length !== 0"
+    <div *ngIf="prescripcion.serviciosComplementarios">
+      <app-servicio-complementario-detalle *ngIf="prescripcion.serviciosComplementarios.length !== 0"
       [services]="prescripcion.serviciosComplementarios">
     </app-servicio-complementario-detalle>
+    </div>
 
     <div class="row row-title">
       <div class="border-prescricion col-md-12">

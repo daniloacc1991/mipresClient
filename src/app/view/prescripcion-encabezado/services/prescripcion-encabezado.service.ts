@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Prescripcion, ImportarxFecha } from '@app-models/index';
+import { PrescripcionWrapperTerm  } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,9 @@ export class PrescripcionEncabezadoService {
     private _http: HttpClient,
   ) { }
 
-  index() {
+  index(perPage: number, page: number, term: string) {
     return this._http
-      .get<Prescripcion[]>(this.url$);
+      .get<PrescripcionWrapperTerm>(`${this.url$}/${perPage}/${term}/${page}`);
   }
 
   show(id) {
