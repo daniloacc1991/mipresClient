@@ -1,0 +1,43 @@
+<div class="causa-details-container col-xs-12 offset-md-2 col-md-8" *ngIf="causaNoEntrega">
+    <div class="card">
+      <div class="card-header">
+        Detalle de Causa No Entrega
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>Id</th>
+              <td>{{ causaNoEntrega.id }}</td>
+            </tr>
+            <tr>
+              <th>Descripcion</th>
+              <td>{{ causaNoEntrega.descripcion }}</td>
+            </tr>
+            <tr>
+              <th>Aplica Para:</th>
+              <td *ngIf="causaNoEntrega.aplicaPara === 0">Entrega Parcial</td>
+              <td *ngIf="causaNoEntrega.aplicaPara === 1">Entrega Total</td>
+            </tr>
+            <tr>
+              <th colspan="2" class="text-center">Tipos Tecnologias</th>
+            </tr>
+            <tr *ngFor="let causatipoTecnologia of causaNoEntrega.CausasNoEntregaTipoTecnologia">
+              <th *ngIf="causatipoTecnologia.tipoTecnologia === 'M' ">Medicamentos</th>
+              <th *ngIf="causatipoTecnologia.tipoTecnologia === 'P' ">Procedimientos</th>
+              <th *ngIf="causatipoTecnologia.tipoTecnologia === 'D' ">Dispositivos Medicos</th>
+              <th *ngIf="causatipoTecnologia.tipoTecnologia === 'S' ">Servicios Complementarios</th>
+              <th *ngIf="causatipoTecnologia.tipoTecnologia === 'N' ">Soportes Nutricionales</th>
+              <td>{{ causatipoTecnologia.habilitado ? 'X' : '' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer text-muted">
+        <span class="float-md-right ">
+          <button (click)="edit.emit(causaNoEntrega)" class="btn btn-sm btn-outline-warning ml-1">EDIT</button>
+          <button (click)="remove.emit(causaNoEntrega)" class="btn btn-sm btn-outline-danger ml-1">DELETE</button>
+        </span>
+      </div>
+    </div>
+  </div>

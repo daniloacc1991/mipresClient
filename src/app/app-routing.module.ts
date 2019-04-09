@@ -34,6 +34,11 @@ const routes: Routes = [
         loadChildren: 'src/app/view/ambito-atencion/ambito-atencion.module#AmbitoAtencionModule',
       },
       {
+        path: 'causa-no-entrega',
+        canActivate: [AuthGuard],
+        loadChildren: 'src/app/view/causa-no-entrega/causa-no-entrega.module#CausaNoEntregaModule',
+      },
+      {
         path: 'prescripcion-encabezado',
         canActivate: [AuthGuard],
         loadChildren: 'src/app/view/prescripcion-encabezado/prescripcion-encabezado.module#PrescripcionEncabezadoModule',

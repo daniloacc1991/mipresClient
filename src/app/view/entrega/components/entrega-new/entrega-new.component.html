@@ -1,1 +1,5 @@
-<app-entrega-form [prescripcionDetalle]="prescripcionDetalle$ | async" (save)="submitted($event)"></app-entrega-form>
+<app-entrega-form
+  [prescripcionDetalle]="prescripcionDetalle$ | async"
+  [causasNoEntrega]="causasNoEntrega$ | async"
+  (save)="submitted($event)">
+</app-entrega-form>

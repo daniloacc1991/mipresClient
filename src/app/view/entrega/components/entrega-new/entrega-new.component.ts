@@ -1,20 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { ofType } from '@ngrx/effects';
-import { Observable, Subscription, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-
+import { Observable, Subscription } from 'rxjs';
 import {
   EntregaActionsTypes,
   Create,
   CreateSuccess,
   LoadDetail
 } from '../../store/actions/entrega.actions';
-import { PrescripcionDetalle, Entrega } from '@app-models/index';
+import { PrescripcionDetalle, Entrega, CausaNoEntrega } from '@app-models/index';
 import * as fromRoot from 'src/app/reducers';
 import * as fromEntrega from '../../store/reducers';
+import * as fromCausaNoEntrega from '../../../causa-no-entrega/store/selectors/causa-no-entrega.selectors';
 
 @Component({
   selector: 'app-entrega-new',
@@ -22,9 +20,10 @@ import * as fromEntrega from '../../store/reducers';
   styleUrls: ['./entrega-new.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EntregaNewComponent implements OnInit {
+export class EntregaNewComponent implements OnInit, OnDestroy {
 
   prescripcionDetalle$: Observable<PrescripcionDetalle> = this.store.select(fromEntrega.getPrescripcionDetalle);
+  causasNoEntrega$: Observable<CausaNoEntrega[]> = this.store.select(fromCausaNoEntrega.getAllCausasNoEntrega);;
   redirectSub: Subscription;
 
   constructor(
@@ -46,6 +45,10 @@ export class EntregaNewComponent implements OnInit {
 
   submitted(Entrega: Entrega) {
     this.store.dispatch(new Create(Entrega));
+  }
+
+  ngOnDestroy() {
+    this.redirectSub.unsubscribe();
   }
 
 }

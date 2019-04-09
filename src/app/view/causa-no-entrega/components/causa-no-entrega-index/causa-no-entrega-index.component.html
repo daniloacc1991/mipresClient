@@ -1,0 +1,12 @@
+<a class="btn btn-outline-primary" [routerLink]="['/causa-no-entrega','new']" routerLinkActive="active">
+  <i class="fa fa-plus-square" aria-hidden="true"></i> Nueva
+</a>
+
+<app-causa-no-entrega-list
+  [causasNoEntrega]="causasNoEntrega$ | async"
+  (show)="showCausaNoEntrega($event)"
+  (remove)="deleteCausaNoEntrega($event)"
+  (edit)="editCausaNoEntrega($event)"
+>
+</app-causa-no-entrega-list>
+

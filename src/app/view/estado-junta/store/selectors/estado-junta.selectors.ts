@@ -16,7 +16,7 @@ export const getSelectEstadoJuntaId = createSelector(
 
 export const {
   selectAll: getAllEstadosJunta,
-  selectIds: getAllEstadosJuntaId,
+  selectIds: getAllEstadosJuntaIds,
   selectEntities: getEstadosJuntaEntities,
 } = fromEstadosJunta.estadoJuntaAdapter.getSelectors(getEstadosJuntaState);
 

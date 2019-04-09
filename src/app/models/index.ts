@@ -19,3 +19,5 @@ export * from './prescripcionDetalle';
 export * from './servicio-complementario';
 export * from './estado-junta';
 export * from './user';
+export * from './causa-no-entrega';
+export * from './causa-no-entrega-tipo-tecnologia';

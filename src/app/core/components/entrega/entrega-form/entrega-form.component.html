@@ -2,17 +2,22 @@
   <form (submit)="submit()" class="form" [formGroup]="form">
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label for="inputNoPrescripcion">NoPrescripcion</label>
+        <label for="inputNoPrescripcion">NoPrescripcion <span class="input-required">*</span></label>
         <input formControlName="NoPrescripcion" type="text" class="form-control" id="inputNoPrescripcion"
           placeholder="NoPrescripcion">
       </div>
       <div class="form-group col-md-4">
-        <label for="inputTipoTec">Tipo Tecnologia</label>
-        <input formControlName="TipoTec" type="text" class="form-control" id="inputTipoTec"
-          placeholder="Tipo Tecnologia">
+        <label for="inputTipoTec">Tipo Tecnologia <span class="input-required">*</span></label>
+        <select formControlName="TipoTec" id="inputTipoTec" class="form-control">
+          <option value="M">Medicamento</option>
+          <option value="P">Procedimiento</option>
+          <option value="D">Dispositivo</option>
+          <option value="N">Producto Nutricional</option>
+          <option value="S">Servicio Complementario</option>
+        </select>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputConTec">Consecutivo Tecnología</label>
+        <label for="inputConTec">Consecutivo Tecnología <span class="input-required">*</span></label>
         <input formControlName="ConTec" type="text" class="form-control" id="inputConTec"
           placeholder="Consecutivo Tecnología">
       </div>
@@ -20,12 +25,12 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputTipoIDPaciente">Tipo Documento Paciente</label>
+        <label for="inputTipoIDPaciente">Tipo Documento Paciente <span class="input-required">*</span></label>
         <input formControlName="TipoIDPaciente" type="text" class="form-control" id="inputTipoIDPaciente"
           placeholder="Tipo Documento Paciente">
       </div>
       <div class="form-group col-md-6">
-        <label for="inputNoIDPaciente">Número Documento Paciente</label>
+        <label for="inputNoIDPaciente">Número Documento Paciente <span class="input-required">*</span></label>
         <input formControlName="NoIDPaciente" type="text" class="form-control" id="inputNoIDPaciente"
           placeholder="Número Documento Paciente">
       </div>
@@ -33,22 +38,23 @@
 
     <div class="form-row">
       <div class="form-group col-md-3">
-        <label for="inputNoEntrega">Número Entrega</label>
+        <label for="inputNoEntrega">Número Entrega <span class="input-required">*</span></label>
         <input formControlName="NoEntrega" type="text" class="form-control" id="inputNoEntrega"
           placeholder="Número Entrega">
       </div>
       <div class="form-group col-md-3">
-        <label for="inputCodSerTecEntregado">Codigo de la Técnología Entregada</label>
+        <label for="inputCodSerTecEntregado">Codigo de la Técnología Entregada <span
+            class="input-required">*</span></label>
         <input formControlName="CodSerTecEntregado" type="text" class="form-control" id="inputCodSerTecEntregado"
           placeholder="Codigo de la Técnología Entregada">
       </div>
       <div class="form-group col-md-3">
-        <label for="inputCantTotEntregada">Cantidad Total Entregada</label>
+        <label for="inputCantTotEntregada">Cantidad Total Entregada <span class="input-required">*</span></label>
         <input formControlName="CantTotEntregada" type="text" class="form-control" id="inputCantTotEntregada"
           placeholder="Cantidad Total Entregada">
       </div>
       <div class="form-group col-md-3">
-        <label for="inputEntTotal">Entrega Total ?</label>
+        <label for="inputEntTotal">Entrega Total ? <span class="input-required">*</span></label>
         <select formControlName="EntTotal" id="inputEntTotal" class="form-control">
           <option value="1">SI</option>
           <option value="0">NO</option>
@@ -57,22 +63,23 @@
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputCausaNoEntrega">Causa No Entrega</label>
-          <input formControlName="CausaNoEntrega" type="text" class="form-control" id="inputCausaNoEntrega"
-            placeholder="Causa No Entrega">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputNoLote">No Lote</label>
-          <input formControlName="NoLote" type="text" class="form-control" id="inputNoLote"
-            placeholder="No Lote">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="FecEntrega">FecEntrega</label>
-          <input formControlName="FecEntrega" type="text" class="form-control" id="FecEntrega"
-            placeholder="FecEntrega">
-        </div>
+      <div class="form-group col-md-4">
+        <label for="inputCausaNoEntrega">Causa No Entrega</label>
+        <select formControlName="CausaNoEntrega" id="inputCausaNoEntrega" class="form-control">
+            <option value=""></option>
+          <option *ngFor="let causaNoEntrega of causasNoEntrega"
+            value="{{ causaNoEntrega.id }}">{{ causaNoEntrega.descripcion }}</option>
+        </select>
       </div>
+      <div class="form-group col-md-4">
+        <label for="inputNoLote">No Lote</label>
+        <input formControlName="NoLote" type="text" class="form-control" id="inputNoLote" placeholder="No Lote">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="FecEntrega">FecEntrega <span class="input-required">*</span></label>
+        <input formControlName="FecEntrega" type="text" class="form-control" id="FecEntrega" placeholder="FecEntrega">
+      </div>
+    </div>
 
     <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block">Entregar</button>
   </form>

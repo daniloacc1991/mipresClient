@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12 offset-md-2 col-md-8">
+    <div class="card">
+      <div class="card-header">
+        Editar Causa No Entrega
+      </div>
+      <div class="card-body">
+        <app-causa-no-entrega-form [causaNoEntrega]="causaNoEntrega$ | async" (save)="submitted($event)"></app-causa-no-entrega-form>
+      </div>
+    </div>
+  </div>
+</div>

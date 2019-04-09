@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Entrega, PrescripcionDetalle } from '@app-models/index';
+import { Entrega, PrescripcionDetalle, CausaNoEntrega } from '@app-models/index';
 
 @Component({
   selector: 'app-entrega-form',
@@ -11,22 +11,38 @@ import { Entrega, PrescripcionDetalle } from '@app-models/index';
 export class EntregaFormComponent implements OnInit, OnChanges {
 
   @Input() prescripcionDetalle: PrescripcionDetalle;
+  @Input() causasNoEntrega: CausaNoEntrega[]; 
   @Output() save = new EventEmitter<Entrega>();
 
   form: FormGroup;
 
   constructor(public formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      NoPrescripcion: ['', Validators.required],
-      TipoTec: ['', Validators.required],
-      ConTec: [null, Validators.required],
-      TipoIDPaciente: ['', Validators.required],
-      NoIDPaciente: ['', Validators.required],
+      NoPrescripcion: [{
+        value: '',
+        disabled: true,
+      }, Validators.required],
+      TipoTec: [{
+        value: '',
+        disabled: true,
+      }, Validators.required],
+      ConTec: [{
+        value: null,
+        disabled: true,
+      }, Validators.required],
+      TipoIDPaciente: [{
+        value: '',
+        disabled: true,
+      }, Validators.required],
+      NoIDPaciente: [{
+        value: '',
+        disabled: true,
+      }, Validators.required],
       NoEntrega: [null, Validators.required],
       CodSerTecEntregado: ['', Validators.required],
       CantTotEntregada: ['', Validators.required],
       EntTotal: [null, Validators.required],
-      CausaNoEntrega: [null, Validators.required],
+      CausaNoEntrega: [null],
       FecEntrega: ['', Validators.required],
       NoLote: [''],
       prescripcionDetalleId: [null, Validators.required]

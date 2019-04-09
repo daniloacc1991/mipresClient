@@ -34,6 +34,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/causa-no-entrega',
+    title: 'Causas No Entrega',
+    icon: 'mdi mdi-gauge',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '',
     title: 'Usuario',
     icon: 'mdi mdi-dots-horizontal',

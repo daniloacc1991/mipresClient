@@ -41,6 +41,9 @@ import { EstadoJuntaListComponent } from './components/estado-junta/estado-junta
 import { UserFormComponent } from './components/user/user-form/user-form.component';
 import { UserDetailContainerComponent } from './components/user/user-detail-container/user-detail-container.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { CausaNoEntregaFormComponent } from './components/causa-no-entrega/causa-no-entrega-form/causa-no-entrega-form.component';
+import { CausaNoEntregaListComponent } from './components/causa-no-entrega/causa-no-entrega-list/causa-no-entrega-list.component';
+import { CausaNoEntregaDetailsContainerComponent } from './components/causa-no-entrega/causa-no-entrega-details/causa-no-entrega-details.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     UserFormComponent,
     UserDetailContainerComponent,
     UserListComponent,
+    CausaNoEntregaFormComponent,
+    CausaNoEntregaListComponent,
+    CausaNoEntregaDetailsContainerComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -92,6 +98,9 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
     UserFormComponent,
     UserDetailContainerComponent,
     UserListComponent,
+    CausaNoEntregaFormComponent,
+    CausaNoEntregaListComponent,
+    CausaNoEntregaDetailsContainerComponent,
   ],
   imports: [
     CommonModule,

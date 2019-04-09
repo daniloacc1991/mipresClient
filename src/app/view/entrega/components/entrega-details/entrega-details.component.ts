@@ -58,11 +58,8 @@ export class EntregaDetailsComponent implements OnInit, OnDestroy {
   }
 
   editEntrega(entrega: Entrega) {
-
     this.store.dispatch(new SetCurrentEntregaId(entrega.id));
-
     this.router.navigate(['/entrega', entrega.id, 'edit']);
-
   }
 
   deleteEntrega(entrega: Entrega) {

@@ -1,0 +1,77 @@
+<div class="col-xs-12 offset-md-2 col-md-8">
+  <form (submit)="submit()" class="form" [formGroup]="form">
+
+    <div class="form-group">
+      <label for="id-input">ID:</label>
+      <input id="id-input" type="number" class="form-control" formControlName="id">
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion-input">Descripcion:</label>
+      <input id="descripcion-input" type="text" class="form-control" formControlName="descripcion">
+    </div>
+
+    <div class="form-group">
+      <label for="aplicaPara-input">Entrega Total ?</label>
+      <select formControlName="aplicaPara" id="aplicaPara-input" class="form-control">
+        <option value="1">SI</option>
+        <option value="0">NO</option>
+      </select>
+    </div>
+
+    <div formGroupName="tipoTecnologia">
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="medicamento-check" formControlName="medicamento">
+          <label class="custom-control-label" for="medicamento-check">Medicamentos</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="procedimiento-check" formControlName="procedimiento">
+          <label class="custom-control-label" for="procedimiento-check">Procedimientos</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="dispositivoMedico-check"
+            formControlName="dispositivoMedico">
+          <label class="custom-control-label" for="dispositivoMedico-check">Dispositivos Medicos</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="soporteNutricional-check"
+            formControlName="soporteNutricional">
+          <label class="custom-control-label" for="soporteNutricional-check">Soporte Nutricional</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="servicioComplementario-check"
+            formControlName="servicioComplementario">
+          <label class="custom-control-label" for="servicioComplementario-check">Servicios Complementarios</label>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="form-group text-center">
+      <button *ngIf="!isLoading" type="submit" [disabled]="!form.valid" class="btn btn-success btn-block">
+        Submit
+      </button>
+      <p *ngIf="isLoading">
+        <ngb-progressbar type="primary" [value]="100" [striped]="true" [animated]="true" height="1.5rem">
+          <i>Creando Causa No Entrega</i>
+        </ngb-progressbar>
+      </p>
+    </div>
+
+  </form>
+</div>

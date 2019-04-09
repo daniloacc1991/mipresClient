@@ -6,6 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromEntregas from './store/reducers';
 import { EntregaEffects } from './store/effects/entrega.effects';
+import * as fromCausaNoEntrega from '../causa-no-entrega/store/reducers';
+import { CausaNoEntregaEffects } from '../causa-no-entrega/store/effects/causa-no-entrega.effects';
+const NGRX_IMPORTS = [
+  StoreModule.forFeature('causasNoEntrega', fromCausaNoEntrega.reducers),
+  EffectsModule.forFeature([CausaNoEntregaEffects]),
+  StoreModule.forFeature('entrega', fromEntregas.reducers),
+  EffectsModule.forFeature([EntregaEffects]),
+];
 
 import { SharedModule } from 'src/app/core/shared.module';
 import { EntregaRoutingModule } from './entrega-routing.module';
@@ -25,8 +33,7 @@ import { EntregaComponent } from './entrega.component';
     CommonModule,
     EntregaRoutingModule,
     SharedModule,
-    StoreModule.forFeature('entrega', fromEntregas.reducers),
-    EffectsModule.forFeature([EntregaEffects]),
+    ...NGRX_IMPORTS,
   ],
   entryComponents: [EntregaComponent]
 })
