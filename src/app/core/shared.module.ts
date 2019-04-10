@@ -44,6 +44,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { CausaNoEntregaFormComponent } from './components/causa-no-entrega/causa-no-entrega-form/causa-no-entrega-form.component';
 import { CausaNoEntregaListComponent } from './components/causa-no-entrega/causa-no-entrega-list/causa-no-entrega-list.component';
 import { CausaNoEntregaDetailsContainerComponent } from './components/causa-no-entrega/causa-no-entrega-details/causa-no-entrega-details.component';
+import { PrescripcionDetalleListContainerComponent } from './components/prescripcion-detalle/prescripcion-detalle-list-container/prescripcion-detalle-list-container.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { CausaNoEntregaDetailsContainerComponent } from './components/causa-no-e
     CausaNoEntregaFormComponent,
     CausaNoEntregaListComponent,
     CausaNoEntregaDetailsContainerComponent,
+    PrescripcionDetalleListContainerComponent,
   ],
   exports: [
     HeaderNavigationComponent,
@@ -101,6 +103,7 @@ import { CausaNoEntregaDetailsContainerComponent } from './components/causa-no-e
     CausaNoEntregaFormComponent,
     CausaNoEntregaListComponent,
     CausaNoEntregaDetailsContainerComponent,
+    PrescripcionDetalleListContainerComponent,
   ],
   imports: [
     CommonModule,

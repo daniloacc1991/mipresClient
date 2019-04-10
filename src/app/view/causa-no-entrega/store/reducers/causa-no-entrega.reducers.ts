@@ -5,17 +5,17 @@ import { CausaNoEntrega } from '@app-models/index';
 export const causaNoEntregaAdapter = createEntityAdapter<CausaNoEntrega>({
   selectId: (causaNoEntrega: CausaNoEntrega) => causaNoEntrega.id,
   sortComparer: false,
-})
+});
 
 export interface State extends EntityState<CausaNoEntrega> {
-  currrentCausaNoEntregaId?: number;
+  currentCausaNoEntregaId?: number;
   isLoading: boolean;
-}
+};
 
 export const INIT_STATE: State = causaNoEntregaAdapter.getInitialState({
-  currrentCausaNoEntregaId: undefined,
+  currentCausaNoEntregaId: undefined,
   isLoading: false,
-})
+});
 
 export function reducer(state: State = INIT_STATE, { type, payload }: AllCausaNoEntregaActions) {
   switch (type) {
@@ -65,5 +65,5 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllCausaNo
   }
 }
 
-export const getCurrentCausaNoEntregaId = (state: State) => state.currrentCausaNoEntregaId;
+export const getCurrentCausaNoEntregaId = (state: State) => state.currentCausaNoEntregaId;
 export const getIsLoading = (state: State) => state.isLoading;

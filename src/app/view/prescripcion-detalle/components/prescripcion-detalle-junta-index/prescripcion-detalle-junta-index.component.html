@@ -1,0 +1,9 @@
+<app-prescripcion-detalle-list-container
+  [prescripcionsDetalle]="prescripcionesDetalle$ | async"
+  [isLoading]="isLoading$ | async"
+  [totalPrescripcions]="totalPrescripcions$ | async"
+  (show)="showPrescripcion($event)"
+  (changePage)="changedPage($event)"
+  (changePageSize)="changedPageSize($event)"
+>
+</app-prescripcion-detalle-list-container>

@@ -1,0 +1,113 @@
+<!-- <div class="row">
+  <div class="col-xs-12 col-md-6">
+    <form>
+      <div class="form-group form-inline">
+        Buscar Prescripcion: <input class="form-control ml-2" type="text" [formControl]="filter"
+          (keydown)="changeFilter($event)" />
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-12 col-md-6 text-right">
+    <button class="btn btn-outline-success" (click)="showForm = !showForm">Importar?</button>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="table-responsive">
+      <table class="table table-hover table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">NoPrescripcion</th>
+            <th scope="col">Tipo Tecnologia</th>
+            <th scope="col">Producto</th>
+            <th scope="col">FPrescripcion</th>
+            <th scope="col">HPrescripcion</th>
+            <th scope="col">TipoIDPaciente</th>
+            <th scope="col">NroIDPaciente</th>
+            <th scope="col">PAPaciente</th>
+            <th scope="col">PNPaciente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prescripcion of prescripcionsDetalle$ | async">
+            <th scope="row">{{ prescripcion.id }}</th>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.NoPrescripcion" [term]="filter.value">
+                {{ prescripcion.prescripcion.NoPrescripcion }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.TipoTecnologia" [term]="filter.value">
+                {{ prescripcion.TipoTecnologia }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight *ngIf="prescripcion.TipoTecnologia === 'S'"
+                [result]="prescripcion.tipoServicioComplementario.descripcion" [term]="filter.value">
+                {{ prescripcion.tipoServicioComplementario.descripcion }}
+              </ngb-highlight>
+              <ngb-highlight *ngIf="prescripcion.TipoTecnologia === 'N'"
+                [result]="prescripcion.productoNutricional.nombreComercial" [term]="filter.value">
+                {{ prescripcion.productoNutricional.nombreComercial }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.FPrescripcion | date:'yyyy-MM-dd'"
+                [term]="filter.value">
+                {{ prescripcion.prescripcion.FPrescripcion | date:'yyyy-MM-dd' }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.HPrescripcion" [term]="filter.value">
+                {{ prescripcion.prescripcion.HPrescripcion }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.TipoIDPaciente" [term]="filter.value">
+                {{ prescripcion.prescripcion.TipoIDPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.NroIDPaciente" [term]="filter.value">
+                {{ prescripcion.prescripcion.NroIDPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.PAPaciente" [term]="filter.value">
+                {{ prescripcion.prescripcion.PAPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="prescripcion.prescripcion.PNPaciente" [term]="filter.value">
+                {{ prescripcion.prescripcion.PNPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <span class="span-padding">
+                <button (click)="this.show.emit(prescripcion);" class="btn btn-outline-primary mb-1 btn-sm">
+                  Ver
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalPrescripcions" [(page)]="page"
+        [pageSize]="pageSize" [boundaryLinks]="true">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" name="pageSize" (change)="changePagesize($event)"
+        [(ngModel)]="pageSize">
+        <option [ngValue]="5">5 items Por Página</option>
+        <option [ngValue]="10">10 items Por Página</option>
+        <option [ngValue]="25">25 items Por Página</option>
+        <option [ngValue]="50">50 items Por Página</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- <pre>{{ prescripcionsDetalle$ | async | json }}</pre> -->

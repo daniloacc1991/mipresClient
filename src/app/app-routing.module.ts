@@ -44,6 +44,11 @@ const routes: Routes = [
         loadChildren: 'src/app/view/prescripcion-encabezado/prescripcion-encabezado.module#PrescripcionEncabezadoModule',
       },
       {
+        path: 'junta-medica',
+        canActivate: [AuthGuard],
+        loadChildren: 'src/app/view/prescripcion-detalle/prescripcion-detalle.module#PrescripcionDetalleModule',
+      },
+      {
         path: 'entrega',
         canActivate: [AuthGuard],
         loadChildren: 'src/app/view/entrega/entrega.module#EntregaModule',

@@ -58,6 +58,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
+    path: '/junta-medica',
+    title: 'Juntas Medicas',
+    icon: 'mdi mdi-gauge',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
     path: '/entrega',
     title: 'Entregas',
     icon: 'mdi mdi-gauge',
