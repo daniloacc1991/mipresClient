@@ -150,14 +150,12 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
       return prescripcion.NoPrescripcion.includes(term)
         || dateMoment.includes(term)
         || prescripcion.HPrescripcion.includes(term)
-        || prescripcion.PNProfS.includes(term)
-        || prescripcion.SNProfS.includes(term)
-        || prescripcion.PAProfS.includes(term)
-        || prescripcion.SAProfS.includes(term)
-        || prescripcion.PNPaciente.includes(term)
-        || prescripcion.SNPaciente.includes(term)
+        || prescripcion.TipoIDPaciente.includes(term)
+        || prescripcion.NroIDPaciente.includes(term)
         || prescripcion.PAPaciente.includes(term)
-        || prescripcion.SAPaciente.includes(term);
+        || prescripcion.SAPaciente.includes(term)
+        || prescripcion.PNPaciente.includes(term)
+        || prescripcion.SNPaciente.includes(term);
     });
   }
 

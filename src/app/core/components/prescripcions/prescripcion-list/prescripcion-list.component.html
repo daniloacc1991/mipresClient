@@ -3,7 +3,8 @@
   <div class="col-xs-12 col-md-6">
     <form>
       <div class="form-group form-inline">
-        Buscar Prescripcion: <input class="form-control ml-2" type="text" [formControl]="filter" (keydown)="changeFilter($event)" />
+        Buscar Prescripcion: <input class="form-control ml-2" type="text" [formControl]="filter"
+          (keydown)="changeFilter($event)" />
       </div>
     </form>
   </div>
@@ -46,14 +47,17 @@
           <th scope="col">NoPrescripcion</th>
           <th scope="col">FPrescripcion</th>
           <th scope="col">HPrescripcion</th>
-          <th scope="col">Paciente</th>
-          <th scope="col">Profesional</th>
+          <th scope="col">TipoIDPaciente</th>
+          <th scope="col">NroIDPaciente</th>
+          <th scope="col">PAPaciente</th>
+          <th scope="col">SAPaciente</th>
+          <th scope="col">PNPaciente</th>
+          <th scope="col">SNPaciente</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          *ngFor="let precipcion of prescripcions$ | async">
+        <tr *ngFor="let precipcion of prescripcions$ | async">
           <th scope="row">{{ precipcion.id }}</th>
           <td>
             <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">
@@ -71,13 +75,33 @@
             </ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">
-              {{ precipcion.PNPaciente + ' ' + precipcion.PAPaciente }}
+            <ngb-highlight [result]="precipcion.TipoIDPaciente" [term]="filter.value">
+              {{ precipcion.TipoIDPaciente }}
             </ngb-highlight>
           </td>
           <td>
-            <ngb-highlight [result]="precipcion.SNProfS" [term]="filter.value">
-              {{ precipcion.SNProfS + ' ' + precipcion.SAPaciente }}
+            <ngb-highlight [result]="precipcion.NroIDPaciente" [term]="filter.value">
+              {{ precipcion.NroIDPaciente }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.PAPaciente" [term]="filter.value">
+              {{ precipcion.PAPaciente }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.SAPaciente" [term]="filter.value">
+              {{ precipcion.SAPaciente }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">
+              {{ precipcion.PNPaciente }}
+            </ngb-highlight>
+          </td>
+          <td>
+            <ngb-highlight [result]="precipcion.SNPaciente" [term]="filter.value">
+              {{ precipcion.SNPaciente }}
             </ngb-highlight>
           </td>
           <td>
@@ -91,11 +115,12 @@
       </tbody>
     </table>
     <div class="d-flex justify-content-between p-2">
-      <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalPrescripcions" [(page)]="page" [pageSize]="pageSize"
-        [boundaryLinks]="true">
+      <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalPrescripcions" [(page)]="page"
+        [pageSize]="pageSize" [boundaryLinks]="true">
       </ngb-pagination>
 
-      <select class="custom-select" style="width: auto" name="pageSize" (change)="changePagesize($event)" [(ngModel)]="pageSize">
+      <select class="custom-select" style="width: auto" name="pageSize" (change)="changePagesize($event)"
+        [(ngModel)]="pageSize">
         <option [ngValue]="5">5 items Por Página</option>
         <option [ngValue]="10">10 items Por Página</option>
         <option [ngValue]="25">25 items Por Página</option>
