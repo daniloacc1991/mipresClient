@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { ofType } from '@ngrx/effects';
 import { Observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { CausaNoEntrega } from '@app-models/index';
 import {
   CAUSA_NO_ENTREGA_ACTIONS_TYPES,
@@ -13,8 +14,6 @@ import {
 } from '../../store/actions/causa-no-entrega.actions';
 import * as fromRoot from 'src/app/reducers';
 import * as fromCausaNoEntrega from '../../store/selectors/causa-no-entrega.selectors';
-import { filter } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-causa-no-entrega-details',
@@ -37,6 +36,7 @@ export class CausaNoEntregaDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     this.redirectSub = this.actionsSubject.pipe(
       ofType(CAUSA_NO_ENTREGA_ACTIONS_TYPES.DELETE_SUCCESS),
       filter((action: DeleteSuccess) => action.payload === +this.activatedRoute.snapshot.params['causaNoEntregaId'])

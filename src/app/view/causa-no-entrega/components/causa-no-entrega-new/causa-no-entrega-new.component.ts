@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Router } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { ofType } from '@ngrx/effects';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import {
   CAUSA_NO_ENTREGA_ACTIONS_TYPES,
   Create,
@@ -20,7 +20,7 @@ import * as fromCausaNoEntrega from '../../store/selectors/causa-no-entrega.sele
 })
 export class CausaNoEntregaNewComponent implements OnInit, OnDestroy {
 
-  prescripcionDetalle$: Observable<CausaNoEntrega> = this.store.select(fromCausaNoEntrega.getCurrentCausaNoEntrega);
+  isLoading$: Observable<boolean> = of(false);
   redirectSub: Subscription;
 
   constructor(

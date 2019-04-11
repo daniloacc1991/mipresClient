@@ -9,7 +9,7 @@ export const causaNoEntregaAdapter = createEntityAdapter<CausaNoEntrega>({
 
 export interface State extends EntityState<CausaNoEntrega> {
   currentCausaNoEntregaId?: number;
-  isLoading: boolean;
+  isLoading?: boolean;
 };
 
 export const INIT_STATE: State = causaNoEntregaAdapter.getInitialState({
@@ -22,7 +22,7 @@ export function reducer(state: State = INIT_STATE, { type, payload }: AllCausaNo
     case CAUSA_NO_ENTREGA_ACTIONS_TYPES.SET_CURRENT_CAUSA_NO_ENTREGA_ID: {
       return {
         ...state,
-        currrentCausaNoEntregaId: payload,
+        currentCausaNoEntregaId: payload,
       }
     }
 

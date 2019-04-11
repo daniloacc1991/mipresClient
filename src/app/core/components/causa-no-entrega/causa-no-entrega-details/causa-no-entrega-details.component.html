@@ -22,7 +22,7 @@
             <tr>
               <th colspan="2" class="text-center">Tipos Tecnologias</th>
             </tr>
-            <tr *ngFor="let causatipoTecnologia of causaNoEntrega.CausasNoEntregaTipoTecnologia">
+            <tr *ngFor="let causatipoTecnologia of causaNoEntrega.causasNoEntregaTipoTecnologia">
               <th *ngIf="causatipoTecnologia.tipoTecnologia === 'M' ">Medicamentos</th>
               <th *ngIf="causatipoTecnologia.tipoTecnologia === 'P' ">Procedimientos</th>
               <th *ngIf="causatipoTecnologia.tipoTecnologia === 'D' ">Dispositivos Medicos</th>
