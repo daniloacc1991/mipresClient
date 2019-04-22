@@ -67,7 +67,11 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
     this.filterPrescripcions();
     this.form = this.formBuilder.group({
       'token': ['', Validators.required],
-      'nit': ['', [
+      'nit': [{
+        value: '890209758',
+        disabled: true,
+      },
+      [
         Validators.required,
         Validators.minLength(8),
       ]],
@@ -82,7 +86,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   @HostListener('keydown', ['$event.target'])
-  changeFilter(event: any){
+  changeFilter(event: any) {
     this.keydownSubject.next(event);
   }
 
@@ -90,7 +94,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
     this.changePage.emit(event);
   }
 
-  changePagesize(event: any){
+  changePagesize(event: any) {
     this.changePageSize.emit(this.pageSize);
   }
 
@@ -159,7 +163,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
 }
