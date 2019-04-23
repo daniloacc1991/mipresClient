@@ -68,7 +68,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
     this.form = this.formBuilder.group({
       'token': ['', Validators.required],
       'nit': [{
-        value: '890209758',
+        value: '890208758',
         disabled: true,
       },
       [
@@ -101,7 +101,7 @@ export class PrescripcionListComponent implements OnInit, OnChanges, OnDestroy {
   importPrescripcion() {
     const data: ImportarxFecha = {
       token: this.form.value.token,
-      nit: this.form.value.nit,
+      nit: '890208758',
       fecha: this.form.value.fecha.format('YYYY-MM-DD')
     }
     this.import.emit(data)

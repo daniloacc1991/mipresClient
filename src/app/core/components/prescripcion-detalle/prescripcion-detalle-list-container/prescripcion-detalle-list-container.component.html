@@ -51,6 +51,10 @@
                 [result]="prescripcion.productoNutricional.nombreComercial" [term]="filter.value">
                 {{ prescripcion.productoNutricional.nombreComercial }}
               </ngb-highlight>
+              <ngb-highlight *ngIf="prescripcion.TipoTecnologia === 'M'"
+                [result]="prescripcion.DescMedPrinAct" [term]="filter.value">
+                {{ prescripcion.DescMedPrinAct }}
+              </ngb-highlight>
             </td>
             <td>
               <ngb-highlight [result]="prescripcion.prescripcion.FPrescripcion | date:'yyyy-MM-dd'"
