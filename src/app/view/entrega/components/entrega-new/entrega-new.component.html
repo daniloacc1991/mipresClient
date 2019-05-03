@@ -1,5 +1,6 @@
 <app-entrega-form
   [prescripcionDetalle]="prescripcionDetalle$ | async"
   [causasNoEntrega]="causasNoEntrega$ | async"
+  [isLoading]="isLoading$ | async"
   (save)="submitted($event)">
 </app-entrega-form>

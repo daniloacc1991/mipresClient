@@ -22,6 +22,11 @@ export const getSelectedEntregaId = createSelector(
   fromEntrega.getCurrentEntregaId,
 );
 
+export const getIsLoading = createSelector(
+  getEntregaState,
+  fromEntrega.getIsLoading,
+);
+
 export const getPrescripcionDetalle = createSelector(
   getEntregaState,
   fromEntrega.getCurrentPrescripcionDetalle,

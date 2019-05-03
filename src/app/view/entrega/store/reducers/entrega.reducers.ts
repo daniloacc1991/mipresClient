@@ -9,11 +9,13 @@ export const entregaAdater = createEntityAdapter<Entrega>({
 
 export interface State extends EntityState<Entrega> {
   currentEntregaId?: number;
+  isLoading: boolean;
   prescripcionDetalle: PrescripcionDetalle;
 }
 
 export const InitState: State = entregaAdater.getInitialState({
   currentEntregaId: undefined,
+  isLoading: false,
   prescripcionDetalle: undefined,
 });
 
@@ -39,8 +41,16 @@ export function reducer(state: State = InitState, { type, payload }: EntregaActi
       });
     }
 
+    case EntregaActionsTypes.CREATE: {
+      return {
+        isLoading: true,
+        ...state,
+      }
+    }
+
     case EntregaActionsTypes.CREATE_SUCCESS: {
       return entregaAdater.addOne(payload, {
+        isLoading: false,
         ...state
       });
     }
@@ -65,4 +75,5 @@ export function reducer(state: State = InitState, { type, payload }: EntregaActi
 }
 
 export const getCurrentEntregaId = (state: State) => state.currentEntregaId;
+export const getIsLoading = (state: State) => state.isLoading;
 export const getCurrentPrescripcionDetalle = (state: State) => state.prescripcionDetalle;

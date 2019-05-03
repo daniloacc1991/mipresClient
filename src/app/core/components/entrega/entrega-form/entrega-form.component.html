@@ -4,11 +4,11 @@
       <div class="form-group col-md-4">
         <label for="inputNoPrescripcion">NoPrescripcion <span class="input-required">*</span></label>
         <input formControlName="NoPrescripcion" type="text" class="form-control" id="inputNoPrescripcion"
-          placeholder="NoPrescripcion">
+          placeholder="NoPrescripcion" readonly>
       </div>
       <div class="form-group col-md-4">
         <label for="inputTipoTec">Tipo Tecnologia <span class="input-required">*</span></label>
-        <select formControlName="TipoTec" id="inputTipoTec" class="form-control">
+        <select formControlName="TipoTec" id="inputTipoTec" class="form-control" readonly>
           <option value="M">Medicamento</option>
           <option value="P">Procedimiento</option>
           <option value="D">Dispositivo</option>
@@ -19,7 +19,7 @@
       <div class="form-group col-md-4">
         <label for="inputConTec">Consecutivo Tecnología <span class="input-required">*</span></label>
         <input formControlName="ConTec" type="text" class="form-control" id="inputConTec"
-          placeholder="Consecutivo Tecnología">
+          placeholder="Consecutivo Tecnología" readonly>
       </div>
     </div>
 
@@ -27,12 +27,12 @@
       <div class="form-group col-md-6">
         <label for="inputTipoIDPaciente">Tipo Documento Paciente <span class="input-required">*</span></label>
         <input formControlName="TipoIDPaciente" type="text" class="form-control" id="inputTipoIDPaciente"
-          placeholder="Tipo Documento Paciente">
+          placeholder="Tipo Documento Paciente" readonly>
       </div>
       <div class="form-group col-md-6">
         <label for="inputNoIDPaciente">Número Documento Paciente <span class="input-required">*</span></label>
         <input formControlName="NoIDPaciente" type="text" class="form-control" id="inputNoIDPaciente"
-          placeholder="Número Documento Paciente">
+          placeholder="Número Documento Paciente" readonly>
       </div>
     </div>
 
@@ -66,9 +66,9 @@
       <div class="form-group col-md-4">
         <label for="inputCausaNoEntrega">Causa No Entrega</label>
         <select formControlName="CausaNoEntrega" id="inputCausaNoEntrega" class="form-control">
-            <option value=""></option>
-          <option *ngFor="let causaNoEntrega of causasNoEntrega"
-            value="{{ causaNoEntrega.id }}">{{ causaNoEntrega.descripcion }}</option>
+          <option value=""></option>
+          <option *ngFor="let causaNoEntrega of causasNoEntrega" value="{{ causaNoEntrega.id }}">
+            {{ causaNoEntrega.descripcion }}</option>
         </select>
       </div>
       <div class="form-group col-md-4">
@@ -77,10 +77,27 @@
       </div>
       <div class="form-group col-md-4">
         <label for="FecEntrega">FecEntrega <span class="input-required">*</span></label>
-        <input formControlName="FecEntrega" type="text" class="form-control" id="FecEntrega" placeholder="FecEntrega">
+        <div class="input-group">
+          <input class="form-control" placeholder="YYYY-MM-DD" name="FecEntrega" formControlName="FecEntrega"
+            ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+              <i class="material-icons"> calendar_today </i>
+            </button>
+          </div>
+        </div>
+
+        <!-- <label for="FecEntrega">FecEntrega <span class="input-required">*</span></label>
+        <input formControlName="FecEntrega" type="text" class="form-control" id="FecEntrega" placeholder="FecEntrega"> -->
       </div>
     </div>
 
-    <button [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block">Entregar</button>
+    <button *ngIf="!isLoading" [disabled]="!form.valid" type="submit"
+      class="btn btn-primary btn-block">Entregar</button>
+
+    <div *ngIf="isLoading" class="col-xs-12 offset-md-4 col-md-4 text-center">
+      <mat-progress-spinner class="example-margin" color="primary" mode="indeterminate" value="100%">
+      </mat-progress-spinner>
+    </div>
   </form>
 </div>

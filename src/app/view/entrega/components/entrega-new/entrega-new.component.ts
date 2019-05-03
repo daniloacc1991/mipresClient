@@ -23,7 +23,8 @@ import * as fromCausaNoEntrega from '../../../causa-no-entrega/store/selectors/c
 export class EntregaNewComponent implements OnInit, OnDestroy {
 
   prescripcionDetalle$: Observable<PrescripcionDetalle> = this.store.select(fromEntrega.getPrescripcionDetalle);
-  causasNoEntrega$: Observable<CausaNoEntrega[]> = this.store.select(fromCausaNoEntrega.getAllCausasNoEntrega);;
+  causasNoEntrega$: Observable<CausaNoEntrega[]> = this.store.select(fromCausaNoEntrega.getAllCausasNoEntrega);
+  isLoading$: Observable<boolean> = this.store.select(fromCausaNoEntrega.getIsLoading);
   redirectSub: Subscription;
 
   constructor(

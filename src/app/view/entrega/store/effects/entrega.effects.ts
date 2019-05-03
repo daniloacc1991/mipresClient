@@ -47,40 +47,43 @@ export class EntregaEffects {
   create$: Observable<Action> = this.actions$.pipe(
     ofType(EntregaActionsTypes.CREATE),
     map((action: Create) => action.payload),
-    switchMap((entrega) => this.entregaService.create(entrega)),
-    map((createdEntrega: Entrega) => new CreateSuccess(createdEntrega)),
-    catchError(err => {
-      alert(err['message']);
-      return of(new Failure({ concern: 'CREATE', error: err }));
-    }),
+    switchMap((entrega) => this.entregaService.create(entrega).pipe(
+      map((createdEntrega: Entrega) => new CreateSuccess(createdEntrega)),
+      catchError(err => {
+        alert(err['message']);
+        return of(new Failure({ concern: 'CREATE', error: err }));
+      }),
+    )),
   );
 
   @Effect()
   update$: Observable<Action> = this.actions$.pipe(
     ofType(EntregaActionsTypes.PUT),
     map((action: Put) => action.payload),
-    switchMap((entrega: Entrega) => this.entregaService.update(entrega)),
-    map((updatedentrega: Entrega) => new PutSuccess({
-      id: updatedentrega.id,
-      changes: updatedentrega
-    })
-    ),
-    catchError(err => {
-      alert(err['message']);
-      return of(new Failure({ concern: 'PUT', error: err }))
-    })
+    switchMap((entrega: Entrega) => this.entregaService.update(entrega).pipe(
+      map((updatedentrega: Entrega) => new PutSuccess({
+        id: updatedentrega.id,
+        changes: updatedentrega
+      })
+      ),
+      catchError(err => {
+        alert(err['message']);
+        return of(new Failure({ concern: 'PUT', error: err }))
+      })
+    )),
   );
 
   @Effect()
   loadDetail$: Observable<Action> = this.actions$.pipe(
     ofType(EntregaActionsTypes.LOAD_DETAIL),
     map((action: LoadDetail) => action.payload),
-    switchMap((id: number) => this.entregaService.loadPrescripcionDetalle(id)),
-    map((prescripcionDetalle: PrescripcionDetalle) => new LoadDetailSuccess(prescripcionDetalle)),
-    catchError(err => {
-      alert(err['message']);
-      return of(new Failure({ concern: 'LOAD_DETAIL', error: err }))
-    })
+    switchMap((id: number) => this.entregaService.loadPrescripcionDetalle(id).pipe(
+      map((prescripcionDetalle: PrescripcionDetalle) => new LoadDetailSuccess(prescripcionDetalle)),
+      catchError(err => {
+        alert(err['message']);
+        return of(new Failure({ concern: 'LOAD_DETAIL', error: err }))
+      })
+    )),
   );
 
   @Effect()

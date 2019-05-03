@@ -11,7 +11,8 @@ import { Entrega, PrescripcionDetalle, CausaNoEntrega } from '@app-models/index'
 export class EntregaFormComponent implements OnInit, OnChanges {
 
   @Input() prescripcionDetalle: PrescripcionDetalle;
-  @Input() causasNoEntrega: CausaNoEntrega[]; 
+  @Input() causasNoEntrega: CausaNoEntrega[];
+  @Input() isLoading: boolean;
   @Output() save = new EventEmitter<Entrega>();
 
   form: FormGroup;
@@ -20,23 +21,18 @@ export class EntregaFormComponent implements OnInit, OnChanges {
     this.form = this.formBuilder.group({
       NoPrescripcion: [{
         value: '',
-        disabled: true,
       }, Validators.required],
       TipoTec: [{
         value: '',
-        disabled: true,
       }, Validators.required],
       ConTec: [{
         value: null,
-        disabled: true,
       }, Validators.required],
       TipoIDPaciente: [{
         value: '',
-        disabled: true,
       }, Validators.required],
       NoIDPaciente: [{
         value: '',
-        disabled: true,
       }, Validators.required],
       NoEntrega: [null, Validators.required],
       CodSerTecEntregado: ['', Validators.required],
@@ -67,6 +63,11 @@ export class EntregaFormComponent implements OnInit, OnChanges {
 
   submit() {
     if (this.form.valid) {
+      const year = this.form.value.FecEntrega.year;
+      const month = this.form.value.FecEntrega.month < 10 ? `0${this.form.value.FecEntrega.month}` : this.form.value.FecEntrega.month;
+      const day = this.form.value.FecEntrega.day < 10 ? `0${this.form.value.FecEntrega.day}` : this.form.value.FecEntrega.day;
+      const fecha = `${year}-${month}-${day}`;
+      this.form.value.FecEntrega = fecha;
       this.save.emit(this.form.value);
     }
   }
