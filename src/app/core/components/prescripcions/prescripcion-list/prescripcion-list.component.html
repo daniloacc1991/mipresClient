@@ -40,82 +40,84 @@
 </div>
 <div class="row">
   <div class="col-xs-12 col-md-12">
-    <table class="table table-hover table-responsive-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">NoPrescripcion</th>
-          <th scope="col">FPrescripcion</th>
-          <th scope="col">HPrescripcion</th>
-          <th scope="col">TipoIDPaciente</th>
-          <th scope="col">NroIDPaciente</th>
-          <th scope="col">PAPaciente</th>
-          <th scope="col">SAPaciente</th>
-          <th scope="col">PNPaciente</th>
-          <th scope="col">SNPaciente</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let precipcion of prescripcions$ | async">
-          <th scope="row">{{ precipcion.id }}</th>
-          <td>
-            <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">
-              {{ precipcion.NoPrescripcion }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.FPrescripcion | date:'yyyy-MM-dd'" [term]="filter.value">
-              {{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.HPrescripcion" [term]="filter.value">
-              {{ precipcion.HPrescripcion }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.TipoIDPaciente" [term]="filter.value">
-              {{ precipcion.TipoIDPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.NroIDPaciente" [term]="filter.value">
-              {{ precipcion.NroIDPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.PAPaciente" [term]="filter.value">
-              {{ precipcion.PAPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.SAPaciente" [term]="filter.value">
-              {{ precipcion.SAPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">
-              {{ precipcion.PNPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <ngb-highlight [result]="precipcion.SNPaciente" [term]="filter.value">
-              {{ precipcion.SNPaciente }}
-            </ngb-highlight>
-          </td>
-          <td>
-            <span class="span-padding">
-              <button (click)="showDetails(precipcion)" class="btn btn-outline-primary mb-1 btn-sm">
-                Ver
-              </button>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">NoPrescripcion</th>
+            <th scope="col">FPrescripcion</th>
+            <th scope="col">HPrescripcion</th>
+            <th scope="col">TipoIDPaciente</th>
+            <th scope="col">NroIDPaciente</th>
+            <th scope="col">PAPaciente</th>
+            <th scope="col">SAPaciente</th>
+            <th scope="col">PNPaciente</th>
+            <th scope="col">SNPaciente</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let precipcion of prescripcions$ | async">
+            <th scope="row">{{ precipcion.id }}</th>
+            <td>
+              <ngb-highlight [result]="precipcion.NoPrescripcion" [term]="filter.value">
+                {{ precipcion.NoPrescripcion }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.FPrescripcion | date:'yyyy-MM-dd'" [term]="filter.value">
+                {{ precipcion.FPrescripcion | date:'yyyy-MM-dd' }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.HPrescripcion" [term]="filter.value">
+                {{ precipcion.HPrescripcion }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.TipoIDPaciente" [term]="filter.value">
+                {{ precipcion.TipoIDPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.NroIDPaciente" [term]="filter.value">
+                {{ precipcion.NroIDPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.PAPaciente" [term]="filter.value">
+                {{ precipcion.PAPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.SAPaciente" [term]="filter.value">
+                {{ precipcion.SAPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.PNPaciente" [term]="filter.value">
+                {{ precipcion.PNPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="precipcion.SNPaciente" [term]="filter.value">
+                {{ precipcion.SNPaciente }}
+              </ngb-highlight>
+            </td>
+            <td>
+              <span class="span-padding">
+                <button (click)="showDetails(precipcion)" class="btn btn-outline-primary mb-1 btn-sm">
+                  Ver
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="d-flex justify-content-between p-2">
-      <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalPrescripcions" [(page)]="page"
+      <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalPrescripcions" [maxSize]="15" [(page)]="page"
         [pageSize]="pageSize" [boundaryLinks]="true">
       </ngb-pagination>
 
