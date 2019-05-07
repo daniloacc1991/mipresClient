@@ -66,7 +66,7 @@
       <div class="form-group col-md-4">
         <label for="inputCausaNoEntrega">Causa No Entrega</label>
         <select formControlName="CausaNoEntrega" id="inputCausaNoEntrega" class="form-control">
-          <option value=""></option>
+          <option></option>
           <option *ngFor="let causaNoEntrega of causasNoEntrega" value="{{ causaNoEntrega.id }}">
             {{ causaNoEntrega.descripcion }}</option>
         </select>

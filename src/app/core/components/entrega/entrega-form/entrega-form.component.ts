@@ -68,6 +68,7 @@ export class EntregaFormComponent implements OnInit, OnChanges {
       const day = this.form.value.FecEntrega.day < 10 ? `0${this.form.value.FecEntrega.day}` : this.form.value.FecEntrega.day;
       const fecha = `${year}-${month}-${day}`;
       this.form.value.FecEntrega = fecha;
+      this.form.value.CausaNoEntrega = this.form.value.CausaNoEntrega === '' ? null : this.form.value.CausaNoEntrega;
       this.save.emit(this.form.value);
     }
   }
