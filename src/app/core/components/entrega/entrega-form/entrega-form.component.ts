@@ -40,7 +40,11 @@ export class EntregaFormComponent implements OnInit, OnChanges {
       EntTotal: [null, Validators.required],
       CausaNoEntrega: [null],
       FecEntrega: ['', Validators.required],
-      NoLote: [''],
+      EstadoEntrega: [null, Validators.required],
+      ValorEntregado: [0, [
+        Validators.required,
+        Validators.min(200),
+      ]],
       prescripcionDetalleId: [null, Validators.required]
     });
   }

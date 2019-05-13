@@ -1,5 +1,6 @@
 export interface Entrega {
   id: number;
+  ID?: number;
   IDEntrega: number;
   NoPrescripcion: string;
   TipoTec: string;
@@ -13,5 +14,7 @@ export interface Entrega {
   CausaNoEntrega: number;
   FecEntrega: string;
   NoLote: string;
+  EstadoEntrega?: number;
+  ValorEntregado?: number;
   prescripcionDetalleId: number;
 }
