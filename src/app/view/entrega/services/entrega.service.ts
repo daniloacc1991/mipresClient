@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Entrega, PrescripcionDetalle } from '@app-models/index';
+import { Entrega, PrescripcionDetalle, EntregaResumen } from '@app-models/index';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -36,5 +36,9 @@ export class EntregaService {
 
   loadPrescripcionDetalle(id: number) {
     return this.http.get<PrescripcionDetalle>(`${this.url}/detalle/${id}`);
+  }
+
+  loadAllResumen() {
+    return this.http.get<EntregaResumen[]>(`${environment.apiUrl}/prescripcion-detalle/entregas`);
   }
 }

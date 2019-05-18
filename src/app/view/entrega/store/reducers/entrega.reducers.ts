@@ -42,6 +42,7 @@ export function reducer(state: State = InitState, { type, payload }: EntregaActi
     }
 
     case EntregaActionsTypes.CREATE: {
+      console.log(state);
       return {
         isLoading: true,
         ...state,

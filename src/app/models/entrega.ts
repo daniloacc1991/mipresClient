@@ -18,3 +18,12 @@ export interface Entrega {
   ValorEntregado?: number;
   prescripcionDetalleId: number;
 }
+
+export interface EntregaResumen {
+  id: number,
+  TipoTecnologia: string;
+  ConOrden: number;
+  PrescripcionId: number;
+  NoPrescripcion: number;
+  ValorTotal: number;
+}

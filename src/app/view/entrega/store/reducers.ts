@@ -1,16 +1,26 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromRoot from 'src/app/reducers';
 import * as fromEntrega from './reducers/entrega.reducers';
+// import * as fromEntregaResumen from './reducers/entrega-resumen.reducers';
 
 export interface State extends fromRoot.State {
   entrega: fromEntrega.State;
 }
 
+// export interface StateResumen extends fromRoot.State {
+//   entregaResumen: fromEntregaResumen.State;
+// }
+
 export const reducers = {
   entrega: fromEntrega.reducer,
 };
 
+// export const reducersResumen = {
+//   entregaResumen: fromEntregaResumen.reducer,
+// };
+
 export const getEntregaRootState = createFeatureSelector<State>('entrega');
+// export const getEntregaResumenRootState = createFeatureSelector<StateResumen>('entregaResumen');
 
 export const getEntregaState = createSelector(
   getEntregaRootState,

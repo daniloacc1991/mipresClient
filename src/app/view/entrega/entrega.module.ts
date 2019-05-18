@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromEntregas from './store/reducers';
 import { EntregaEffects } from './store/effects/entrega.effects';
+// import { EntregaResumenEffects } from './store/effects/entrega-resumen.effects';
 import * as fromCausaNoEntrega from '../causa-no-entrega/store/reducers';
 import { CausaNoEntregaEffects } from '../causa-no-entrega/store/effects/causa-no-entrega.effects';
 const NGRX_IMPORTS = [
